@@ -27,6 +27,9 @@ func _ready():
 func _physics_process(delta):
 	velocity = Vector2.ZERO
 	
+	if 	animationTree.get("parameters/conditions/hasAttacked"):
+		animationTree.set("parameters/conditions/hasAttacked", false)
+	
 	if	Input.is_action_pressed("move_left"):
 		velocity.x -= 1.0
 	if	Input.is_action_pressed("move_right"):
@@ -38,18 +41,19 @@ func _physics_process(delta):
 		
 	velocity = velocity * speed
 	
-	statemachine.travel("Locomotion")
-	
 	animationTree.set("parameters/Locomotion/blend_position",velocity)
 	
 	if Input.is_action_just_pressed("attack"):
-		var mousePosition = get_viewport().get_mouse_position()
+		var attackDirection
+		if get_global_mouse_position().x > global_position.x:
+			attackDirection = 1
+		elif get_global_mouse_position().x < global_position.x:
+			attackDirection = -1
+
 		
-		var attackDirection = ( position - mousePosition).normalized()
+		animationTree.set("parameters/Attack/blend_position", attackDirection)
 		
-		animationTree.set("parameters/Attack/blend_position", int(round(attackDirection.x)))
-		
-		statemachine.travel("Attack")
+		animationTree.set("parameters/conditions/hasAttacked", true)
 		
 	move_and_slide()
 

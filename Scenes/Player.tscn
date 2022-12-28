@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://vf2qefixys82"]
+[gd_scene load_steps=30 format=3 uid="uid://vf2qefixys82"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_bwugi"]
 [ext_resource type="Texture2D" uid="uid://0v6cuwxnd5jm" path="res://Sprites/sword.png" id="2_7pijg"]
@@ -575,10 +575,10 @@ _data = {
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5xh0b"]
-animation = &"attack_right"
+animation = &"attack_left"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p3l2n"]
-animation = &"attack_left"
+animation = &"attack_right"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_w73up"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_5xh0b")
@@ -625,16 +625,21 @@ blend_point_6/pos = Vector2(-1, 0)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_852s1"]
+advance_condition = &"hasAttacked"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nhrlj"]
 switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bdxyh"]
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_g6b23"]
 states/Attack/node = SubResource("AnimationNodeBlendSpace1D_w73up")
 states/Attack/position = Vector2(617, 103)
 states/Locomotion/node = SubResource("AnimationNodeBlendSpace2D_yqjqa")
 states/Locomotion/position = Vector2(387, 93)
-transitions = ["Locomotion", "Attack", SubResource("AnimationNodeStateMachineTransition_852s1"), "Attack", "Locomotion", SubResource("AnimationNodeStateMachineTransition_nhrlj")]
+transitions = ["Locomotion", "Attack", SubResource("AnimationNodeStateMachineTransition_852s1"), "Attack", "Locomotion", SubResource("AnimationNodeStateMachineTransition_nhrlj"), "Start", "Locomotion", SubResource("AnimationNodeStateMachineTransition_bdxyh")]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_c5iqs"]
 
@@ -652,6 +657,7 @@ position = Vector2(1, -42)
 scale = Vector2(3, 3)
 texture = ExtResource("2_xsogo")
 hframes = 6
+frame = 1
 
 [node name="Swordswoosh2" type="Sprite2D" parent="."]
 visible = false
@@ -690,7 +696,11 @@ tree_root = SubResource("AnimationNodeStateMachine_g6b23")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_c5iqs")
-parameters/Attack/blend_position = 1.0
+parameters/conditions/hasAttacked = false
+parameters/Attack/blend_position = 0.998396
 parameters/Locomotion/blend_position = Vector2(0.9897, 0.0299401)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
 
 [connection signal="body_entered" from="Swordswoosh2/DamageArea" to="." method="_on_damage_area_body_entered"]
