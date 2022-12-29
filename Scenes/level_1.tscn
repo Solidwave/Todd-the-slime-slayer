@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://0rtw83w0p0e"]
+
+[ext_resource type="PackedScene" uid="uid://bw83s7c8argvc" path="res://Scenes/spawner.tscn" id="1_jhxve"]
+[ext_resource type="PackedScene" uid="uid://d0bjd11bnt0o5" path="res://Scenes/Enemies/Slimes/Slime.tscn" id="2_sgsgx"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="Spawner" parent="." instance=ExtResource("1_jhxve")]
+preloadedEnemies = [ExtResource("2_sgsgx")]
+spawnRange = 1000
