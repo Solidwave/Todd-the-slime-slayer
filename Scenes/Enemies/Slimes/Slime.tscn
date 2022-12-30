@@ -1,27 +1,30 @@
-[gd_scene load_steps=25 format=3 uid="uid://d0bjd11bnt0o5"]
+[gd_scene load_steps=26 format=3 uid="uid://d0bjd11bnt0o5"]
 
 [ext_resource type="Texture2D" uid="uid://vmdhexoac2lo" path="res://Sprites/Slimes/shadow.png" id="1_1qsvq"]
 [ext_resource type="Texture2D" uid="uid://dkui28mjn6kny" path="res://Sprites/Slimes/slime_red.png" id="2_ivhso"]
 
-[sub_resource type="GDScript" id="GDScript_23vs4"]
+[sub_resource type="GDScript" id="GDScript_u2vuo"]
 script/source = "extends CharacterBody2D
 
 class_name Enemy
 @export var speed = 100
 @export var health = 100
 @export var jumpRate = 1000
+@export var jumpDistance = 200
 @export var knockBackForce = 1000
+@export var slimeValue = 1
+@export var damage = 1
 
 @onready var enemySprite : Sprite2D = $Enemies
 @onready var animationPlayer : AnimationPlayer = $AnimationPlayer
 @onready var animationTree : AnimationTree = $AnimationTree
+@onready var navAgent : NavigationAgent2D = $NavigationAgent2D
 
 
 var knockBack: Vector2 = Vector2.ZERO;
 var stateMachine : AnimationNodeStateMachinePlayback
-var rnd = RandomNumberGenerator.new()
 var sprites = []
-
+var jumpDirection = null
 func _ready():
 	
 	var path = \"res://Sprites/Slimes\"
@@ -41,11 +44,11 @@ func _ready():
 	else:
 		print(\"An error occurred when trying to access the path.\")
 	
-	rnd.randomize()
+	randomize()
 	
 	animationTree.active = true
 	print(sprites)
-	enemySprite.texture = sprites[rnd.randi_range(0, len(sprites)-1)]
+#	enemySprite.texture = sprites[randi_range(0, len(sprites)-1)]
 	
 	stateMachine = animationTree.get('parameters/playback')
 func _physics_process(delta):
@@ -53,21 +56,34 @@ func _physics_process(delta):
 		stateMachine.travel(\"Die\")
 		return
 		
-	if stateMachine.get_current_node() == \"Stunned\":
-		velocity = -knockBack
-		return
-		
-	rnd.randomize()
+	var currentState : String = stateMachine.get_current_node()
+	match currentState:
+		'Stunned':
+			velocity = -knockBack
+			jumpDirection = null
+		'Jump':
+			if jumpDirection == null:
+				jumpDirection = Globals.Player.global_position - global_position
+				
+			velocity = jumpDirection 
+		'Idle':
+			randomize()
+			
+			var jump = randi_range(0, jumpRate)
+			
+			jumpDirection = null
+			
+			var distanceToPlayer = global_position.distance_to(Globals.Player.global_position)
 	
-	var jump = rnd.randi_range(0, jumpRate)
-	
-	if 	jump == 1:
-		stateMachine.travel('Jump')
-	
-	var playerDirection : Vector2 =  Player.global_position - global_position 
-	
-	velocity = playerDirection.normalized() * speed
-	
+			if 	jump == 1 && distanceToPlayer <= jumpDistance:
+				stateMachine.travel('Jump')
+				return
+			
+			var playerDirection = Globals.Player.global_position - global_position
+			
+			velocity = playerDirection.normalized() * speed
+		_:
+			print(currentState, 'no match found')
 	if	velocity.x < 0:
 		enemySprite.flip_h = true
 	elif velocity.x > 0:
@@ -75,26 +91,208 @@ func _physics_process(delta):
 	
 	if 	knockBack != Vector2.ZERO:
 		knockBack = Vector2.ZERO
-
+	print(velocity)
 	move_and_slide()
 	
 func receiveDamage(damage):
-	knockBack = -( global_position - Player.global_position) * damage * knockBackForce
+	knockBack = -global_position.direction_to(Globals.Player.position) * damage * knockBackForce
 	
 	health -= damage
 	
 	stateMachine.travel(\"Stunned\")
 	
-	
 
 func die():
+	Globals.slimeJuice += slimeValue
 	queue_free()
 "
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2bmb"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6j8nf"]
 size = Vector2(31, 45)
 
-[sub_resource type="Animation" id="Animation_c3m8v"]
+[sub_resource type="Animation" id="Animation_wad0k"]
+resource_name = "Die"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemies:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DeathParticle:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"die"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_wasud"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemies:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Enemies:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Enemies:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Enemies:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_13m73"]
+resource_name = "Jump"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemies:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.4, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(22, -316), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Enemies:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.4, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Enemies:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.4, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.5, 1.5), Vector2(1.5, 1.5), Vector2(2, 2), Vector2(1.5, 1.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Enemies:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 3]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LandingParticle:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_fl1y0"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -181,7 +379,7 @@ tracks/6/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_852ks"]
+[sub_resource type="Animation" id="Animation_mcuyb"]
 resource_name = "Stunned"
 length = 0.7
 tracks/0/type = "value"
@@ -197,254 +395,77 @@ tracks/0/keys = {
 "values": [4]
 }
 
-[sub_resource type="Animation" id="Animation_bbgsn"]
-resource_name = "idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Enemies:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Enemies:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Enemies:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Enemies:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("CollisionShape2D:disabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_1lgrj"]
-resource_name = "jump"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Enemies:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.4, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0), Vector2(22, -316), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Enemies:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.4, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, 0.0, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Enemies:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.4, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1.5, 1.5), Vector2(1.5, 1.5), Vector2(2, 2), Vector2(1.5, 1.5)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Enemies:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [1, 2, 3]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("CollisionShape2D:disabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.5, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("LandingParticle:emitting")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_aa12k"]
-resource_name = "Die"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Enemies:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DeathParticle:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"die"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8arl7"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_brw6k"]
 _data = {
-"Die": SubResource("Animation_aa12k"),
-"RESET": SubResource("Animation_c3m8v"),
-"Stunned": SubResource("Animation_852ks"),
-"idle": SubResource("Animation_bbgsn"),
-"jump": SubResource("Animation_1lgrj")
+"Die": SubResource("Animation_wad0k"),
+"Idle": SubResource("Animation_wasud"),
+"Jump": SubResource("Animation_13m73"),
+"RESET": SubResource("Animation_fl1y0"),
+"Stunned": SubResource("Animation_mcuyb")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ye6c5"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_am4bl"]
 animation = &"Die"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lplpr"]
-animation = &"jump"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_087kj"]
+animation = &"Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l271b"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g71hy"]
+animation = &"Jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vpst4"]
 animation = &"Stunned"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_glkjt"]
-animation = &"idle"
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dmv6v"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xhmg1"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l7gsj"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0gpss"]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ocf1f"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nq620"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_123uu"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lqgjt"]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_br02o"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nbyrr"]
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_xlh3k"]
-states/Die/node = SubResource("AnimationNodeAnimation_ye6c5")
-states/Die/position = Vector2(475, 205)
-states/Jump/node = SubResource("AnimationNodeAnimation_lplpr")
-states/Jump/position = Vector2(529, 100)
-states/Stunned/node = SubResource("AnimationNodeAnimation_l271b")
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xpbtw"]
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_xc64t"]
+states/Die/node = SubResource("AnimationNodeAnimation_am4bl")
+states/Die/position = Vector2(401, 230)
+states/Idle/node = SubResource("AnimationNodeAnimation_087kj")
+states/Idle/position = Vector2(401, 100)
+states/Jump/node = SubResource("AnimationNodeAnimation_g71hy")
+states/Jump/position = Vector2(530, 100)
+states/Stunned/node = SubResource("AnimationNodeAnimation_vpst4")
 states/Stunned/position = Vector2(238, 216)
-states/idle/node = SubResource("AnimationNodeAnimation_glkjt")
-states/idle/position = Vector2(402, 100)
-transitions = ["idle", "Jump", SubResource("AnimationNodeStateMachineTransition_xhmg1"), "Jump", "idle", SubResource("AnimationNodeStateMachineTransition_l7gsj"), "idle", "Stunned", SubResource("AnimationNodeStateMachineTransition_ocf1f"), "Stunned", "idle", SubResource("AnimationNodeStateMachineTransition_123uu"), "idle", "Die", SubResource("AnimationNodeStateMachineTransition_br02o")]
+transitions = ["Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_dmv6v"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_0gpss"), "Idle", "Stunned", SubResource("AnimationNodeStateMachineTransition_nq620"), "Stunned", "Idle", SubResource("AnimationNodeStateMachineTransition_lqgjt"), "Idle", "Die", SubResource("AnimationNodeStateMachineTransition_nbyrr"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_xpbtw")]
+graph_offset = Vector2(58, 68)
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_vmm5y"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_yf01k"]
 
-[sub_resource type="Gradient" id="Gradient_yrnef"]
+[sub_resource type="Gradient" id="Gradient_o6ies"]
 colors = PackedColorArray(0.223103, 0.223103, 0.223103, 1, 0.973535, 0.973535, 0.973535, 1)
 
-[sub_resource type="Curve" id="Curve_1ptfn"]
+[sub_resource type="Curve" id="Curve_vjntw"]
 min_value = -500.0
 max_value = 500.0
 _data = [Vector2(0.00341297, 500), 0.0, 0.0, 0, 0, Vector2(0.989761, -436.364), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Curve" id="Curve_hlqqi"]
+[sub_resource type="Curve" id="Curve_1oigh"]
 max_value = 200.0
 _data = [Vector2(0, 138.182), 0.0, 0.0, 0, 0, Vector2(1, -58.1818), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="Slime" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 2
-script = SubResource("GDScript_23vs4")
+[node name="Slime" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 0
+collision_mask = 0
+safe_margin = 1.0
+script = SubResource("GDScript_u2vuo")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -453,25 +474,28 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_1qsvq")
 
 [node name="Enemies" type="Sprite2D" parent="."]
+y_sort_enabled = true
 texture_filter = 1
 texture = ExtResource("2_ivhso")
-hframes = 5
+hframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
 position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_e2bmb")
+shape = SubResource("RectangleShape2D_6j8nf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "idle"
+autoplay = "Idle"
 method_call_mode = 1
 libraries = {
-"": SubResource("AnimationLibrary_8arl7")
+"": SubResource("AnimationLibrary_brw6k")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_xlh3k")
+tree_root = SubResource("AnimationNodeStateMachine_xc64t")
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_vmm5y")
+active = true
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_yf01k")
 
 [node name="DeathParticle" type="CPUParticles2D" parent="."]
 emitting = false
@@ -486,7 +510,7 @@ tangential_accel_min = -1.57
 scale_amount_min = 5.0
 scale_amount_max = 10.0
 color = Color(0.956863, 0.960784, 0.960784, 1)
-color_ramp = SubResource("Gradient_yrnef")
+color_ramp = SubResource("Gradient_o6ies")
 
 [node name="LandingParticle" type="CPUParticles2D" parent="."]
 emitting = false
@@ -500,9 +524,9 @@ emission_shape = 1
 emission_sphere_radius = 40.0
 gravity = Vector2(0, 0)
 angular_velocity_max = 1.0
-orbit_velocity_curve = SubResource("Curve_1ptfn")
+orbit_velocity_curve = SubResource("Curve_vjntw")
 radial_accel_min = 28.97
 radial_accel_max = 28.97
-radial_accel_curve = SubResource("Curve_hlqqi")
+radial_accel_curve = SubResource("Curve_1oigh")
 scale_amount_min = 2.0
 scale_amount_max = 4.0

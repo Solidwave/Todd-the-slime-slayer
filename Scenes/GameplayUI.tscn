@@ -1,0 +1,88 @@
+[gd_scene load_steps=3 format=3 uid="uid://teke18cn2sw4"]
+
+[ext_resource type="Script" path="res://Scenes/UI.gd" id="1_ae5og"]
+[ext_resource type="Texture2D" uid="uid://b3e708hgb2p4e" path="res://Sprites/heart.png" id="2_2kxqr"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1154.0
+offset_bottom = 649.0
+script = ExtResource("1_ae5og")
+
+[node name="HBoxcontainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_right = 184.0
+offset_bottom = 56.0
+
+[node name="MonstersAliveLabel" type="Label" parent="HBoxcontainer"]
+layout_mode = 2
+text = "Slimes alive:"
+
+[node name="MonstersAliveValue" type="Label" parent="HBoxcontainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -154.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="JuiceLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Slime Juice:"
+
+[node name="JuiceValue" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="HeartContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -82.5
+offset_top = -40.0
+offset_right = 82.5
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="HealthBar" type="Sprite2D" parent="HeartContainer"]
+texture_filter = 1
+texture = ExtResource("2_2kxqr")
+centered = false
+hframes = 4
+
+[node name="HealthBar2" type="Sprite2D" parent="HeartContainer"]
+texture_filter = 1
+position = Vector2(32, 0)
+texture = ExtResource("2_2kxqr")
+centered = false
+hframes = 4
+
+[node name="HealthBar3" type="Sprite2D" parent="HeartContainer"]
+texture_filter = 1
+position = Vector2(64, 0)
+texture = ExtResource("2_2kxqr")
+centered = false
+hframes = 4
+
+[node name="HealthBar4" type="Sprite2D" parent="HeartContainer"]
+texture_filter = 1
+position = Vector2(96, 0)
+texture = ExtResource("2_2kxqr")
+centered = false
+hframes = 4
+
+[node name="HealthBar5" type="Sprite2D" parent="HeartContainer"]
+texture_filter = 1
+position = Vector2(128, 0)
+texture = ExtResource("2_2kxqr")
+centered = false
+hframes = 4

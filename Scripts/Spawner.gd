@@ -8,6 +8,8 @@ extends Node2D
 
 @export var spawnRange = 100
 
+@export var maxEnemies = 20
+
 @export var spawnInterval = 3
 
 @export var spawnNumber = 3
@@ -18,13 +20,12 @@ func _ready():
 
 
 func _on_timer_timeout():
-	print("trying to spawn")
-	var enemyPreload = preloadedEnemies[randi() % preloadedEnemies.size()]
-	
-	var enemy = enemyPreload.instantiate()
-	
-	enemy.position = Vector2(Player.position.x + randi_range(-spawnRange,spawnRange), Player.position.y + randi_range(-spawnRange,spawnRange))
-	
-	get_tree().current_scene.add_child(enemy)
-	spawnTimer.start(spawnInterval)
+	if get_tree().get_nodes_in_group("Enemies").size() < maxEnemies:
+		var enemyPreload = preloadedEnemies[randi() % preloadedEnemies.size()]
+		
+		var enemy = enemyPreload.instantiate()
+		
+		enemy.position = Vector2(Globals.Player.position.x + randi_range(-spawnRange,spawnRange), Globals.Player.position.y + randi_range(-spawnRange,spawnRange))
+		
+		get_tree().current_scene.add_child(enemy)
 	pass # Replace with function body.

@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://vf2qefixys82"]
+[gd_scene load_steps=31 format=3 uid="uid://vf2qefixys82"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_bwugi"]
 [ext_resource type="Texture2D" uid="uid://0v6cuwxnd5jm" path="res://Sprites/sword.png" id="2_7pijg"]
 [ext_resource type="Texture2D" uid="uid://dil2ggu0k5llq" path="res://Sprites/newchar/zcharacter.png" id="2_xsogo"]
 [ext_resource type="Texture2D" uid="uid://8gwka3ks3hiv" path="res://Sprites/newchar/swordswoosh2.png" id="3_rlt1b"]
+[ext_resource type="PackedScene" uid="uid://teke18cn2sw4" path="res://Scenes/GameplayUI.tscn" id="5_oppj5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56fbh"]
 size = Vector2(49, 44)
@@ -625,7 +626,6 @@ blend_point_6/pos = Vector2(-1, 0)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_852s1"]
-advance_condition = &"hasAttacked"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nhrlj"]
 switch_mode = 2
@@ -643,9 +643,11 @@ transitions = ["Locomotion", "Attack", SubResource("AnimationNodeStateMachineTra
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_c5iqs"]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
+y_sort_enabled = true
 motion_mode = 1
+safe_margin = 1.0
 script = ExtResource("1_bwugi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -694,11 +696,19 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_g6b23")
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_c5iqs")
-parameters/conditions/hasAttacked = false
 parameters/Attack/blend_position = 0.998396
 parameters/Locomotion/blend_position = Vector2(0.9897, 0.0299401)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="Control" parent="." groups=["Player"] instance=ExtResource("5_oppj5")]
+offset_left = -575.0
+offset_top = -323.0
+offset_right = 576.0
+offset_bottom = 326.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
 
 [connection signal="body_entered" from="Swordswoosh2/DamageArea" to="." method="_on_damage_area_body_entered"]
