@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://vf2qefixys82"]
+[gd_scene load_steps=35 format=3 uid="uid://vf2qefixys82"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_bwugi"]
 [ext_resource type="Texture2D" uid="uid://0v6cuwxnd5jm" path="res://Sprites/sword.png" id="2_7pijg"]
@@ -565,8 +565,35 @@ tracks/1/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_xe5sb"]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Zcharacter:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [6, 7, 8]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eiw41"]
 _data = {
+"Death": SubResource("Animation_xe5sb"),
 "RESET": SubResource("Animation_ub6ns"),
 "attack_left": SubResource("Animation_iedsd"),
 "attack_right": SubResource("Animation_4th5h"),
@@ -586,6 +613,9 @@ blend_point_0/node = SubResource("AnimationNodeAnimation_5xh0b")
 blend_point_0/pos = -1.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_p3l2n")
 blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yse0w"]
+animation = &"Death"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_epu48"]
 animation = &"walk_right"
@@ -634,31 +664,37 @@ auto_advance = true
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bdxyh"]
 auto_advance = true
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6ynv1"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yborx"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_g6b23"]
 states/Attack/node = SubResource("AnimationNodeBlendSpace1D_w73up")
 states/Attack/position = Vector2(617, 103)
+states/Death/node = SubResource("AnimationNodeAnimation_yse0w")
+states/Death/position = Vector2(441, 194)
 states/Locomotion/node = SubResource("AnimationNodeBlendSpace2D_yqjqa")
 states/Locomotion/position = Vector2(387, 93)
-transitions = ["Locomotion", "Attack", SubResource("AnimationNodeStateMachineTransition_852s1"), "Attack", "Locomotion", SubResource("AnimationNodeStateMachineTransition_nhrlj"), "Start", "Locomotion", SubResource("AnimationNodeStateMachineTransition_bdxyh")]
+transitions = ["Locomotion", "Attack", SubResource("AnimationNodeStateMachineTransition_852s1"), "Attack", "Locomotion", SubResource("AnimationNodeStateMachineTransition_nhrlj"), "Start", "Locomotion", SubResource("AnimationNodeStateMachineTransition_bdxyh"), "Locomotion", "Death", SubResource("AnimationNodeStateMachineTransition_6ynv1"), "Attack", "Death", SubResource("AnimationNodeStateMachineTransition_yborx")]
+graph_offset = Vector2(1, 60)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_c5iqs"]
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-z_index = 1
 y_sort_enabled = true
 motion_mode = 1
 safe_margin = 1.0
 script = ExtResource("1_bwugi")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_56fbh")
-
 [node name="Zcharacter" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(1, -42)
+position = Vector2(0, -42)
 scale = Vector2(3, 3)
 texture = ExtResource("2_xsogo")
-hframes = 6
+hframes = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_56fbh")
 
 [node name="Swordswoosh2" type="Sprite2D" parent="."]
 visible = false
@@ -671,7 +707,7 @@ hframes = 3
 [node name="DamageArea" type="Area2D" parent="Swordswoosh2"]
 light_mask = 2
 visibility_layer = 2
-collision_layer = 2
+collision_layer = 0
 collision_mask = 2
 
 [node name="DamageCollision" type="CollisionShape2D" parent="Swordswoosh2/DamageArea"]
@@ -703,12 +739,10 @@ parameters/Locomotion/blend_position = Vector2(0.9897, 0.0299401)
 current = true
 
 [node name="Control" parent="." groups=["Player"] instance=ExtResource("5_oppj5")]
+z_index = 10
 offset_left = -575.0
 offset_top = -323.0
 offset_right = 576.0
 offset_bottom = 326.0
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-avoidance_enabled = true
 
 [connection signal="body_entered" from="Swordswoosh2/DamageArea" to="." method="_on_damage_area_body_entered"]

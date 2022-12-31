@@ -33,6 +33,8 @@ func _physics_process(delta):
 	
 	var currentState : String = statemachine.get_current_node()
 	match currentState:
+		'Death':
+			velocity = Vector2.ZERO
 		'Locomotion':
 			if	Input.is_action_pressed("move_left"):
 				velocity.x -= 1.0
@@ -64,6 +66,9 @@ func _physics_process(delta):
 func receiveDamage(damage):
 	health -= damage
 	print(health)
+	
+func die():
+	print('im dead')
 
 func _on_damage_area_body_entered(body):
 	if 	body.is_in_group("Enemies"):

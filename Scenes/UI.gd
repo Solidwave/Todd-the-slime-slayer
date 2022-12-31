@@ -15,20 +15,25 @@ func _ready():
 func _process(delta):
 	monstersAliveValue.text = str(get_tree().get_nodes_in_group('Enemies').size())
 	
-	juiceValue.text = str(Globals.slimeJuice)
-	
 	if previousHealth != Globals.Player.health:
 		updateHearts(Globals.Player.health)
 	pass
 
 
 func updateHearts(health):
+	print('updating hearts')
 	previousHealth = Globals.Player.health
-	print(previousHealth)
-	for i in health:
-		if i + 3 < health:
-			heartContainer.get_child(int(i/3)).frame = 0
+	var hearts = heartContainer.get_children()
+	for i in len(hearts):
+		var maxHeartValue = (i+1)*3
+		if 	maxHeartValue <= health:
+			hearts[i].frame = 0
+		if (maxHeartValue - health) >= 3:
+			hearts[i].frame = 3
 		else:
-			print(health-i)
-				
+			hearts[i].frame = maxHeartValue - health
+		
+	
+	
+		
 		
