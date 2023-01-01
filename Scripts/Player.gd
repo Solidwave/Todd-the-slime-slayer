@@ -9,7 +9,7 @@ extends CharacterBody2D
 @onready var animationTree = $AnimationTree
 @onready var animationPlayer = $AnimationPlayer
 @onready var swoosh = $Swordswoosh2
-@onready var sword = $Sword
+@onready var sword = $SwordMarker/Sword
 
 
 
@@ -19,11 +19,6 @@ func _ready():
 	Globals.Player = self
 	
 	animationTree.active = true
-	
-	swoosh.visible = false
-	
-	sword.visible = false
-
 	
 	statemachine = animationTree.get("parameters/playback")
 	
@@ -56,10 +51,12 @@ func _physics_process(delta):
 				elif get_global_mouse_position().x < global_position.x:
 					attackDirection = -1
 
-				
+
 				animationTree.set("parameters/Attack/blend_position", attackDirection)
-				
+
 				statemachine.travel('Attack')
+				
+				sword.use()
 			move_and_slide()
 
 

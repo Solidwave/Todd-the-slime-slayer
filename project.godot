@@ -8,6 +8,16 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Node2D",
+"class": &"VelocityComponent",
+"language": &"GDScript",
+"path": "res://VelocityComponent.gd"
+}]
+_global_script_class_icons={
+"VelocityComponent": ""
+}
+
 [application]
 
 config/name="Todd the slime slayer"
