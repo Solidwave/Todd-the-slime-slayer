@@ -28,5 +28,6 @@ func _on_timer_timeout():
 		var enemy = enemyPreload.instantiate()
 		
 		enemy.position = Vector2(Globals.Player.position.x + randi_range(-spawnRange,spawnRange), Globals.Player.position.y + randi_range(-spawnRange,spawnRange))
+		
 		add_child(enemy)
 	pass # Replace with function body.

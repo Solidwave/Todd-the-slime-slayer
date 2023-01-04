@@ -1,9 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://vf2qefixys82"]
+[gd_scene load_steps=36 format=3 uid="uid://vf2qefixys82"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_bwugi"]
-[ext_resource type="Texture2D" uid="uid://0v6cuwxnd5jm" path="res://Sprites/sword.png" id="2_7pijg"]
 [ext_resource type="Texture2D" uid="uid://dil2ggu0k5llq" path="res://Sprites/newchar/zcharacter.png" id="2_xsogo"]
-[ext_resource type="Texture2D" uid="uid://8gwka3ks3hiv" path="res://Sprites/newchar/swordswoosh2.png" id="3_rlt1b"]
+[ext_resource type="PackedScene" uid="uid://br87usqykhwhq" path="res://Scenes/Components/joystick.tscn" id="4_2ftj4"]
+[ext_resource type="PackedScene" uid="uid://bdidcrsf0wd73" path="res://game_over.tscn" id="5_kyfen"]
 [ext_resource type="PackedScene" uid="uid://teke18cn2sw4" path="res://Scenes/GameplayUI.tscn" id="5_oppj5"]
 [ext_resource type="PackedScene" uid="uid://ddkg2wp7ancj2" path="res://sword.tscn" id="6_gud82"]
 
@@ -31,9 +31,12 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"die"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_ub6ns"]
@@ -839,12 +842,7 @@ graph_offset = Vector2(1, 60)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_c5iqs"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_olq0y"]
-size = Vector2(19, 20.3333)
-
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-z_index = 1
-y_sort_enabled = true
 motion_mode = 1
 safe_margin = 1.0
 script = ExtResource("1_bwugi")
@@ -871,46 +869,12 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_c5iqs")
 parameters/Attack/blend_position = 0.998396
 parameters/Locomotion/blend_position = Vector2(0.9897, 0.0299401)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-
 [node name="Control" parent="." groups=["Player"] instance=ExtResource("5_oppj5")]
-z_index = 10
-offset_left = -566.0
-offset_top = -321.0
-offset_right = 585.0
-offset_bottom = 328.0
-
-[node name="Node2D" type="Node2D" parent="."]
 visible = false
-y_sort_enabled = true
-position = Vector2(1, -36)
-rotation = -0.959931
-
-[node name="Swordswoosh2" type="Sprite2D" parent="Node2D"]
-texture_filter = 1
-position = Vector2(-69, -24)
-scale = Vector2(3, 3)
-texture = ExtResource("3_rlt1b")
-hframes = 3
-
-[node name="DamageArea" type="Area2D" parent="Node2D/Swordswoosh2"]
-light_mask = 2
-visibility_layer = 2
-collision_layer = 0
-collision_mask = 2
-
-[node name="DamageCollision" type="CollisionShape2D" parent="Node2D/Swordswoosh2/DamageArea"]
-position = Vector2(1.16667, -5.5)
-shape = SubResource("RectangleShape2D_olq0y")
-disabled = true
-
-[node name="Sword" type="Sprite2D" parent="Node2D"]
-texture_filter = 1
-position = Vector2(49.3208, 21.6209)
-rotation = 1.56381
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("2_7pijg")
+offset_left = -570.0
+offset_top = -319.0
+offset_right = 581.0
+offset_bottom = 330.0
 
 [node name="SwordMarker" type="Marker2D" parent="."]
 position = Vector2(0, -33)
@@ -920,4 +884,17 @@ rotation = -0.703368
 position = Vector2(40, -14)
 pivot = NodePath("..")
 
-[connection signal="body_entered" from="Node2D/Swordswoosh2/DamageArea" to="." method="_on_damage_area_body_entered"]
+[node name="GameOver" parent="." instance=ExtResource("5_kyfen")]
+visible = false
+offset_left = -567.0
+offset_top = -296.0
+offset_right = -567.0
+offset_bottom = -296.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_smoothed = true
+
+[node name="Joystick" parent="Camera2D" node_paths=PackedStringArray("camera") instance=ExtResource("4_2ftj4")]
+position = Vector2(-445, 195)
+camera = NodePath("..")

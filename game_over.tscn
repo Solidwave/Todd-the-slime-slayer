@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdidcrsf0wd73"]
+[gd_scene load_steps=4 format=3 uid="uid://bdidcrsf0wd73"]
 
+[ext_resource type="Script" path="res://game_over.gd" id="1_h6sur"]
 [ext_resource type="Theme" uid="uid://clenol0pyn35i" path="res://ui.tres" id="1_uftua"]
 
 [sub_resource type="Theme" id="Theme_l873d"]
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_h6sur")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_left = 449.5
@@ -52,3 +54,7 @@ offset_top = 216.0
 offset_right = 504.0
 offset_bottom = 254.0
 text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="VBoxContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

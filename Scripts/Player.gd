@@ -6,10 +6,13 @@ extends CharacterBody2D
 
 @export var damage = 40
 
+
 @onready var animationTree = $AnimationTree
 @onready var animationPlayer = $AnimationPlayer
 @onready var swoosh = $Swordswoosh2
 @onready var sword = $SwordMarker/Sword
+@onready var GameOver = $GameOver
+@onready var joystick : Joystick = $Camera2D/Joystick
 
 
 
@@ -26,19 +29,23 @@ func _ready():
 func _physics_process(delta):
 	velocity = Vector2.ZERO
 	
+	if health <= 0:
+		statemachine.travel("Death")
+	
 	var currentState : String = statemachine.get_current_node()
 	match currentState:
 		'Death':
 			velocity = Vector2.ZERO
 		'Locomotion':
-			if	Input.is_action_pressed("move_left"):
-				velocity.x -= 1.0
-			if	Input.is_action_pressed("move_right"):
-				velocity.x += 1.0
-			if	Input.is_action_pressed("move_down"):
-				velocity.y += 1.0
-			if	Input.is_action_pressed("move_up"):
-				velocity.y -= 1.0
+#			if	Input.is_action_pressed("move_left"):
+#				velocity.x -= 1.0
+#			if	Input.is_action_pressed("move_right"):
+#				velocity.x += 1.0
+#			if	Input.is_action_pressed("move_down"):
+#				velocity.y += 1.0
+#			if	Input.is_action_pressed("move_up"):
+#				velocity.y -= 1.0
+			velocity = joystick.getVelocity()
 				
 			velocity = velocity * speed
 			
@@ -65,7 +72,7 @@ func receiveDamage(damage):
 	print(health)
 	
 func die():
-	print('im dead')
+	GameOver.visible = true
 
 func _on_damage_area_body_entered(body):
 	if 	body.is_in_group("Enemies"):

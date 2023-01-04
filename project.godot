@@ -9,12 +9,48 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "VBoxContainer",
+"class": &"EditingTool",
+"language": &"GDScript",
+"path": "res://addons/sprite_painter/src/editing_tool.gd"
+}, {
+"base": "RefCounted",
+"class": &"ImageFillTools",
+"language": &"GDScript",
+"path": "res://addons/sprite_painter/src/fill_tools.gd"
+}, {
+"base": "RefCounted",
+"class": &"ImageScript",
+"language": &"GDScript",
+"path": "res://addons/sprite_painter/src/image_script.gd"
+}, {
+"base": "Area2D",
+"class": &"Joystick",
+"language": &"GDScript",
+"path": "res://Joystick.gd"
+}, {
+"base": "Control",
+"class": &"SpritePainterRoot",
+"language": &"GDScript",
+"path": "res://addons/sprite_painter/src/main.gd"
+}, {
+"base": "Button",
+"class": &"ThemeIconButton",
+"language": &"GDScript",
+"path": "res://addons/sprite_painter/editor_icon_button.gd"
+}, {
 "base": "Node2D",
 "class": &"VelocityComponent",
 "language": &"GDScript",
 "path": "res://VelocityComponent.gd"
 }]
 _global_script_class_icons={
+"EditingTool": "",
+"ImageFillTools": "",
+"ImageScript": "",
+"Joystick": "",
+"SpritePainterRoot": "",
+"ThemeIconButton": "",
 "VelocityComponent": ""
 }
 
@@ -57,9 +93,12 @@ move_down={
 }
 attack={
 "deadzone": 0.5,
-"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"pressed":false,"double_click":false,"script":null)
-]
+"events": []
 }
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [layer_names]
 

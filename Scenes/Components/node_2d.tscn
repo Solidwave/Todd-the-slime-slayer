@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqysiys76usp"]
+
+[ext_resource type="PackedScene" uid="uid://br87usqykhwhq" path="res://Scenes/Components/joystick.tscn" id="1_rja0l"]
+
+[node name="Node2D" type="CharacterBody2D"]
+
+[node name="Joystick" parent="." instance=ExtResource("1_rja0l")]
