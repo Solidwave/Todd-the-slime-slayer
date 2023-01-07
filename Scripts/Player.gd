@@ -9,10 +9,10 @@ extends CharacterBody2D
 
 @onready var animationTree = $AnimationTree
 @onready var animationPlayer = $AnimationPlayer
-@onready var swoosh = $Swordswoosh2
 @onready var sword = $SwordMarker/Sword
 @onready var GameOver = $GameOver
-@onready var joystick : Joystick = $Camera2D/Joystick
+@onready var joystick : Joystick = $Control/VBoxContainer2/LocomotionJoystic
+@onready var attackJoystick : Joystick = $Control/VBoxContainer/AttackJoystick
 
 
 
@@ -50,12 +50,12 @@ func _physics_process(delta):
 			velocity = velocity * speed
 			
 			animationTree.set("parameters/Locomotion/blend_position",velocity)
-	
-			if Input.is_action_just_pressed("attack"):
-				var attackDirection
-				if get_global_mouse_position().x > global_position.x:
+				
+			var attackDirection = attackJoystick.getVelocity()
+			if attackDirection != Vector2.ZERO:
+				if attackDirection.x > 0:
 					attackDirection = 1
-				elif get_global_mouse_position().x < global_position.x:
+				elif attackDirection.x < 0:
 					attackDirection = -1
 
 

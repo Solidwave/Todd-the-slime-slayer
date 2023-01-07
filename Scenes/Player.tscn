@@ -870,19 +870,49 @@ parameters/Attack/blend_position = 0.998396
 parameters/Locomotion/blend_position = Vector2(0.9897, 0.0299401)
 
 [node name="Control" parent="." groups=["Player"] instance=ExtResource("5_oppj5")]
-visible = false
 offset_left = -570.0
 offset_top = -319.0
 offset_right = 581.0
 offset_bottom = 330.0
 
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -307.0
+offset_top = -232.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="AttackJoystick" parent="Control/VBoxContainer" instance=ExtResource("4_2ftj4")]
+position = Vector2(115, 115)
+scale = Vector2(2, 2)
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -213.0
+offset_right = 337.0
+grow_vertical = 0
+
+[node name="LocomotionJoystic" parent="Control/VBoxContainer2" node_paths=PackedStringArray("camera") instance=ExtResource("4_2ftj4")]
+position = Vector2(172, 97)
+scale = Vector2(2, 2)
+camera = NodePath("../../../Camera2D")
+
 [node name="SwordMarker" type="Marker2D" parent="."]
 position = Vector2(0, -33)
 rotation = -0.703368
 
-[node name="Sword" parent="SwordMarker" node_paths=PackedStringArray("pivot") instance=ExtResource("6_gud82")]
+[node name="Sword" parent="SwordMarker" node_paths=PackedStringArray("pivot", "attackJoystick") instance=ExtResource("6_gud82")]
 position = Vector2(40, -14)
 pivot = NodePath("..")
+attackJoystick = NodePath("../../Control/VBoxContainer/AttackJoystick")
 
 [node name="GameOver" parent="." instance=ExtResource("5_kyfen")]
 visible = false
@@ -894,7 +924,3 @@ offset_bottom = -296.0
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 limit_smoothed = true
-
-[node name="Joystick" parent="Camera2D" node_paths=PackedStringArray("camera") instance=ExtResource("4_2ftj4")]
-position = Vector2(-445, 195)
-camera = NodePath("..")

@@ -8,30 +8,55 @@ class_name Joystick
 
 @export var camera : Camera2D
 
+@export var bigTexture : Texture2D
+@export var smallTexture : Texture2D
+var state = {
+	event = null,
+	index = null
+}
+
 var touched = false
 
+func _ready():
+	if 	bigTexture != null:
+		bigCircle.texture = bigTexture
+	
+	if 	smallTexture != null:
+		smallCircle.texture = smallTexture
 func _input(event):
+	event = make_input_local(event)
+	
+	var distance = event.position.distance_to(bigCircle.position)
 	if event is InputEventScreenTouch:
-		print(event.position)
-		event = make_input_local(event)
-		print(event.position)
-		
-		var distance = event.position.distance_to(bigCircle.position)
-		
-		if not touched:
-			if distance < maxDistance:
-				touched = true
-		else:
-			touched = false
-			smallCircle.position = Vector2.ZERO
+		if 	event.is_pressed() and distance < maxDistance * 2 and state.index == null:
+			onPressed(event)
+		if not event.is_pressed() and state.index == event.index:
+			onReleased(event)
+	if event is InputEventScreenDrag && touched && event.index == state.index:
+		onDrag(event)
 			
-			
-func _process(delta):
-	if	touched:
-		smallCircle.global_position = get_global_mouse_position()
-		
-		smallCircle.position = bigCircle.position + (smallCircle.position - bigCircle.position).limit_length(maxDistance)
+func onPressed(event):
+	print('touched')
+	touched = true
+	state.index = event.index
+	
+func onReleased(event):
+	print('releaased')
+	smallCircle.position = Vector2.ZERO
+	touched = false
+	state.index = null
 
+func onDrag(event):
+	smallCircle.position = event.position
+	
+	smallCircle.position = bigCircle.position + (smallCircle.position - bigCircle.position).limit_length(maxDistance -8)
+#func _process(delta):
+	
+#	if	state.event != null:
+#		smallCircle.position = to_global(state.event.position)
+#
+#		smallCircle.position = bigCircle.position + (smallCircle.position - bigCircle.position).limit_length(maxDistance)
+	
 func getVelocity():
 	return (smallCircle.position - bigCircle.position).normalized()
 		
