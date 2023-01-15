@@ -36,7 +36,8 @@ func _physics_process(delta):
 	match currentState:
 		'Death':
 			velocity = Vector2.ZERO
-		'Locomotion':
+		_:
+#			keyboard movemetn
 #			if	Input.is_action_pressed("move_left"):
 #				velocity.x -= 1.0
 #			if	Input.is_action_pressed("move_right"):
@@ -67,8 +68,8 @@ func _physics_process(delta):
 			move_and_slide()
 
 
-func receiveDamage(damage):
-	health -= damage
+func receiveDamage(damageReceived):
+	health -= damageReceived
 	print(health)
 	
 func die():

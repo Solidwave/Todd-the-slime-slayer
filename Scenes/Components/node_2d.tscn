@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqysiys76usp"]
+[gd_scene load_steps=2 format=3 uid="uid://belvkdcph0fj1"]
 
 [ext_resource type="PackedScene" uid="uid://br87usqykhwhq" path="res://Scenes/Components/joystick.tscn" id="1_rja0l"]
 

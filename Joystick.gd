@@ -26,8 +26,9 @@ func _ready():
 func _input(event):
 	event = make_input_local(event)
 	
-	var distance = event.position.distance_to(bigCircle.position)
 	if event is InputEventScreenTouch:
+		var distance = event.position.distance_to(bigCircle.position)
+		
 		if 	event.is_pressed() and distance < maxDistance * 2 and state.index == null:
 			onPressed(event)
 		if not event.is_pressed() and state.index == event.index:

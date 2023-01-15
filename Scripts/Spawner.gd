@@ -5,10 +5,13 @@ extends Node2D
 ]
 
 @onready var spawnTimer = $Timer
+@onready var navAgent = $NavigationAgent2D
 
 @export var spawnRange = 100
 
 @export var navRegion : NavigationRegion2D
+
+@export var enemiesParent : Node2D
 
 @export var maxEnemies = 20
 
@@ -23,11 +26,19 @@ func _ready():
 
 func _on_timer_timeout():
 	if get_tree().get_nodes_in_group("Enemies").size() < maxEnemies:
+		
+		navAgent.target_location = Vector2(Globals.Player.position.x + randi_range(-spawnRange,spawnRange), Globals.Player.position.y + randi_range(-spawnRange,spawnRange))
+		
+		while !navAgent.is_target_reachable():
+			navAgent.target_location = Vector2(Globals.Player.position.x + randi_range(-spawnRange,spawnRange), Globals.Player.position.y + randi_range(-spawnRange,spawnRange))
 		var enemyPreload = preloadedEnemies[randi() % preloadedEnemies.size()]
 		
 		var enemy = enemyPreload.instantiate()
 		
-		enemy.position = Vector2(Globals.Player.position.x + randi_range(-spawnRange,spawnRange), Globals.Player.position.y + randi_range(-spawnRange,spawnRange))
+		enemy.position = navAgent.target_location
 		
-		add_child(enemy)
+		if enemiesParent != null:
+			enemiesParent.add_child(enemy)
+		else:
+			add_child(enemy)
 	pass # Replace with function body.

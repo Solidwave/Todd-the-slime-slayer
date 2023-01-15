@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b3e708hgb2p4e" path="res://Sprites/heart.png" id="2_2kxqr"]
 
 [node name="GamePlayUI" type="Control"]
+z_index = 1
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1154.0
@@ -11,24 +12,20 @@ offset_bottom = 649.0
 script = ExtResource("1_ae5og")
 
 [node name="HBoxcontainer" type="HBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 10.0
 offset_right = 184.0
 offset_bottom = 56.0
 
 [node name="MonstersAliveLabel" type="Label" parent="HBoxcontainer"]
-offset_top = 15.0
-offset_right = 95.0
-offset_bottom = 41.0
+layout_mode = 2
 text = "Slimes alive:"
 
 [node name="MonstersAliveValue" type="Label" parent="HBoxcontainer"]
-offset_left = 99.0
-offset_top = 16.0
-offset_right = 100.0
-offset_bottom = 39.0
+layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchors_preset = 1
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -154.0
@@ -36,19 +33,14 @@ offset_bottom = 40.0
 grow_horizontal = 0
 
 [node name="JuiceLabel" type="Label" parent="HBoxContainer"]
-offset_top = 7.0
-offset_right = 88.0
-offset_bottom = 33.0
+layout_mode = 2
 text = "Slime Juice:"
 
 [node name="JuiceValue" type="Label" parent="HBoxContainer"]
-offset_left = 92.0
-offset_top = 8.0
-offset_right = 93.0
-offset_bottom = 31.0
+layout_mode = 2
 
 [node name="HeartContainer" type="HBoxContainer" parent="."]
-anchors_preset = 7
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5

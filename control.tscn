@@ -15,24 +15,26 @@ grow_vertical = 2
 script = ExtResource("1_mg0t4")
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="."]
-anchors_preset = 8
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -958.0
-offset_top = -542.0
-offset_right = 192.0
-offset_bottom = 108.0
+offset_left = -574.0
+offset_top = -200.0
+offset_right = 576.0
+offset_bottom = 190.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_cl155")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer3"]
-size_flags_vertical = 0
+layout_mode = 2
+size_flags_vertical = 4
 
 [node name="Title" type="Label" parent="VBoxContainer3/VBoxContainer2"]
 texture_filter = 1
+layout_mode = 2
 theme = ExtResource("2_cl155")
 theme_override_font_sizes/font_size = 86
 text = "Todd
@@ -41,24 +43,30 @@ slayer"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 8
 
 [node name="StartButton" type="Button" parent="VBoxContainer3/VBoxContainer"]
 texture_filter = 1
+layout_mode = 2
 text = "Start
 "
 
 [node name="Endlessmode" type="Button" parent="VBoxContainer3/VBoxContainer"]
 texture_filter = 1
+layout_mode = 2
 text = "Endless mode
 "
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer3/VBoxContainer"]
 texture_filter = 1
+layout_mode = 2
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer3/VBoxContainer"]
 texture_filter = 1
+layout_mode = 2
 theme = SubResource("Theme_tsrwn")
 text = "Quit"
 

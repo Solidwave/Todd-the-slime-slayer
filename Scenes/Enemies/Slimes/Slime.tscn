@@ -1,158 +1,20 @@
 [gd_scene load_steps=34 format=3 uid="uid://ch5kxy5lb77jg"]
 
 [ext_resource type="Texture2D" uid="uid://vmdhexoac2lo" path="res://Sprites/Slimes/shadow.png" id="1_1qsvq"]
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="2_71jv7"]
 [ext_resource type="Shader" path="res://Scenes/Enemies/Slimes/Slime.gdshader" id="2_astfr"]
 [ext_resource type="Texture2D" uid="uid://dkui28mjn6kny" path="res://Sprites/Slimes/slime_red.png" id="2_ivhso"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5hecn"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i6id8"]
 resource_local_to_scene = true
 shader = ExtResource("2_astfr")
 shader_parameter/flashColor = Color(1, 1, 1, 1)
 shader_parameter/flashState = 0.0
 
-[sub_resource type="GDScript" id="GDScript_ytuei"]
-script/source = "extends CharacterBody2D
-
-class_name Enemy
-@export var speed = 100
-@export var health = 100
-@export var jumpRate = 1000
-@export var jumpDistance = 200
-@export var knockBackForce = 200
-@export var slimeValue = 1
-@export var attackDistance = 50
-@export var damage = 1
-@export var jumpDamage = 2
-
-
-@onready var enemySprite : Sprite2D = $Sprites/Enemies
-@onready var animationPlayer : AnimationPlayer = $AnimationPlayer
-@onready var animationTree : AnimationTree = $AnimationTree
-@onready var navAgent : NavigationAgent2D = $NavigationAgent2D
-@onready var landingParticle : CPUParticles2D = $LandingParticle
-
-
-
-var knockBack: Vector2 = Vector2.ZERO;
-var tmpKnockBackForce = 0
-var stateMachine : AnimationNodeStateMachinePlayback
-var targetPosition : Vector2
-var sprites = []
-var jumpDirection = null
-
-func _ready():
-	var path = \"res://Sprites/Slimes\"
-	
-	var dir = DirAccess.open(path)
-	
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != \"\":
-			if dir.current_is_dir():
-				print(\"Found directory: \" + file_name)
-			elif !file_name.ends_with('import') && file_name.begins_with('slime'):
-				print(\"Found file: \" + file_name)
-				sprites.append(load(path + '/'+ file_name))
-			file_name = dir.get_next()
-	else:
-		print(\"An error occurred when trying to access the path.\")
-	
-	randomize()
-	
-	animationTree.active = true
-	
-	enemySprite.texture = sprites[randi_range(0, len(sprites)-1)]
-	
-	var tmpImage = enemySprite.texture.get_image();
-	
-	var color = tmpImage.get_pixel(16,16)
-	
-	landingParticle.color = color
-	
-	stateMachine = animationTree.get('parameters/playback')
-	
-func _physics_process(delta):
-	if	health <= 0:
-		stateMachine.travel(\"Die\")
-		return
-		
-	var currentState : String = stateMachine.get_current_node()
-	
-	var playerDirection = Globals.Player.global_position - global_position
-	
-	match currentState:
-		'Attack':
-			velocity = targetPosition
-		'Stunned':
-			velocity = knockBack * tmpKnockBackForce
-			tmpKnockBackForce = tmpKnockBackForce - 200 * delta
-			jumpDirection = null
-		'Jump':
-			if jumpDirection == null:
-				jumpDirection = Globals.Player.global_position - global_position
-				
-			velocity = jumpDirection 
-		'Idle':
-			var distanceToPlayer = global_position.distance_to(Globals.Player.global_position)
-			
-			navAgent.target_location = Globals.Player.global_position
-			
-			var navDirection = navAgent.get_next_location()
-			
-			velocity = global_position.direction_to(navDirection) * speed
-			if distanceToPlayer <= attackDistance:
-				stateMachine.travel(\"Attack\")
-				targetPosition = Globals.Player.global_position - global_position
-			
-			randomize()
-			
-			var jump = randi_range(0, jumpRate)
-			
-			jumpDirection = null
-			
-	
-			if 	jump == 1 && distanceToPlayer <= jumpDistance:
-				stateMachine.travel('Jump')
-				return
-		_:
-			print(currentState, 'no match found')
-	if	playerDirection.x < 0:
-		enemySprite.flip_h = true
-	elif playerDirection.x > 0:
-		enemySprite.flip_h = false
-		
-	move_and_slide()
-	
-func receiveDamage(damage):
-	knockBack = global_position - Globals.Player.global_position
-	
-	knockBack = knockBack.normalized() 
-	
-	tmpKnockBackForce = knockBackForce
-	
-	health -= damage
-	
-	stateMachine.travel(\"Stunned\")
-	
-
-func die():
-	Globals.slimeJuice += slimeValue
-	queue_free()
-
-
-func _on_attack_area_body_entered(body):
-	if body.is_in_group(\"Player\"):
-		if stateMachine.get_current_node() == \"Attack\":
-			body.receiveDamage(damage)
-		if stateMachine.get_current_node() == \"Jump\":
-			body.receiveDamage(jumpDamage)
-"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rh8k"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w4vjm"]
 size = Vector2(31, 24)
 
-[sub_resource type="Animation" id="Animation_rap5f"]
+[sub_resource type="Animation" id="Animation_xugho"]
 resource_name = "Attack"
 length = 0.7
 tracks/0/type = "value"
@@ -192,7 +54,7 @@ tracks/2/keys = {
 "values": [true, false, true]
 }
 
-[sub_resource type="Animation" id="Animation_uu0dk"]
+[sub_resource type="Animation" id="Animation_jwokb"]
 resource_name = "Die"
 length = 0.3
 tracks/0/type = "value"
@@ -234,7 +96,7 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_nj7et"]
+[sub_resource type="Animation" id="Animation_tnd1p"]
 resource_name = "Idle"
 loop_mode = 1
 tracks/0/type = "value"
@@ -310,7 +172,7 @@ tracks/5/keys = {
 "values": [Vector2(0, -5), Vector2(0, -5), Vector2(0, 5)]
 }
 
-[sub_resource type="Animation" id="Animation_dsio5"]
+[sub_resource type="Animation" id="Animation_tl72g"]
 resource_name = "Jump"
 length = 2.0
 tracks/0/type = "value"
@@ -397,8 +259,20 @@ tracks/6/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprites/Shadow:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.5, 1.4, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.5, 1.5), Vector2(0.5, 0.5), Vector2(1.5, 1.5)]
+}
 
-[sub_resource type="Animation" id="Animation_3drje"]
+[sub_resource type="Animation" id="Animation_1wqa5"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -520,8 +394,20 @@ tracks/9/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Sprites/Shadow:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.5, 1.5)]
+}
 
-[sub_resource type="Animation" id="Animation_cfpgi"]
+[sub_resource type="Animation" id="Animation_q0euf"]
 resource_name = "Stunned"
 length = 0.7
 step = 0.05
@@ -550,130 +436,113 @@ tracks/1/keys = {
 "values": [0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_wlqeu"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gsjyr"]
 _data = {
-"Attack": SubResource("Animation_rap5f"),
-"Die": SubResource("Animation_uu0dk"),
-"Idle": SubResource("Animation_nj7et"),
-"Jump": SubResource("Animation_dsio5"),
-"RESET": SubResource("Animation_3drje"),
-"Stunned": SubResource("Animation_cfpgi")
+"Attack": SubResource("Animation_xugho"),
+"Die": SubResource("Animation_jwokb"),
+"Idle": SubResource("Animation_tnd1p"),
+"Jump": SubResource("Animation_tl72g"),
+"RESET": SubResource("Animation_1wqa5"),
+"Stunned": SubResource("Animation_q0euf")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dsvcw"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mw2js"]
 animation = &"Attack"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y0hxx"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ajprc"]
 animation = &"Die"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vkdbl"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_67v2t"]
 animation = &"Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_um1fb"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_164ja"]
 animation = &"Jump"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j7i5a"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i8ton"]
 animation = &"Stunned"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fdv37"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8p1kk"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dx060"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t333t"]
 switch_mode = 2
-auto_advance = true
+advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2p0tb"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dpk4j"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mohq1"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_am7rn"]
 switch_mode = 2
-auto_advance = true
+advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pd3qg"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cajx5"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_85qk5"]
-auto_advance = true
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6d0hg"]
+advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_un44r"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_twcib"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kfx3r"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_415s7"]
 switch_mode = 2
-auto_advance = true
+advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_og7eb"]
-states/Attack/node = SubResource("AnimationNodeAnimation_dsvcw")
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vk8d1"]
+states/Attack/node = SubResource("AnimationNodeAnimation_mw2js")
 states/Attack/position = Vector2(443, 216)
-states/Die/node = SubResource("AnimationNodeAnimation_y0hxx")
+states/Die/node = SubResource("AnimationNodeAnimation_ajprc")
 states/Die/position = Vector2(136, 216)
 states/End/position = Vector2(597, 100)
-states/Idle/node = SubResource("AnimationNodeAnimation_vkdbl")
+states/Idle/node = SubResource("AnimationNodeAnimation_67v2t")
 states/Idle/position = Vector2(262, 95)
-states/Jump/node = SubResource("AnimationNodeAnimation_um1fb")
+states/Jump/node = SubResource("AnimationNodeAnimation_164ja")
 states/Jump/position = Vector2(443, 100)
 states/Start/position = Vector2(136, 100)
-states/Stunned/node = SubResource("AnimationNodeAnimation_j7i5a")
+states/Stunned/node = SubResource("AnimationNodeAnimation_i8ton")
 states/Stunned/position = Vector2(262, 216)
-transitions = ["Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_fdv37"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_dx060"), "Idle", "Stunned", SubResource("AnimationNodeStateMachineTransition_2p0tb"), "Stunned", "Idle", SubResource("AnimationNodeStateMachineTransition_mohq1"), "Idle", "Die", SubResource("AnimationNodeStateMachineTransition_pd3qg"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_85qk5"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_un44r"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_kfx3r")]
+transitions = ["Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_8p1kk"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_t333t"), "Idle", "Stunned", SubResource("AnimationNodeStateMachineTransition_dpk4j"), "Stunned", "Idle", SubResource("AnimationNodeStateMachineTransition_am7rn"), "Idle", "Die", SubResource("AnimationNodeStateMachineTransition_cajx5"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_6d0hg"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_twcib"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_415s7")]
 graph_offset = Vector2(-186.362, 68)
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_7ktp8"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_1ff73"]
 
-[sub_resource type="Gradient" id="Gradient_h23gh"]
-colors = PackedColorArray(0.223103, 0.223103, 0.223103, 1, 0.973535, 0.973535, 0.973535, 1)
-
-[sub_resource type="Curve" id="Curve_x13br"]
+[sub_resource type="Curve" id="Curve_1mqid"]
 min_value = -500.0
 max_value = 500.0
 _data = [Vector2(0.00341297, 500), 0.0, 0.0, 0, 0, Vector2(0.989761, -436.364), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Curve" id="Curve_obkxe"]
+[sub_resource type="Curve" id="Curve_w8bry"]
 max_value = 200.0
 _data = [Vector2(0, 138.182), 0.0, 0.0, 0, 0, Vector2(1, -58.1818), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wxe2o"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_dsui8"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bcsiu"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_k3uxq"]
+
+[sub_resource type="Gradient" id="Gradient_lwvbt"]
+colors = PackedColorArray(0.223103, 0.223103, 0.223103, 1, 0.973535, 0.973535, 0.973535, 1)
 
 [node name="Slime" type="CharacterBody2D" groups=["Enemies"]]
-y_sort_enabled = true
-material = SubResource("ShaderMaterial_5hecn")
-position = Vector2(0, 5)
+material = SubResource("ShaderMaterial_i6id8")
 collision_layer = 2
 collision_mask = 2
 motion_mode = 1
 safe_margin = 1.0
-script = SubResource("GDScript_ytuei")
+script = ExtResource("2_71jv7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
-shape = SubResource("RectangleShape2D_6rh8k")
+shape = SubResource("RectangleShape2D_w4vjm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
 method_call_mode = 1
 libraries = {
-"": SubResource("AnimationLibrary_wlqeu")
+"": SubResource("AnimationLibrary_gsjyr")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_og7eb")
+tree_root = SubResource("AnimationNodeStateMachine_vk8d1")
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_7ktp8")
-
-[node name="DeathParticle" type="CPUParticles2D" parent="."]
-emitting = false
-amount = 40
-one_shot = true
-speed_scale = 3.0
-emission_shape = 1
-emission_sphere_radius = 30.0
-spread = 140.84
-gravity = Vector2(0, 0)
-tangential_accel_min = -1.57
-scale_amount_min = 5.0
-scale_amount_max = 10.0
-color = Color(0.956863, 0.960784, 0.960784, 1)
-color_ramp = SubResource("Gradient_h23gh")
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_1ff73")
 
 [node name="LandingParticle" type="CPUParticles2D" parent="."]
 texture_filter = 2
@@ -688,10 +557,10 @@ emission_shape = 1
 emission_sphere_radius = 40.0
 gravity = Vector2(0, 0)
 angular_velocity_max = 1.0
-orbit_velocity_curve = SubResource("Curve_x13br")
+orbit_velocity_curve = SubResource("Curve_1mqid")
 radial_accel_min = 28.97
 radial_accel_max = 28.97
-radial_accel_curve = SubResource("Curve_obkxe")
+radial_accel_curve = SubResource("Curve_w8bry")
 scale_amount_min = 2.0
 scale_amount_max = 10.09
 
@@ -718,15 +587,30 @@ collision_layer = 0
 [node name="AttackShape" type="CollisionShape2D" parent="Sprites/AttackArea"]
 position = Vector2(30, 0)
 scale = Vector2(2, 2)
-shape = SubResource("CircleShape2D_wxe2o")
+shape = SubResource("CircleShape2D_dsui8")
 disabled = true
 
 [node name="JumpAttackShape" type="CollisionShape2D" parent="Sprites/AttackArea"]
 visible = false
 position = Vector2(-10, 6)
 scale = Vector2(5, 5)
-shape = SubResource("CircleShape2D_bcsiu")
+shape = SubResource("CircleShape2D_k3uxq")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="DeathParticle" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 40
+one_shot = true
+speed_scale = 3.0
+emission_shape = 1
+emission_sphere_radius = 30.0
+spread = 140.84
+gravity = Vector2(0, 0)
+tangential_accel_min = -1.57
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+color = Color(0.956863, 0.960784, 0.960784, 1)
+color_ramp = SubResource("Gradient_lwvbt")
 
 [connection signal="body_entered" from="Sprites/AttackArea" to="." method="_on_attack_area_body_entered"]

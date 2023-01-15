@@ -1,10 +1,11 @@
-[gd_scene load_steps=36 format=3 uid="uid://vf2qefixys82"]
+[gd_scene load_steps=37 format=3 uid="uid://vf2qefixys82"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_bwugi"]
 [ext_resource type="Texture2D" uid="uid://dil2ggu0k5llq" path="res://Sprites/newchar/zcharacter.png" id="2_xsogo"]
 [ext_resource type="PackedScene" uid="uid://br87usqykhwhq" path="res://Scenes/Components/joystick.tscn" id="4_2ftj4"]
 [ext_resource type="PackedScene" uid="uid://bdidcrsf0wd73" path="res://game_over.tscn" id="5_kyfen"]
 [ext_resource type="PackedScene" uid="uid://teke18cn2sw4" path="res://Scenes/GameplayUI.tscn" id="5_oppj5"]
+[ext_resource type="Texture2D" uid="uid://cqldq2bgo83wh" path="res://Sprites/Joystick/attackbutton.png" id="5_txtga"]
 [ext_resource type="PackedScene" uid="uid://ddkg2wp7ancj2" path="res://sword.tscn" id="6_gud82"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56fbh"]
@@ -821,10 +822,10 @@ blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nhrlj"]
 switch_mode = 2
-auto_advance = true
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bdxyh"]
-auto_advance = true
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6ynv1"]
 
@@ -843,6 +844,7 @@ graph_offset = Vector2(1, 60)
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_c5iqs"]
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+y_sort_enabled = true
 motion_mode = 1
 safe_margin = 1.0
 script = ExtResource("1_bwugi")
@@ -865,6 +867,7 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_g6b23")
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_c5iqs")
 parameters/Attack/blend_position = 0.998396
 parameters/Locomotion/blend_position = Vector2(0.9897, 0.0299401)
@@ -876,8 +879,7 @@ offset_right = 581.0
 offset_bottom = 330.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
-layout_mode = 1
-anchors_preset = 3
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -890,10 +892,10 @@ grow_vertical = 0
 [node name="AttackJoystick" parent="Control/VBoxContainer" instance=ExtResource("4_2ftj4")]
 position = Vector2(115, 115)
 scale = Vector2(2, 2)
+smallTexture = ExtResource("5_txtga")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
-layout_mode = 1
-anchors_preset = 2
+layout_mode = 0
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -213.0
@@ -916,6 +918,7 @@ attackJoystick = NodePath("../../Control/VBoxContainer/AttackJoystick")
 
 [node name="GameOver" parent="." instance=ExtResource("5_kyfen")]
 visible = false
+z_index = 2
 offset_left = -567.0
 offset_top = -296.0
 offset_right = -567.0
