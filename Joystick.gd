@@ -37,12 +37,10 @@ func _input(event):
 		onDrag(event)
 			
 func onPressed(event):
-	print('touched')
 	touched = true
 	state.index = event.index
 	
 func onReleased(event):
-	print('releaased')
 	smallCircle.position = Vector2.ZERO
 	touched = false
 	state.index = null

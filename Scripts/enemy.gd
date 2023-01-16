@@ -28,22 +28,7 @@ var sprites = []
 var jumpDirection = null
 
 func _ready():
-	var path = "res://Sprites/Slimes"
-	
-	var dir = DirAccess.open(path)
-	
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if dir.current_is_dir():
-				print("Found directory: " + file_name)
-			elif !file_name.ends_with('import') && file_name.begins_with('slime'):
-				print("Found file: " + file_name)
-				sprites.append(load(path + '/'+ file_name))
-			file_name = dir.get_next()
-	else:
-		print("An error occurred when trying to access the path.")
+	sprites = [load("res://Sprites/Slimes/slime_blue.png"),load("res://Sprites/Slimes/slime_red.png"),load("res://Sprites/Slimes/slime_green.png")]
 	
 	randomize()
 	

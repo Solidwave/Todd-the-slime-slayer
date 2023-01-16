@@ -70,7 +70,6 @@ func _physics_process(delta):
 
 func receiveDamage(damageReceived):
 	health -= damageReceived
-	print(health)
 	
 func die():
 	GameOver.visible = true

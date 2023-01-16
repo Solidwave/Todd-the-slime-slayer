@@ -21,7 +21,6 @@ func _process(delta):
 
 
 func updateHearts(health):
-	print('updating hearts')
 	previousHealth = Globals.Player.health
 	var hearts = heartContainer.get_children()
 	for i in len(hearts):

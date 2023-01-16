@@ -13,7 +13,6 @@ var animating = false
 
 func use() -> void:
 	var attackDirection = attackJoystick.getVelocity()
-	print(attackDirection)
 
 	pivot.look_at(global_position + attackDirection * 100)
 

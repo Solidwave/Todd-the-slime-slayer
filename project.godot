@@ -9,40 +9,15 @@
 config_version=5
 
 _global_script_classes=[{
-"base": "VBoxContainer",
-"class": &"EditingTool",
-"language": &"GDScript",
-"path": "res://addons/sprite_painter/src/editing_tool.gd"
-}, {
 "base": "CharacterBody2D",
 "class": &"Enemy",
 "language": &"GDScript",
 "path": "res://Scripts/Enemy.gd"
 }, {
-"base": "RefCounted",
-"class": &"ImageFillTools",
-"language": &"GDScript",
-"path": "res://addons/sprite_painter/src/fill_tools.gd"
-}, {
-"base": "RefCounted",
-"class": &"ImageScript",
-"language": &"GDScript",
-"path": "res://addons/sprite_painter/src/image_script.gd"
-}, {
 "base": "Area2D",
 "class": &"Joystick",
 "language": &"GDScript",
 "path": "res://Joystick.gd"
-}, {
-"base": "Control",
-"class": &"SpritePainterRoot",
-"language": &"GDScript",
-"path": "res://addons/sprite_painter/src/main.gd"
-}, {
-"base": "Button",
-"class": &"ThemeIconButton",
-"language": &"GDScript",
-"path": "res://addons/sprite_painter/editor_icon_button.gd"
 }, {
 "base": "Node2D",
 "class": &"VelocityComponent",
@@ -50,13 +25,8 @@ _global_script_classes=[{
 "path": "res://VelocityComponent.gd"
 }]
 _global_script_class_icons={
-"EditingTool": "",
 "Enemy": "",
-"ImageFillTools": "",
-"ImageScript": "",
 "Joystick": "",
-"SpritePainterRoot": "",
-"ThemeIconButton": "",
 "VelocityComponent": ""
 }
 
