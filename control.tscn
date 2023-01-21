@@ -53,6 +53,12 @@ layout_mode = 2
 text = "Start
 "
 
+[node name="Levels" type="Button" parent="VBoxContainer3/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "Choose Level
+"
+
 [node name="Endlessmode" type="Button" parent="VBoxContainer3/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
@@ -71,6 +77,7 @@ theme = SubResource("Theme_tsrwn")
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer3/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer3/VBoxContainer/Levels" to="." method="_on_levels_pressed"]
 [connection signal="pressed" from="VBoxContainer3/VBoxContainer/Endlessmode" to="." method="_on_endlessmode_pressed"]
 [connection signal="pressed" from="VBoxContainer3/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="VBoxContainer3/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

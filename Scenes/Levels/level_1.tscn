@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://0rtw83w0p0e"]
 
-[ext_resource type="PackedScene" uid="uid://bw83s7c8argvc" path="res://Scenes/spawner.tscn" id="1_jhxve"]
-[ext_resource type="PackedScene" uid="uid://ch5kxy5lb77jg" path="res://Scenes/Enemies/Slimes/Slime.tscn" id="2_sgsgx"]
-[ext_resource type="PackedScene" uid="uid://vf2qefixys82" path="res://Scenes/Player.tscn" id="3_5dy8s"]
-[ext_resource type="Texture2D" uid="uid://c505qjqlbw4w0" path="res://Sprites/Tileset/terrain_atlas.png" id="4_trt27"]
+[ext_resource type="Texture2D" uid="uid://c505qjqlbw4w0" path="res://Sprites/Tileset/terrain_atlas.png" id="1_dqg0a"]
+[ext_resource type="PackedScene" uid="uid://vf2qefixys82" path="res://Scenes/Player.tscn" id="2_5cl8i"]
+[ext_resource type="PackedScene" uid="uid://bw83s7c8argvc" path="res://Scenes/spawner.tscn" id="3_2v6jk"]
+[ext_resource type="PackedScene" uid="uid://c80siqtvj5qmi" path="res://Scenes/Enemies/Slimes/Slime.tscn" id="4_gcp2d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_syc50"]
-texture = ExtResource("4_trt27")
+texture = ExtResource("1_dqg0a")
 texture_region_size = Vector2i(32, 32)
 use_texture_padding = false
 3:0/0 = 0
@@ -3084,11 +3084,11 @@ layer_1/tile_data = PackedInt32Array(458735, 720896, 18, 393199, 720896, 17, 327
 [node name="Agents" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Player" parent="Agents" instance=ExtResource("3_5dy8s")]
+[node name="Player" parent="Agents" instance=ExtResource("2_5cl8i")]
 y_sort_enabled = false
 
-[node name="Spawner" parent="Agents" node_paths=PackedStringArray("navRegion", "enemiesParent") instance=ExtResource("1_jhxve")]
-preloadedEnemies = [ExtResource("2_sgsgx")]
+[node name="Spawner" parent="Agents" node_paths=PackedStringArray("navRegion", "enemiesParent") instance=ExtResource("3_2v6jk")]
+preloadedEnemies = [ExtResource("4_gcp2d")]
 spawnRange = 1000
 navRegion = NodePath("")
 enemiesParent = NodePath("..")
