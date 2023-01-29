@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddkg2wp7ancj2"]
+[gd_scene load_steps=8 format=3 uid="uid://0gqu76flcamu"]
 
-[ext_resource type="Script" path="res://Sword.gd" id="1_x1eyl"]
-[ext_resource type="Texture2D" uid="uid://b75s7b2dmxshq" path="res://Sprites/newchar/newsword1.png" id="2_d018a"]
-[ext_resource type="Texture2D" uid="uid://c05rgluod3fwc" path="res://Sprites/newchar/newsword2.png" id="3_5lja8"]
+[ext_resource type="Script" path="res://Sword.gd" id="1_k2aq7"]
+[ext_resource type="Texture2D" uid="uid://ctrdyl7hvp2po" path="res://Sprites/Weapons/Swords/SWORDS.png" id="2_gvddi"]
+[ext_resource type="Texture2D" uid="uid://c05rgluod3fwc" path="res://Sprites/newchar/newsword2.png" id="3_3hyca"]
 
 [sub_resource type="Animation" id="Animation_tmgcs"]
 resource_name = "Attack"
@@ -121,7 +121,8 @@ size = Vector2(7.88451, 20.2336)
 visible = false
 y_sort_enabled = true
 scale = Vector2(2, 2)
-script = ExtResource("1_x1eyl")
+script = ExtResource("1_k2aq7")
+damage = 40
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -130,17 +131,22 @@ libraries = {
 
 [node name="Sword" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(2.98023e-08, -21.5)
-texture = ExtResource("2_d018a")
+position = Vector2(0.556787, -15.2296)
+rotation = -0.740015
+texture = ExtResource("2_gvddi")
+hframes = 16
+vframes = 20
+frame = 36
 
 [node name="Swoosh" type="Sprite2D" parent="Sword"]
 texture_filter = 1
-position = Vector2(-7, 5)
-rotation = 4.71239
-texture = ExtResource("3_5lja8")
+position = Vector2(-4.72373, -6.03369)
+rotation = -0.83078
+texture = ExtResource("3_3hyca")
 
 [node name="HitBox" type="Area2D" parent="Sword"]
-position = Vector2(0, -1)
+position = Vector2(4.49128, -5.74435)
+rotation = 0.740015
 collision_layer = 2
 collision_mask = 2
 

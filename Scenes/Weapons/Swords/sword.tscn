@@ -1,0 +1,161 @@
+[gd_scene load_steps=8 format=3 uid="uid://ddkg2wp7ancj2"]
+
+[ext_resource type="Script" path="res://Sword.gd" id="1_uib82"]
+[ext_resource type="Texture2D" uid="uid://ctrdyl7hvp2po" path="res://Sprites/Weapons/Swords/SWORDS.png" id="2_t1sg0"]
+[ext_resource type="Texture2D" uid="uid://c05rgluod3fwc" path="res://Sprites/newchar/newsword2.png" id="3_rc8bx"]
+
+[sub_resource type="Animation" id="Animation_tmgcs"]
+resource_name = "Attack"
+length = 0.5
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword/HitBox/HitShape:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.11, 0.486034),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword/Swoosh:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.11, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.11, 0.29),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.639265, 3.31613]
+}
+
+[sub_resource type="Animation" id="Animation_bqt2f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword/HitBox/HitShape:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword/Swoosh:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fayx7"]
+_data = {
+"Attack": SubResource("Animation_tmgcs"),
+"RESET": SubResource("Animation_bqt2f")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ys0be"]
+size = Vector2(7.88451, 20.2336)
+
+[node name="Sword" type="Marker2D"]
+visible = false
+y_sort_enabled = true
+scale = Vector2(2, 2)
+script = ExtResource("1_uib82")
+damage = 40
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fayx7")
+}
+
+[node name="Sword" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0.556787, -15.2296)
+rotation = -0.740015
+texture = ExtResource("2_t1sg0")
+hframes = 16
+vframes = 20
+
+[node name="Swoosh" type="Sprite2D" parent="Sword"]
+texture_filter = 1
+position = Vector2(-4.72373, -6.03369)
+rotation = -0.83078
+scale = Vector2(1, 1)
+texture = ExtResource("3_rc8bx")
+
+[node name="HitBox" type="Area2D" parent="Sword"]
+position = Vector2(4.49128, -5.74435)
+rotation = 0.740015
+scale = Vector2(1, 1)
+collision_layer = 2
+collision_mask = 2
+
+[node name="HitShape" type="CollisionShape2D" parent="Sword/HitBox"]
+texture_filter = 1
+position = Vector2(9.53674e-07, -1.5)
+rotation = 0.0156803
+shape = SubResource("RectangleShape2D_ys0be")
+disabled = true
+
+[connection signal="body_entered" from="Sword/HitBox" to="." method="_on_hit_box_body_entered"]

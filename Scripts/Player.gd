@@ -36,6 +36,7 @@ func _physics_process(delta):
 	match currentState:
 		'Death':
 			velocity = Vector2.ZERO
+			
 		_:
 #			keyboard movemetn
 #			if	Input.is_action_pressed("move_left"):
@@ -73,8 +74,15 @@ func receiveDamage(damageReceived):
 	
 func die():
 	GameOver.visible = true
+	Globals.save_game()
 
 func _on_damage_area_body_entered(body):
 	if 	body.is_in_group("Enemies"):
 		body.receiveDamage(damage)
-	pass # Replace with function body.
+		
+func save():
+	var save_data = {
+		"health": health
+	}
+	
+	return save_data

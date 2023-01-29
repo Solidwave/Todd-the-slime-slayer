@@ -17,6 +17,7 @@ class_name Enemy
 @onready var animationTree : AnimationTree = $AnimationTree
 @onready var navAgent : NavigationAgent2D = $NavigationAgent2D
 @onready var landingParticle : CPUParticles2D = $LandingParticle
+@onready var attackShape : CollisionShape2D = $Sprites/AttackArea/AttackShape
 
 
 
@@ -55,7 +56,7 @@ func _physics_process(delta):
 	
 	match currentState:
 		'Attack':
-			velocity = targetPosition
+			velocity = Vector2.ZERO
 		'Stunned':
 			velocity = knockBack * tmpKnockBackForce
 			tmpKnockBackForce = tmpKnockBackForce - 200 * delta
@@ -91,8 +92,10 @@ func _physics_process(delta):
 		_:
 			print(currentState, 'no match found')
 	if	playerDirection.x < 0:
+		attackShape.position.x = -30
 		enemySprite.flip_h = true
 	elif playerDirection.x > 0:
+		attackShape.position.x = 30
 		enemySprite.flip_h = false
 		
 	move_and_slide()
@@ -110,13 +113,15 @@ func receiveDamage(damage):
 	
 
 func die():
-	Globals.slimeJuice += slimeValue
+	Globals.increaseSlimeJuice(slimeValue)
 	queue_free()
 
 
 func _on_attack_area_body_entered(body):
+	print("body entered")
 	if body.is_in_group("Player"):
 		if stateMachine.get_current_node() == "Attack":
+			print("attack")
 			body.receiveDamage(damage)
 		if stateMachine.get_current_node() == "Jump":
 			body.receiveDamage(jumpDamage)

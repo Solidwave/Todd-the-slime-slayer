@@ -12,12 +12,12 @@ func _process(delta):
 
 
 func _on_start_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/level_1.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Levels/level_1.tscn")
 	pass # Replace with function body.
 
 
 func _on_endlessmode_pressed():
-	get_tree().change_scene_to_file("res://Scenes/level_1.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Levels/level_1.tscn")
 	pass # Replace with function body.
 
 

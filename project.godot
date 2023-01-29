@@ -28,12 +28,18 @@ _global_script_classes=[{
 "class": &"VelocityComponent",
 "language": &"GDScript",
 "path": "res://VelocityComponent.gd"
+}, {
+"base": "Node2D",
+"class": &"weapon",
+"language": &"GDScript",
+"path": "res://Scripts/Weapons/base_weapon.gd"
 }]
 _global_script_class_icons={
 "Enemy": "",
 "Joystick": "",
 "LevelButton": "",
-"VelocityComponent": ""
+"VelocityComponent": "",
+"weapon": ""
 }
 
 [application]
@@ -49,6 +55,7 @@ Globals="*res://Globals.gd"
 
 [display]
 
+window/size/viewport_width=1114
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

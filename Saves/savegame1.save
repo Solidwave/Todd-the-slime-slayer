@@ -1,0 +1,8 @@
+{
+	"Globals": {
+		"slimeJuice": 40
+	},
+	"Player": {
+		"health": -7
+	}
+}

@@ -1,10 +1,8 @@
-extends Node2D
+extends weapon
 
 @onready var _animation_player := $AnimationPlayer
 
 @export var pivot : Marker2D = Marker2D.new()
-
-@export var damage = 40
 
 @export var attackJoystick : Joystick
 
