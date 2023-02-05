@@ -4,7 +4,8 @@ var Player
 var save_name = "Globals"
 
 var globalsData = {
-	slimeJuice = 0
+	slimeJuice = 0,
+	currentWepon = "res://Scenes/Weapons/Swords/sword.tscn"
 }
 
 func increaseSlimeJuice(amount: int):
@@ -22,7 +23,8 @@ func _ready():
 
 func save():
 	var save_dict = {
-		"slimeJuice": globalsData.slimeJuice
+		"slimeJuice": globalsData.slimeJuice,
+		"currentWeapon": globalsData.currentWeapon
 	}
 	
 	return save_dict

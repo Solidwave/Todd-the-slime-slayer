@@ -5,13 +5,13 @@ extends weapon
 @export var pivot : Marker2D = Marker2D.new()
 
 @export var attackJoystick : Joystick
-
+@onready var swordSprite = $Node2D/Sword
 
 var animating = false
 
 func use() -> void:
 	var attackDirection = attackJoystick.getVelocity()
-
+	
 	pivot.look_at(global_position + attackDirection * 100)
 
 	# Flip pivot to avoid upside down attacks
@@ -25,3 +25,9 @@ func use() -> void:
 func _on_hit_box_body_entered(body):
 	if	body.is_in_group("Enemies"):
 		body.receiveDamage(damage)
+
+func getSpriteCoords():
+	return swordSprite.frame_coords
+	
+func getTexture():
+	return swordSprite.texture

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cco55ckt0i2bv" path="res://tile_map.tscn" id="1_01tel"]
 [ext_resource type="PackedScene" uid="uid://crtmamlu5vv26" path="res://house.tscn" id="2_b6ykb"]
-[ext_resource type="PackedScene" path="res://Scenes/Player.tscn" id="3_464rf"]
+[ext_resource type="PackedScene" uid="uid://bor56kblif4d6" path="res://Scenes/Player.tscn" id="3_464rf"]
 [ext_resource type="PackedScene" uid="uid://bfxff1q2s5pjp" path="res://vendor.tscn" id="4_k2x2e"]
 
 [node name="SlimeVillage" type="Node2D"]

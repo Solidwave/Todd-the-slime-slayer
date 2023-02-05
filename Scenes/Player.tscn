@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3]
+[gd_scene load_steps=36 format=3 uid="uid://bor56kblif4d6"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_bwugi"]
 [ext_resource type="Texture2D" uid="uid://dil2ggu0k5llq" path="res://Sprites/newchar/zcharacter.png" id="2_xsogo"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bdidcrsf0wd73" path="res://game_over.tscn" id="5_kyfen"]
 [ext_resource type="PackedScene" uid="uid://teke18cn2sw4" path="res://Scenes/GameplayUI.tscn" id="5_oppj5"]
 [ext_resource type="Texture2D" uid="uid://cqldq2bgo83wh" path="res://Sprites/Joystick/attackbutton.png" id="5_txtga"]
-[ext_resource type="PackedScene" uid="uid://ddkg2wp7ancj2" path="res://Scenes/Weapons/Swords/sword.tscn" id="6_gud82"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56fbh"]
 size = Vector2(24, 24)
@@ -876,13 +875,13 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_c5iqs")
 parameters/Attack/blend_position = 0.998396
 parameters/Locomotion/blend_position = Vector2(0.9897, 0.0299401)
 
-[node name="Control" parent="." groups=["Player"] instance=ExtResource("5_oppj5")]
+[node name="JoystickNode" parent="." groups=["Player"] instance=ExtResource("5_oppj5")]
 offset_left = -570.0
 offset_top = -319.0
 offset_right = 581.0
 offset_bottom = 330.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="AJContainer" type="VBoxContainer" parent="JoystickNode"]
 layout_mode = 0
 anchor_left = 1.0
 anchor_top = 1.0
@@ -893,12 +892,12 @@ offset_top = -232.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="AttackJoystick" parent="Control/VBoxContainer" instance=ExtResource("4_2ftj4")]
+[node name="AttackJoystick" parent="JoystickNode/AJContainer" instance=ExtResource("4_2ftj4")]
 position = Vector2(115, 115)
 scale = Vector2(2, 2)
 smallTexture = ExtResource("5_txtga")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
+[node name="LJContainer" type="VBoxContainer" parent="JoystickNode"]
 layout_mode = 0
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -906,7 +905,7 @@ offset_top = -213.0
 offset_right = 337.0
 grow_vertical = 0
 
-[node name="LocomotionJoystic" parent="Control/VBoxContainer2" node_paths=PackedStringArray("camera") instance=ExtResource("4_2ftj4")]
+[node name="LocomotionJoystic" parent="JoystickNode/LJContainer" node_paths=PackedStringArray("camera") instance=ExtResource("4_2ftj4")]
 position = Vector2(172, 97)
 scale = Vector2(2, 2)
 camera = NodePath("../../../Camera2D")
@@ -914,11 +913,6 @@ camera = NodePath("../../../Camera2D")
 [node name="SwordMarker" type="Marker2D" parent="."]
 position = Vector2(0, -33)
 rotation = -0.703368
-
-[node name="Sword" parent="SwordMarker" node_paths=PackedStringArray("pivot", "attackJoystick") instance=ExtResource("6_gud82")]
-position = Vector2(40, -14)
-pivot = NodePath("..")
-attackJoystick = NodePath("../../Control/VBoxContainer/AttackJoystick")
 
 [node name="GameOver" parent="." instance=ExtResource("5_kyfen")]
 visible = false

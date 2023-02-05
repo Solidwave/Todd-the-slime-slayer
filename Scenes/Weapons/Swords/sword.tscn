@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddkg2wp7ancj2"]
+[gd_scene load_steps=8 format=3 uid="uid://jylxlkuhuviy"]
 
 [ext_resource type="Script" path="res://Sword.gd" id="1_uib82"]
 [ext_resource type="Texture2D" uid="uid://ctrdyl7hvp2po" path="res://Sprites/Weapons/Swords/SWORDS.png" id="2_t1sg0"]
@@ -23,7 +23,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sword/HitBox/HitShape:disabled")
+tracks/1/path = NodePath("Node2D/Sword/HitBox/HitShape:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -35,7 +35,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sword/Swoosh:visible")
+tracks/2/path = NodePath("Node2D/Swoosh:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -74,7 +74,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sword/HitBox/HitShape:disabled")
+tracks/1/path = NodePath("Node2D/Sword/HitBox/HitShape:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -86,7 +86,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sword/Swoosh:visible")
+tracks/2/path = NodePath("Node2D/Swoosh:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -120,6 +120,7 @@ size = Vector2(7.88451, 20.2336)
 [node name="Sword" type="Marker2D"]
 visible = false
 y_sort_enabled = true
+position = Vector2(35, -1)
 scale = Vector2(2, 2)
 script = ExtResource("1_uib82")
 damage = 40
@@ -129,7 +130,15 @@ libraries = {
 "": SubResource("AnimationLibrary_fayx7")
 }
 
-[node name="Sword" type="Sprite2D" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Swoosh" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+position = Vector2(-7, -16.5)
+rotation = -1.57079
+texture = ExtResource("3_rc8bx")
+
+[node name="Sword" type="Sprite2D" parent="Node2D"]
 texture_filter = 1
 position = Vector2(0.556787, -15.2296)
 rotation = -0.740015
@@ -137,25 +146,17 @@ texture = ExtResource("2_t1sg0")
 hframes = 16
 vframes = 20
 
-[node name="Swoosh" type="Sprite2D" parent="Sword"]
-texture_filter = 1
-position = Vector2(-4.72373, -6.03369)
-rotation = -0.83078
-scale = Vector2(1, 1)
-texture = ExtResource("3_rc8bx")
-
-[node name="HitBox" type="Area2D" parent="Sword"]
+[node name="HitBox" type="Area2D" parent="Node2D/Sword"]
 position = Vector2(4.49128, -5.74435)
 rotation = 0.740015
-scale = Vector2(1, 1)
 collision_layer = 2
 collision_mask = 2
 
-[node name="HitShape" type="CollisionShape2D" parent="Sword/HitBox"]
+[node name="HitShape" type="CollisionShape2D" parent="Node2D/Sword/HitBox"]
 texture_filter = 1
 position = Vector2(9.53674e-07, -1.5)
 rotation = 0.0156803
 shape = SubResource("RectangleShape2D_ys0be")
 disabled = true
 
-[connection signal="body_entered" from="Sword/HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="body_entered" from="Node2D/Sword/HitBox" to="." method="_on_hit_box_body_entered"]

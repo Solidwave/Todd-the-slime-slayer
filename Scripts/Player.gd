@@ -7,14 +7,15 @@ extends CharacterBody2D
 @export var damage = 40
 
 
+
 @onready var animationTree = $AnimationTree
 @onready var animationPlayer = $AnimationPlayer
-@onready var sword = $SwordMarker/Sword
+@onready var swordMarker = $SwordMarker
 @onready var GameOver = $GameOver
-@onready var joystick : Joystick = $Control/VBoxContainer2/LocomotionJoystic
-@onready var attackJoystick : Joystick = $Control/VBoxContainer/AttackJoystick
+@onready var joystick : Joystick = $JoystickNode/LJContainer/LocomotionJoystic
+@onready var attackJoystick : Joystick = $JoystickNode/AJContainer/AttackJoystick
 
-
+var sword 
 
 var statemachine : AnimationNodeStateMachinePlayback
 
@@ -22,6 +23,18 @@ func _ready():
 	Globals.Player = self
 	
 	animationTree.active = true
+	
+	print(Globals.globalsData)
+	
+	var swordres: PackedScene = load(Globals.globalsData.currentWeapon)
+	
+	sword = swordres.instantiate()
+	
+	sword.set("attackJoystick", attackJoystick)
+	
+	sword.set("pivot",swordMarker)
+	
+	swordMarker.add_child(sword)
 	
 	statemachine = animationTree.get("parameters/playback")
 	
