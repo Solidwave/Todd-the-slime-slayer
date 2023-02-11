@@ -27,15 +27,15 @@ func _ready():
 func _on_timer_timeout():
 	if get_tree().get_nodes_in_group("Enemies").size() < maxEnemies:
 		
-		navAgent.target_location = Vector2(Globals.Player.position.x + randi_range(-spawnRange,spawnRange), Globals.Player.position.y + randi_range(-spawnRange,spawnRange))
+		navAgent.target_position = Vector2(Globals.Player.position.x + randi_range(-spawnRange,spawnRange), Globals.Player.position.y + randi_range(-spawnRange,spawnRange))
 		
 		while !navAgent.is_target_reachable():
-			navAgent.target_location = Vector2(Globals.Player.position.x + randi_range(-spawnRange,spawnRange), Globals.Player.position.y + randi_range(-spawnRange,spawnRange))
+			navAgent.target_position = Vector2(Globals.Player.position.x + randi_range(-spawnRange,spawnRange), Globals.Player.position.y + randi_range(-spawnRange,spawnRange))
 		var enemyPreload = preloadedEnemies[randi() % preloadedEnemies.size()]
 		
 		var enemy = enemyPreload.instantiate()
 		
-		enemy.position = navAgent.target_location
+		enemy.position = navAgent.target_position
 		
 		if enemiesParent != null:
 			enemiesParent.add_child(enemy)

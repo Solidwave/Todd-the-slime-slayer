@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-class_name Enemy
 @export var speed = 100
 @export var health = 100
 @export var jumpRate = 1000
@@ -69,9 +68,9 @@ func _physics_process(delta):
 		'Idle':
 			var distanceToPlayer = global_position.distance_to(Globals.Player.global_position)
 			
-			navAgent.target_location = Globals.Player.global_position
+			navAgent.target_position = Globals.Player.global_position
 			
-			var navDirection = navAgent.get_next_location()
+			var navDirection = navAgent.get_next_path_position()
 			
 			velocity = global_position.direction_to(navDirection) * speed
 			

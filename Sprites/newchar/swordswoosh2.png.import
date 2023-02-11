@@ -16,9 +16,9 @@ dest_files=["res://.godot/imported/swordswoosh2.png-db84467e7c0daf66c0e6b5efaf43
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

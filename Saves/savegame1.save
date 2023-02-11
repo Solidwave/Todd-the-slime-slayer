@@ -1,9 +1,9 @@
 {
 	"Globals": {
 		"currentWeapon": "res://Scenes/Weapons/Swords/sword.tscn",
-		"slimeJuice": 51
+		"slimeJuice": 66
 	},
 	"Player": {
-		"health": -2
+		"health": -20
 	}
 }
