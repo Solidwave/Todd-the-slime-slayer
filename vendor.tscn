@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bfxff1q2s5pjp"]
 
 [ext_resource type="Texture2D" uid="uid://bes06ymylujif" path="res://Sprites/Buildings/weapondealer.png" id="1_s1hjf"]
-[ext_resource type="Script" path="res://Scripts/Vendors/vendor.gd" id="1_tbs8t"]
+[ext_resource type="PackedScene" uid="uid://c1nqj85bf5dih" path="res://vendor_ui.tscn" id="3_1a0mr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmcko"]
 size = Vector2(112, 105)
@@ -10,7 +10,6 @@ size = Vector2(112, 105)
 y_sort_enabled = true
 mass = 200.0
 gravity_scale = 0.0
-script = ExtResource("1_tbs8t")
 
 [node name="Weapondealer" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -21,3 +20,5 @@ texture = ExtResource("1_s1hjf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -52.5)
 shape = SubResource("RectangleShape2D_jmcko")
+
+[node name="VendorUI" parent="." instance=ExtResource("3_1a0mr")]

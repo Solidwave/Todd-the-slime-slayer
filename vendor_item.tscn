@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdm6k7x3a7j28"]
+
+[ext_resource type="Script" path="res://vendor_item.gd" id="1_nm401"]
+[ext_resource type="Texture2D" uid="uid://ctrdyl7hvp2po" path="res://Sprites/Weapons/Swords/SWORDS.png" id="1_oksda"]
+
+[node name="ItemContainer" type="Control"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+script = ExtResource("1_nm401")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpriteContainer" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="ItemSprite" type="Sprite2D" parent="HBoxContainer/SpriteContainer"]
+texture_filter = 1
+position = Vector2(0, -30)
+scale = Vector2(4, 4)
+texture = ExtResource("1_oksda")
+centered = false
+offset = Vector2(10, 0)
+hframes = 16
+vframes = 19
+
+[node name="Name" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Durendalia"
+horizontal_alignment = 1
+
+[node name="Price" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "50"
+horizontal_alignment = 1

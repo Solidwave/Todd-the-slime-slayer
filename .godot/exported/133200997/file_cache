@@ -1,0 +1,17 @@
+res://Scenes/Components/joystick.tscn::c271b29d065adb292f8b2acb0746c266::1674343021::res://.godot/exported/133200997/export-155fa542b01ae6f5cb8d47c8da889077-joystick.scn
+res://Scenes/Components/node_2d.tscn::f47dd259ff127a50c03b2c39770d85c1::1674343021::res://.godot/exported/133200997/export-fb564ed12ee78ca0b8866c920564fddb-node_2d.scn
+res://Scenes/Components/velocity_component.tscn::446cb9eddb24638456aa8e1940cbf8ca::1674343021::res://.godot/exported/133200997/export-0675d142a01df11530f368ecd97fa614-velocity_component.scn
+res://Scenes/Enemies/Slimes/Slime.tscn::7dfe907399ae496f4d2b2ff524823668::1674343021::res://.godot/exported/133200997/export-908e6446fa6177c7b3cbb3a9dce12297-Slime.scn
+res://Scenes/GameplayUI.tscn::0576fbda0308758c66a6e3c203937613::1674343021::res://.godot/exported/133200997/export-2eb6af6e1e9563688a5e00040a8b447e-GameplayUI.scn
+res://Scenes/Player.tscn::ef9980e3dce2d4d80b1da8c61f7cf637::1674343021::res://.godot/exported/133200997/export-a7209d3b864edc0146622aad500fa2c1-Player.scn
+res://Scenes/spawner.tscn::7764a941d124821d29ebab8a0f98bfd2::1674343021::res://.godot/exported/133200997/export-e53043c35482003ac288a7cc487921a7-spawner.scn
+res://control.tscn::ecb644dba26dcb7c34f00e6241e14a43::1674343021::res://.godot/exported/133200997/export-e66311c87c39ec8c25379305b5ae724b-control.scn
+res://game_over.tscn::90bd2c651dc01203fbd6945116a89e2c::1673102269::res://.godot/exported/133200997/export-d8e4acb474e0f28479495aaad84d873f-game_over.scn
+res://globals.tscn::4ff42cfce44ed21915c48f24e229bdb0::1674343021::res://.godot/exported/133200997/export-62d9589ff2c9f8d4f68fab93886028d2-globals.scn
+res://sword.tscn::4b8b3e33b8b07d5638787400599ee29f::1674343021::res://.godot/exported/133200997/export-612a56c8582a4aedba53b3bf3e6eac69-sword.scn
+res://tile_map.tscn::f20ee392e070cdc5cf6451eda6f01764::1673102270::res://.godot/exported/133200997/export-22792ee0018d439a895e1f6e6e7db267-tile_map.scn
+res://ui.tres::d3d39e9052ae5145a9df088a190eabc0::1674338650::res://.godot/exported/133200997/export-4f7edbb8b645b7123dbca42e93334179-ui.res
+res://Scenes/Levels/level_1.tscn::8f453687731139eeb83f6aad294804cd::1674343021::res://.godot/exported/133200997/export-3ae06fa0a47c58480968a17200f9cd17-level_1.scn
+res://Scenes/Levels/level_2.tscn::3134afc78705b5334d6de00ca5732d97::1674343022::res://.godot/exported/133200997/export-0331ba6b839e05c962e56aa54ca79a27-level_2.scn
+res://LevelButton.tscn::4584bd1e0c8c910fae705e5b2b9e6271::1674343022::res://.godot/exported/133200997/export-53b411a6237ae3aac095c39496bceda1-LevelButton.scn
+res://levels_ui.tscn::bf176b141051eb7524b99e7eac3a8271::1674343022::res://.godot/exported/133200997/export-599032b44e0dcb1de4d80e90f718dbdc-levels_ui.scn

@@ -1,0 +1,72 @@
+[{
+    "name": "Sword",
+    "id": 1,
+    "type": "sword",
+    "damage": 10,
+    "price": 10,
+    "frameCoords": {
+        "x": 0,
+        "y":0
+    },
+    "sprite": "res://Sprites/Weapons/Swords/Swords.png"
+},
+{
+    "name": "Sword 2",
+    "id": 2,
+    "type": "sword",
+    "damage": 10,
+    "price": 10,
+    "frameCoords": {
+        "x": 1,
+        "y":0
+    },
+    "sprite": "res://Sprites/Weapons/Swords/Swords.png"
+},
+{
+    "name": "Sword 3",
+    "id": 3,
+    "type": "sword",
+    "damage": 10,
+    "price": 10,
+    "frameCoords": {
+        "x": 2,
+        "y":0
+    },
+    "sprite": "res://Sprites/Weapons/Swords/Swords.png"
+},
+{
+    "name": "Sword 4",
+    "id": 4,
+    "type": "sword",
+    "damage": 10,
+    "price": 10,
+    "frameCoords": {
+        "x": 3,
+        "y":0
+    },
+    "sprite": "res://Sprites/Weapons/Swords/Swords.png"
+},
+{
+    "name": "Sword",
+    "id": 5,
+    "type": "sword",
+    "damage": 10,
+    "price": 10,
+    "frameCoords": {
+        "x": 4,
+        "y":0
+    },
+    "sprite": "res://Sprites/Weapons/Swords/Swords.png"
+},
+{
+    "name": "Sword",
+    "id": 6,
+    "type": "sword",
+    "damage": 10,
+    "price": 10,
+    "frameCoords": {
+        "x": 5,
+        "y":0
+    },
+    "sprite": "res://Sprites/Weapons/Swords/Swords.png"
+}]
