@@ -12,8 +12,8 @@ extends CharacterBody2D
 @onready var animationPlayer = $AnimationPlayer
 @onready var swordMarker = $SwordMarker
 @onready var GameOver = $GameOver
-@onready var joystick : Joystick = $JoystickNode/LJContainer/LocomotionJoystic
-@onready var attackJoystick : Joystick = $JoystickNode/AJContainer/AttackJoystick
+@onready var joystick : Joystick = $CanvasLayer/JoystickNode/LJContainer/LocomotionJoystic
+@onready var attackJoystick : Joystick = $CanvasLayer/JoystickNode/AJContainer/AttackJoystick
 
 var sword 
 

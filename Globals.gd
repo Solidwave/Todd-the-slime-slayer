@@ -32,10 +32,10 @@ func save():
 	
 func save_game():
 	var save_game = FileAccess.open("res://Saves/savegame1.save", FileAccess.WRITE)
-	var json : Dictionary
+	var json : Dictionary = {}
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	#save globals
-	var globalsData = save()
+	globalsData = save()
 	
 	json[save_name] = globalsData
 	for node in save_nodes:

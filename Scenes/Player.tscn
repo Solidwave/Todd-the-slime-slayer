@@ -875,14 +875,31 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_c5iqs")
 parameters/Attack/blend_position = 0.998396
 parameters/Locomotion/blend_position = Vector2(0.9897, 0.0299401)
 
-[node name="JoystickNode" parent="." groups=["Player"] instance=ExtResource("5_oppj5")]
-offset_left = -570.0
-offset_top = -319.0
-offset_right = 581.0
-offset_bottom = 330.0
+[node name="SwordMarker" type="Marker2D" parent="."]
+position = Vector2(0, -33)
+rotation = -0.703368
 
-[node name="AJContainer" type="VBoxContainer" parent="JoystickNode"]
-layout_mode = 0
+[node name="GameOver" parent="." instance=ExtResource("5_kyfen")]
+visible = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_smoothed = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="JoystickNode" parent="CanvasLayer" groups=["Player"] instance=ExtResource("5_oppj5")]
+z_index = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AJContainer" type="VBoxContainer" parent="CanvasLayer/JoystickNode"]
+layout_mode = 1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -892,36 +909,21 @@ offset_top = -232.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="AttackJoystick" parent="JoystickNode/AJContainer" instance=ExtResource("4_2ftj4")]
+[node name="AttackJoystick" parent="CanvasLayer/JoystickNode/AJContainer" instance=ExtResource("4_2ftj4")]
 position = Vector2(115, 115)
 scale = Vector2(2, 2)
 smallTexture = ExtResource("5_txtga")
 
-[node name="LJContainer" type="VBoxContainer" parent="JoystickNode"]
-layout_mode = 0
+[node name="LJContainer" type="VBoxContainer" parent="CanvasLayer/JoystickNode"]
+layout_mode = 1
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -213.0
 offset_right = 337.0
 grow_vertical = 0
 
-[node name="LocomotionJoystic" parent="JoystickNode/LJContainer" node_paths=PackedStringArray("camera") instance=ExtResource("4_2ftj4")]
+[node name="LocomotionJoystic" parent="CanvasLayer/JoystickNode/LJContainer" node_paths=PackedStringArray("camera") instance=ExtResource("4_2ftj4")]
 position = Vector2(172, 97)
 scale = Vector2(2, 2)
-camera = NodePath("../../../Camera2D")
-
-[node name="SwordMarker" type="Marker2D" parent="."]
-position = Vector2(0, -33)
-rotation = -0.703368
-
-[node name="GameOver" parent="." instance=ExtResource("5_kyfen")]
-visible = false
-z_index = 2
-offset_left = -567.0
-offset_top = -296.0
-offset_right = -567.0
-offset_bottom = -296.0
-
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-limit_smoothed = true
+camera = NodePath("../../../../Camera2D")

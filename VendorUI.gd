@@ -1,6 +1,6 @@
-extends Control
+extends CanvasLayer
 
-@onready var grid_container = $MarginContainer/GridContainer
+@onready var grid_container = $MarginContainer/Panel/MarginContainer/GridContainer
 
 @export var dataPath : String
 
@@ -11,7 +11,7 @@ func _ready():
 	var file = FileAccess.get_file_as_string(dataPath)
 	
 	var items : Array = JSON.parse_string(file)
-	
+	print(file, items)
 	for item in items:
 		createItemNode(item)
 
@@ -22,3 +22,7 @@ func createItemNode(item_data : Dictionary) -> void:
 	itemNode.item_data = item_data
 	
 	grid_container.add_child(itemNode)
+
+
+func _on_texture_button_pressed():
+	pass # Replace with function body.

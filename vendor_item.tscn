@@ -7,6 +7,7 @@
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 3
 anchors_preset = 0
+offset_bottom = 150.0
 size_flags_horizontal = 3
 script = ExtResource("1_nm401")
 
@@ -21,14 +22,14 @@ grow_vertical = 2
 [node name="SpriteContainer" type="Control" parent="HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
 
 [node name="ItemSprite" type="Sprite2D" parent="HBoxContainer/SpriteContainer"]
 texture_filter = 1
-position = Vector2(0, -30)
-scale = Vector2(4, 4)
+scale = Vector2(3, 3)
 texture = ExtResource("1_oksda")
 centered = false
-offset = Vector2(10, 0)
 hframes = 16
 vframes = 19
 

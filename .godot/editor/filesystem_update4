@@ -1,2 +1,13 @@
-res://control.tscn
-res://Scripts/Spawner.gd
+res://vendor.tscn
+res://ui.tres
+res://Scenes/Enemies/Slimes/Slime.gdshader
+res://VendorUI.gd
+res://vendor.gd
+res://Scenes/Player.tscn
+res://Scenes/Levels/slime_village.tscn
+res://vendor_ui.tscn
+res://vendor_item.tscn
+res://Scenes/Components/joystick.tscn
+res://Scripts/Player.gd
+res://game_over.tscn
+res://game_over.gd
