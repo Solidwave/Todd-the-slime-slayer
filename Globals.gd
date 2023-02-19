@@ -5,15 +5,16 @@ var save_name = "Globals"
 
 var globalsData = {
 	slimeJuice = 0,
-	currentWepon = "res://Scenes/Weapons/Swords/sword.tscn"
+	currentWeapon = "res://Scenes/Weapons/Swords/sword.tscn"
 }
 
 func increaseSlimeJuice(amount: int):
 	globalsData.slimeJuice += amount
 
 func _ready():
-	var save_file = FileAccess.open("res://Saves/savegame1.save", FileAccess.READ)
-	
+	var save_file = FileAccess.open("user://Saves/savegame1.save", FileAccess.READ)
+	if save_file == null:
+		return
 	var data = save_file.get_as_text()
 	data = JSON.parse_string(data)
 	
@@ -31,7 +32,7 @@ func save():
 	
 	
 func save_game():
-	var save_game = FileAccess.open("res://Saves/savegame1.save", FileAccess.WRITE)
+	var save_game = FileAccess.open("user://Saves/savegame1.save", FileAccess.WRITE)
 	var json : Dictionary = {}
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	#save globals

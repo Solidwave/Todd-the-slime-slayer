@@ -1,39 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfxff1q2s5pjp"]
+[gd_scene load_steps=6 format=3 uid="uid://bfxff1q2s5pjp"]
 
 [ext_resource type="Script" path="res://vendor.gd" id="1_4fak5"]
 [ext_resource type="Texture2D" uid="uid://bes06ymylujif" path="res://Sprites/Buildings/weapondealer.png" id="1_s1hjf"]
 [ext_resource type="PackedScene" uid="uid://c1nqj85bf5dih" path="res://vendor_ui.tscn" id="3_2bcd8"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_iyoay"]
+radius = 43.0116
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmcko"]
-size = Vector2(112, 105)
+size = Vector2(56, 47)
 
 [node name="Vendor" type="RigidBody2D"]
 y_sort_enabled = true
-mass = 200.0
+texture_filter = 1
+scale = Vector2(3, 3)
 gravity_scale = 0.0
 script = ExtResource("1_4fak5")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -53)
-shape = SubResource("RectangleShape2D_jmcko")
 
 [node name="VendorUI" parent="." instance=ExtResource("3_2bcd8")]
 visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(0, -95)
-scale = Vector2(2, 2)
 texture = ExtResource("1_s1hjf")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Clickable" type="Area2D" parent="."]
 
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer"]
-texture_filter = 1
-offset_left = -94.0
-offset_top = -192.0
-offset_right = 2.0
-offset_bottom = -96.0
-scale = Vector2(2, 2)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Clickable"]
+position = Vector2(-0.333333, 7)
+shape = SubResource("CircleShape2D_iyoay")
 
-[connection signal="pressed" from="CanvasLayer/TextureButton" to="." method="_on_texture_button_pressed"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.333333, 24.1667)
+shape = SubResource("RectangleShape2D_jmcko")
+
+[connection signal="input_event" from="Clickable" to="." method="_on_clickable_input_event"]

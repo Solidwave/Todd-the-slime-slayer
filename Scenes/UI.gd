@@ -1,14 +1,16 @@
 extends Control
+class_name GameplayUI
 
 @onready var monstersAliveValue = $HBoxcontainer/MonstersAliveValue
 @onready var juiceValue = $HBoxContainer/JuiceValue
 @onready var heartContainer = $HeartContainer
+@onready var locomotionJoystick : Joystick = $Locomotion/Joystick
+@onready var attackJoystick : Joystick = $Attack/Joystick
 
 var previousHealth
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	juiceValue.text = str(Globals.globalsData.slimeJuice)
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,7 +19,7 @@ func _process(delta):
 	
 	juiceValue.text = str(Globals.globalsData.slimeJuice)
 	
-	if previousHealth != Globals.Player.health:
+	if Globals.Player != null && previousHealth != Globals.Player.health:
 		updateHearts(Globals.Player.health)
 	pass
 
@@ -34,7 +36,11 @@ func updateHearts(health):
 		else:
 			hearts[i].frame = maxHeartValue - health
 		
-	
+func getAttackJoystick() -> Joystick:
+	return attackJoystick
+
+func getLocomotionJoystick() -> Joystick:
+	return locomotionJoystick
 	
 		
 		

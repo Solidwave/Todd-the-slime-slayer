@@ -6,8 +6,6 @@ class_name Joystick
 @onready var joystickArea = $JoystickArea
 @onready var maxDistance = $JoystickArea.shape.radius
 
-@export var camera : Camera2D
-
 @export var bigTexture : Texture2D
 @export var smallTexture : Texture2D
 var state = {
@@ -56,6 +54,6 @@ func onDrag(event):
 #
 #		smallCircle.position = bigCircle.position + (smallCircle.position - bigCircle.position).limit_length(maxDistance)
 	
-func getVelocity():
+func getVelocity() :
 	return (smallCircle.position - bigCircle.position).normalized()
 		

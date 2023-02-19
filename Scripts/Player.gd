@@ -6,14 +6,16 @@ extends CharacterBody2D
 
 @export var damage = 40
 
-
+@onready var gameplayUI : GameplayUI = $CanvasLayer/GamePlayUI
 
 @onready var animationTree = $AnimationTree
 @onready var animationPlayer = $AnimationPlayer
 @onready var swordMarker = $SwordMarker
 @onready var GameOver = $GameOver
-@onready var joystick : Joystick = $CanvasLayer/JoystickNode/LJContainer/LocomotionJoystic
-@onready var attackJoystick : Joystick = $CanvasLayer/JoystickNode/AJContainer/AttackJoystick
+
+var locomotionJoystick : Joystick
+
+var attackJoystick : Joystick
 
 var sword 
 
@@ -27,6 +29,12 @@ func _ready():
 	print(Globals.globalsData)
 	
 	var swordres: PackedScene = load(Globals.globalsData.currentWeapon)
+	
+	attackJoystick = gameplayUI.getAttackJoystick()
+	
+	locomotionJoystick = gameplayUI.getLocomotionJoystick()
+	
+	print(gameplayUI, attackJoystick, locomotionJoystick)
 	
 	sword = swordres.instantiate()
 	
@@ -60,13 +68,13 @@ func _physics_process(delta):
 #				velocity.y += 1.0
 #			if	Input.is_action_pressed("move_up"):
 #				velocity.y -= 1.0
-			velocity = joystick.getVelocity()
+			velocity = gameplayUI.getLocomotionJoystick().getVelocity()
 				
 			velocity = velocity * speed
 			
 			animationTree.set("parameters/Locomotion/blend_position",velocity)
 				
-			var attackDirection = attackJoystick.getVelocity()
+			var attackDirection = gameplayUI.getAttackJoystick().getVelocity()
 			if attackDirection != Vector2.ZERO:
 				if attackDirection.x > 0:
 					attackDirection = 1

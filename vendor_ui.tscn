@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://VendorUI.gd" id="1_1uxn6"]
 
 [node name="VendorUI" type="CanvasLayer"]
+layer = 2
 script = ExtResource("1_1uxn6")
 dataPath = "res://database/weapons.json"
 

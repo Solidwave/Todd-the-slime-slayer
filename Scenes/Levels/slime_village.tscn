@@ -15,7 +15,7 @@ layer_1/tile_data = PackedInt32Array(-65516, 1114112, 4, -131052, 1114112, 2, -6
 y_sort_enabled = true
 
 [node name="Vendor" parent="Agents" instance=ExtResource("4_k2x2e")]
-position = Vector2(826, -182)
+position = Vector2(884, -286)
 
 [node name="House" parent="Agents" instance=ExtResource("2_b6ykb")]
 position = Vector2(28, -322)
@@ -33,4 +33,4 @@ position = Vector2(-514, -319)
 position = Vector2(-244, -319)
 
 [node name="Player" parent="Agents" instance=ExtResource("3_464rf")]
-position = Vector2(250, 40)
+position = Vector2(367, -11)
