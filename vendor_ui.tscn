@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1nqj85bf5dih"]
+[gd_scene load_steps=5 format=3 uid="uid://c1nqj85bf5dih"]
 
 [ext_resource type="Script" path="res://VendorUI.gd" id="1_1uxn6"]
+[ext_resource type="Texture2D" uid="uid://dkdamake2pfkj" path="res://Sprites/SpritesGUI_Essential_Free/Complete_GUI_Essential_Pack_Free_Version/01_Basic_Collection/01_Flat_Theme/Sprites/UI_Flat_Button_Small_Release_02a3.png" id="2_dx4de"]
+[ext_resource type="Texture2D" uid="uid://dw7ogacrp48gs" path="res://Sprites/SpritesGUI_Essential_Free/Complete_GUI_Essential_Pack_Free_Version/01_Basic_Collection/01_Flat_Theme/Sprites/UI_Flat_Button_Small_Release_02a2.png" id="3_osw76"]
+[ext_resource type="Texture2D" uid="uid://cqya8hua1gm0a" path="res://Sprites/SpritesGUI_Essential_Free/Complete_GUI_Essential_Pack_Free_Version/01_Basic_Collection/01_Flat_Theme/Sprites/UI_Flat_Cross_Large.png" id="4_x0xgn"]
 
 [node name="VendorUI" type="CanvasLayer"]
 layer = 2
@@ -38,3 +41,29 @@ layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+
+[node name="CloseButton" type="TextureButton" parent="MarginContainer/Panel/MarginContainer2"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("2_dx4de")
+texture_pressed = ExtResource("3_osw76")
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Panel/MarginContainer2/CloseButton"]
+texture_filter = 1
+texture = ExtResource("4_x0xgn")
+centered = false
+
+[connection signal="pressed" from="MarginContainer/Panel/MarginContainer2/CloseButton" to="." method="_on_close_button_pressed"]

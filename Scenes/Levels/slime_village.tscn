@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4hj3uf3drkva"]
+[gd_scene load_steps=8 format=3 uid="uid://c4hj3uf3drkva"]
 
 [ext_resource type="PackedScene" uid="uid://cco55ckt0i2bv" path="res://tile_map.tscn" id="1_01tel"]
 [ext_resource type="PackedScene" uid="uid://crtmamlu5vv26" path="res://house.tscn" id="2_b6ykb"]
 [ext_resource type="PackedScene" uid="uid://bor56kblif4d6" path="res://Scenes/Player.tscn" id="3_464rf"]
 [ext_resource type="PackedScene" uid="uid://bfxff1q2s5pjp" path="res://vendor.tscn" id="4_k2x2e"]
+[ext_resource type="Script" path="res://Scenes/Levels/Teleport.gd" id="5_kre7q"]
+[ext_resource type="Texture2D" uid="uid://btg3s5w2f3fkv" path="res://icon.svg" id="5_q04ig"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0wm4"]
+size = Vector2(180, 231.25)
 
 [node name="SlimeVillage" type="Node2D"]
 
@@ -33,4 +38,20 @@ position = Vector2(-514, -319)
 position = Vector2(-244, -319)
 
 [node name="Player" parent="Agents" instance=ExtResource("3_464rf")]
-position = Vector2(367, -11)
+position = Vector2(386, -1)
+
+[node name="Teleport" type="Area2D" parent="Agents"]
+position = Vector2(918, 129)
+script = ExtResource("5_kre7q")
+sceneToLoad = "res://Scenes/LevelsMenu/levels_ui.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Agents/Teleport"]
+position = Vector2(90.7199, 116.88)
+shape = SubResource("RectangleShape2D_d0wm4")
+
+[node name="Sprite2D" type="Sprite2D" parent="Agents/Teleport"]
+position = Vector2(90.7199, 116.88)
+scale = Vector2(1.38625, 1.82625)
+texture = ExtResource("5_q04ig")
+
+[connection signal="body_entered" from="Agents/Teleport" to="Agents/Teleport" method="_on_body_entered"]

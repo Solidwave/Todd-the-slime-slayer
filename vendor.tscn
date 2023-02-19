@@ -10,11 +10,10 @@ radius = 43.0116
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmcko"]
 size = Vector2(56, 47)
 
-[node name="Vendor" type="RigidBody2D"]
+[node name="Vendor" type="StaticBody2D"]
 y_sort_enabled = true
 texture_filter = 1
 scale = Vector2(3, 3)
-gravity_scale = 0.0
 script = ExtResource("1_4fak5")
 
 [node name="VendorUI" parent="." instance=ExtResource("3_2bcd8")]

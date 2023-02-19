@@ -23,3 +23,8 @@ func createItemNode(item_data : Dictionary) -> void:
 	
 	grid_container.add_child(itemNode)
 
+
+
+
+func _on_close_button_pressed():
+	visible = false

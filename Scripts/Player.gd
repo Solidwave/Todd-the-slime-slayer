@@ -21,6 +21,7 @@ var sword
 
 var statemachine : AnimationNodeStateMachinePlayback
 
+var dead = false
 func _ready():
 	Globals.Player = self
 	
@@ -49,9 +50,13 @@ func _ready():
 	
 func _physics_process(delta):
 	velocity = Vector2.ZERO
-	
+	print(health)
+	if	dead:
+		return
 	if health <= 0:
 		statemachine.travel("Death")
+		dead = true 
+		return
 	
 	var currentState : String = statemachine.get_current_node()
 	match currentState:

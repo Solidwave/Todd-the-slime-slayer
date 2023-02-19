@@ -874,6 +874,7 @@ parameters/Attack/blend_position = 0.998396
 parameters/Locomotion/blend_position = Vector2(0.9897, 0.0299401)
 
 [node name="SwordMarker" type="Marker2D" parent="."]
+y_sort_enabled = true
 position = Vector2(0, -33)
 rotation = -0.703368
 

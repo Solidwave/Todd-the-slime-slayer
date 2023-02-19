@@ -14,3 +14,7 @@ res://Globals.gd
 res://Joystick.gd
 res://vendor.gd
 res://tile_map.tscn
+res://VendorUI.gd
+res://Scenes/Levels/Teleport.gd
+res://control.tscn
+res://Scripts/control.gd

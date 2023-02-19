@@ -12,12 +12,13 @@ func increaseSlimeJuice(amount: int):
 	globalsData.slimeJuice += amount
 
 func _ready():
-	var save_file = FileAccess.open("user://Saves/savegame1.save", FileAccess.READ)
+	var save_file = FileAccess.open("user://saves/savegame1.save", FileAccess.READ)
 	if save_file == null:
 		return
 	var data = save_file.get_as_text()
 	data = JSON.parse_string(data)
-	
+	if data == null:
+		return
 	if data[save_name] != null:
 		globalsData = data[save_name]
 	
@@ -32,7 +33,10 @@ func save():
 	
 	
 func save_game():
-	var save_game = FileAccess.open("user://Saves/savegame1.save", FileAccess.WRITE)
+	var save_dir = DirAccess.open("user://")
+	save_dir.make_dir("saves")
+	var save_file = FileAccess.open("user://saves/savegame1.save", FileAccess.WRITE)
+	
 	var json : Dictionary = {}
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	#save globals
@@ -50,4 +54,4 @@ func save_game():
 		print(node_data)
 		json[node.name] = node_data
 		# Store the save dictionary as a new line in the save file.
-	save_game.store_string(JSON.stringify(json, "\t"))
+	save_file.store_string(JSON.stringify(json, "\t"))

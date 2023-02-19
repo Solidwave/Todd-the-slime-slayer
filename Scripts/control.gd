@@ -31,6 +31,6 @@ func _on_quit_button_pressed():
 
 
 func _on_levels_pressed():
-	get_tree().change_scene_to_file("res://levels_ui.tscn")
+	get_tree().change_scene_to_file("res://Scenes/LevelsMenu/levels_ui.tscn")
 	
 	pass # Replace with function body.
