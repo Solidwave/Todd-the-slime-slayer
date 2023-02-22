@@ -1,5 +1,5 @@
 bdbec74c6e5bd72edee867077d70896c
-::res://::1676830965
+::res://::1677090889
 control.tscn::PackedScene::6908412677027794617::1676830830::0::1::::<><>::res://Scripts/control.gd<>uid://clenol0pyn35i
 export_presets.cfg::TextFile::-1::1676757507::0::1::::<><>::
 game_over.gd::GDScript::-1::1676760527::0::1::::<>CanvasLayer<>::
@@ -71,7 +71,7 @@ levels_ui.tscn::PackedScene::-1::1676830330::0::1::::<><>::res://Scenes/LevelsMe
 sword.tscn::PackedScene::681954213143739020::1676573310::0::1::::<><>::res://Sword.gd<>uid://ctrdyl7hvp2po<>uid://c05rgluod3fwc
 ::res://Scripts/::1676830609
 control.gd::GDScript::-1::1676830609::0::1::::<>Control<>::
-enemy.gd::GDScript::-1::1676573368::0::1::::<>CharacterBody2D<>::
+enemy.gd::GDScript::-1::1676831027::0::1::::<>CharacterBody2D<>::
 main.gd::GDScript::-1::1672053338::0::1::::<>Node2D<>::
 Player.gd::GDScript::-1::1676830541::0::1::::<>CharacterBody2D<>::
 Spawner.gd::GDScript::-1::1676573368::0::1::::<>Node2D<>::

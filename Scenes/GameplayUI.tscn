@@ -94,18 +94,21 @@ hframes = 4
 frame = 3
 
 [node name="Locomotion" type="Control" parent="."]
+custom_minimum_size = Vector2(300, 300)
 layout_mode = 1
-anchor_top = 0.802
-anchor_right = 0.193
+anchors_preset = 2
+anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = 0.303955
-offset_right = -0.0019989
+offset_top = -300.0
+offset_right = 300.0
 grow_vertical = 0
 
 [node name="Joystick" parent="Locomotion" instance=ExtResource("3_dwmqo")]
-position = Vector2(102, 62)
+position = Vector2(150, 150)
+scale = Vector2(2, 2)
 
 [node name="Attack" type="Control" parent="."]
+custom_minimum_size = Vector2(300, 300)
 layout_mode = 1
 anchor_left = 0.807
 anchor_top = 0.802
@@ -117,5 +120,6 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="Joystick" parent="Attack" instance=ExtResource("3_dwmqo")]
-position = Vector2(102, 62)
+position = Vector2(150, 150)
+scale = Vector2(2, 2)
 smallTexture = ExtResource("4_31xdw")

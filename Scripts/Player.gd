@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+
+const swordDefaultScene : String = "res://Scenes/Weapons/Swords/sword.tscn"
+
 @export var speed = 200
 
 @export var health = 15
@@ -17,6 +20,8 @@ var locomotionJoystick : Joystick
 
 var attackJoystick : Joystick
 
+var currentWeapon : Dictionary
+
 var sword 
 
 var statemachine : AnimationNodeStateMachinePlayback
@@ -24,13 +29,20 @@ var statemachine : AnimationNodeStateMachinePlayback
 var dead = false
 func _ready():
 	Globals.Player = self
+	print(Globals.globalsData)
+	currentWeapon = Globals.globalsData.currentWeapon
 	
 	animationTree.active = true
 	
-	print(Globals.globalsData)
+	print(currentWeapon)
 	
-	var swordres: PackedScene = load(Globals.globalsData.currentWeapon)
+	var swordres: PackedScene 
 	
+	if currentWeapon.has("customScene"):
+		swordres =  load(currentWeapon.customScene)
+	else:
+		swordres = load(swordDefaultScene)
+		
 	attackJoystick = gameplayUI.getAttackJoystick()
 	
 	locomotionJoystick = gameplayUI.getLocomotionJoystick()
@@ -42,6 +54,8 @@ func _ready():
 	sword.set("attackJoystick", attackJoystick)
 	
 	sword.set("pivot",swordMarker)
+	
+	sword.set("frameCoords", Vector2i(currentWeapon.frameCoords.x,currentWeapon.frameCoords.y))
 	
 	swordMarker.add_child(sword)
 	

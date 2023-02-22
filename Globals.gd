@@ -5,8 +5,20 @@ var save_name = "Globals"
 
 var globalsData = {
 	slimeJuice = 0,
-	currentWeapon = "res://Scenes/Weapons/Swords/sword.tscn"
+	currentWeapon = {
+		name = "Sword",
+		id = 1,
+		type = "sword",
+		damage = 10,
+		price = 10,
+		frameCoords = {
+			x = 0,
+			y =0
+		},
+		sprite = "res://Sprites/Weapons/Swords/Swords.png"
+	}
 }
+
 
 func increaseSlimeJuice(amount: int):
 	globalsData.slimeJuice += amount

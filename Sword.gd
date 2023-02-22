@@ -7,7 +7,12 @@ extends weapon
 @export var attackJoystick : Joystick
 @onready var swordSprite = $Node2D/Sword
 
+@export var frameCoords : Vector2i
+
 var animating = false
+
+func _ready():
+	swordSprite.frame_coords = frameCoords
 
 func use() -> void:
 	var attackDirection = attackJoystick.getVelocity()
