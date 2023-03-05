@@ -1,15 +1,16 @@
+ConfirmationDialog
+Button
+TextureButton
 StaticBody2D
 Sprite2D
 CollisionShape2D
 Area2D
 RigidBody2D
 MarginContainer
-TextureButton
 CanvasLayer
 Control
 Joystick
 Node2D
-Button
 TouchScreenButton
 Panel
 SubViewport
@@ -30,4 +31,3 @@ AnimationPlayer
 Node
 CollisionPolygon2D
 NavigationRegion2D
-PanelContainer

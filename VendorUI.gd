@@ -11,15 +11,14 @@ func _ready():
 	var file = FileAccess.get_file_as_string(dataPath)
 	
 	var items : Array = JSON.parse_string(file)
-	print(file, items)
+	
 	for item in items:
 		createItemNode(item)
 
 
-func createItemNode(item_data : Dictionary) -> void:
+func createItemNode(item : Dictionary) -> void:
 	var itemNode = vendor_item.instantiate()
-	
-	itemNode.item_data = item_data
+	itemNode.item = Weapon.new(item)
 	
 	grid_container.add_child(itemNode)
 

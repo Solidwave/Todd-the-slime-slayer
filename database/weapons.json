@@ -1,5 +1,5 @@
 [{
-    "name": "Sword",
+    "itemName": "Sword",
     "id": 1,
     "type": "sword",
     "damage": 10,
@@ -8,10 +8,12 @@
         "x": 0,
         "y":0
     },
-    "sprite": "res://Sprites/Weapons/Swords/Swords.png"
+    "sprite": "res://Sprites/Weapons/Swords/Swords.png",
+    "customScene" : "res://Scenes/Weapons/Swords/Swords.tscn",
+    "owned": true
 },
 {
-    "name": "Sword 2",
+    "itemName": "Sword 2",
     "id": 2,
     "type": "sword",
     "damage": 10,
@@ -20,10 +22,11 @@
         "x": 1,
         "y":0
     },
-    "sprite": "res://Sprites/Weapons/Swords/Swords.png"
+    "sprite": "res://Sprites/Weapons/Swords/Swords.png",
+    "owned": false
 },
 {
-    "name": "Sword 3",
+    "itemName": "Sword 3",
     "id": 3,
     "type": "sword",
     "damage": 10,
@@ -32,10 +35,11 @@
         "x": 2,
         "y":0
     },
-    "sprite": "res://Sprites/Weapons/Swords/Swords.png"
+    "sprite": "res://Sprites/Weapons/Swords/Swords.png",
+    "owned": false
 },
 {
-    "name": "Sword 4",
+    "itemName": "Sword 4",
     "id": 4,
     "type": "sword",
     "damage": 10,
@@ -44,10 +48,11 @@
         "x": 3,
         "y":0
     },
-    "sprite": "res://Sprites/Weapons/Swords/Swords.png"
+    "sprite": "res://Sprites/Weapons/Swords/Swords.png",
+    "owned": false
 },
 {
-    "name": "Sword",
+    "itemName": "Sword",
     "id": 5,
     "type": "sword",
     "damage": 10,
@@ -56,10 +61,11 @@
         "x": 4,
         "y":0
     },
-    "sprite": "res://Sprites/Weapons/Swords/Swords.png"
+    "sprite": "res://Sprites/Weapons/Swords/Swords.png",
+    "owned": false
 },
 {
-    "name": "Sword",
+    "itemName": "Sword",
     "id": 6,
     "type": "sword",
     "damage": 10,
@@ -68,5 +74,6 @@
         "x": 5,
         "y":0
     },
-    "sprite": "res://Sprites/Weapons/Swords/Swords.png"
+    "sprite": "res://Sprites/Weapons/Swords/Swords.png",
+    "owned": false
 }]

@@ -3,28 +3,30 @@ var Player
 
 var save_name = "Globals"
 
-var globalsData = {
-	slimeJuice = 0,
-	currentWeapon = {
-		name = "Sword",
+var globalsData : GlobalsData = GlobalsData.new({
+	slime_juice = 0,
+	current_weapon = {
+		itemName = "Sword",
 		id = 1,
 		type = "sword",
-		damage = 10,
+		damage = 100,
 		price = 10,
 		frameCoords = {
 			x = 0,
 			y =0
 		},
-		sprite = "res://Sprites/Weapons/Swords/Swords.png"
+		sprite = "res://Sprites/Weapons/Swords/Swords.png",
+		owned = true
 	}
-}
+})
+
 
 
 func increaseSlimeJuice(amount: int):
-	globalsData.slimeJuice += amount
+	globalsData.slime_juice += amount
 
 func _ready():
-	var save_file = FileAccess.open("user://saves/savegame1.save", FileAccess.READ)
+	var save_file = FileAccess.open("user://saves/savegame.save", FileAccess.READ)
 	if save_file == null:
 		return
 	var data = save_file.get_as_text()
@@ -32,13 +34,14 @@ func _ready():
 	if data == null:
 		return
 	if data[save_name] != null:
-		globalsData = data[save_name]
+		globalsData = GlobalsData.new(data[save_name])
+	
 	
 
 func save():
 	var save_dict = {
-		"slimeJuice": globalsData.slimeJuice,
-		"currentWeapon": globalsData.currentWeapon
+		"slime_juice": globalsData.slime_juice,
+		"current_weapon": globalsData.current_weapon.save()
 	}
 	
 	return save_dict
@@ -47,14 +50,14 @@ func save():
 func save_game():
 	var save_dir = DirAccess.open("user://")
 	save_dir.make_dir("saves")
-	var save_file = FileAccess.open("user://saves/savegame1.save", FileAccess.WRITE)
+	var save_file = FileAccess.open("user://saves/savegame.save", FileAccess.WRITE)
 	
 	var json : Dictionary = {}
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	#save globals
-	globalsData = save()
+	var jsonGlobalsData = save()
 	
-	json[save_name] = globalsData
+	json[save_name] = jsonGlobalsData
 	for node in save_nodes:
 		# Check the node has a save function.
 		if !node.has_method("save"):

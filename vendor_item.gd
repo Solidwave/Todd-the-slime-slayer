@@ -1,19 +1,46 @@
 extends Control
 
-@onready var item_sprite = $HBoxContainer/SpriteContainer/ItemSprite
-@onready var itemName = $HBoxContainer/Name
-@onready var price = $HBoxContainer/Price
+@onready var item_sprite = $Button/HBoxContainer/SpriteContainer/ItemSprite
+@onready var itemName = $Button/HBoxContainer/Name
+@onready var price = $Button/HBoxContainer/Price
+@onready var button = $Button
+@onready var confirmation_dialog = $ConfirmationDialog
 
-@export var item_data : Dictionary
+@export var item : Weapon
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(item_data)
-	item_sprite.texture = load(item_data.sprite)
-	item_sprite.frame_coords = Vector2i(item_data.frameCoords.x,item_data.frameCoords.y)
-	itemName.text = item_data.name
-	price.text = str(item_data.price)
+	print(item)
 	
+	item_sprite.texture = load(item.sprite)
+	item_sprite.frame_coords = Vector2i(item.frameCoords.x,item.frameCoords.y)
+	itemName.text = item.weapon_name
+	
+	if item.owned:
+		price.text = "Owned"
+	else:
+		price.text = str(item.price)
 	
 
 
+func _on_button_pressed():
+	if item.owned:
+		Globals.globalsData.current_weapon = item
+		Globals.save()
+	else:
+		confirmation_dialog.visible = true
 
+
+func _on_confirmation_dialog_canceled():
+	confirmation_dialog.visible = false
+
+
+func _on_confirmation_dialog_confirmed():
+	if item.price <= Globals.globalsData.slime_juice:
+		item.owned = true
+		if DbManager.updateItem("weapons",item.save()) == OK:
+			Globals.globalsData.current_weapon = item
+			Globals.globalsData.slime_juice = Globals.globalsData.slime_juice - item.price
+			
+			Globals.save()
+	else:
+		OS.alert("You poor")

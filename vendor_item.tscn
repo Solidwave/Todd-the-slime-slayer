@@ -11,21 +11,35 @@ offset_bottom = 150.0
 size_flags_horizontal = 3
 script = ExtResource("1_nm401")
 
-[node name="HBoxContainer" type="VBoxContainer" parent="."]
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.991004, 0.997438)
 
-[node name="SpriteContainer" type="Control" parent="HBoxContainer"]
+[node name="HBoxContainer" type="VBoxContainer" parent="Button"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 1
+offset_right = 100.0
+offset_bottom = 160.0
+
+[node name="SpriteContainer" type="Control" parent="Button/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 
-[node name="ItemSprite" type="Sprite2D" parent="HBoxContainer/SpriteContainer"]
+[node name="ItemSprite" type="Sprite2D" parent="Button/HBoxContainer/SpriteContainer"]
 texture_filter = 1
 scale = Vector2(3, 3)
 texture = ExtResource("1_oksda")
@@ -33,16 +47,22 @@ centered = false
 hframes = 16
 vframes = 19
 
-[node name="Name" type="Label" parent="HBoxContainer"]
+[node name="Name" type="Label" parent="Button/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "Durendalia"
 horizontal_alignment = 1
 
-[node name="Price" type="Label" parent="HBoxContainer"]
+[node name="Price" type="Label" parent="Button/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "50"
 horizontal_alignment = 1
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="canceled" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_canceled"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

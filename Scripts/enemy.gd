@@ -117,10 +117,8 @@ func die():
 
 
 func _on_attack_area_body_entered(body):
-	print("body entered")
 	if body.is_in_group("Player"):
 		if stateMachine.get_current_node() == "Attack":
-			print("attack")
 			body.receiveDamage(damage)
 		if stateMachine.get_current_node() == "Jump":
 			body.receiveDamage(jumpDamage)

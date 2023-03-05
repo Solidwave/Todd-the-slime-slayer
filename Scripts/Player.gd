@@ -20,7 +20,7 @@ var locomotionJoystick : Joystick
 
 var attackJoystick : Joystick
 
-var currentWeapon : Dictionary
+var currentWeapon : Weapon
 
 var sword 
 
@@ -29,29 +29,25 @@ var statemachine : AnimationNodeStateMachinePlayback
 var dead = false
 func _ready():
 	Globals.Player = self
-	print(Globals.globalsData)
-	currentWeapon = Globals.globalsData.currentWeapon
+	currentWeapon = Globals.globalsData.current_weapon
 	
 	animationTree.active = true
 	
-	print(currentWeapon)
 	
 	var swordres: PackedScene 
 	
-	if currentWeapon.has("customScene"):
-		swordres =  load(currentWeapon.customScene)
-	else:
-		swordres = load(swordDefaultScene)
+	swordres = load(swordDefaultScene)
 		
 	attackJoystick = gameplayUI.getAttackJoystick()
 	
 	locomotionJoystick = gameplayUI.getLocomotionJoystick()
 	
-	print(gameplayUI, attackJoystick, locomotionJoystick)
 	
 	sword = swordres.instantiate()
 	
 	sword.set("attackJoystick", attackJoystick)
+	
+	sword.weapon_data = currentWeapon
 	
 	sword.set("pivot",swordMarker)
 	
@@ -64,7 +60,6 @@ func _ready():
 	
 func _physics_process(delta):
 	velocity = Vector2.ZERO
-	print(health)
 	if	dead:
 		return
 	if health <= 0:
