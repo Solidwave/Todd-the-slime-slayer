@@ -12,7 +12,7 @@ func _ready():
 	print(item)
 	
 	item_sprite.texture = load(item.sprite)
-	item_sprite.frame_coords = Vector2i(item.frameCoords.x,item.frameCoords.y)
+	item_sprite.frame_coords = Vector2i(item.frame_coords.x,item.frame_coords.y)
 	itemName.text = item.weapon_name
 	
 	if item.owned:
@@ -25,7 +25,10 @@ func _ready():
 func _on_button_pressed():
 	if item.owned:
 		Globals.globalsData.current_weapon = item
-		Globals.save()
+		
+		Globals.Player.updateWeapon()
+		
+		Globals.save_game()
 	else:
 		confirmation_dialog.visible = true
 
@@ -39,8 +42,19 @@ func _on_confirmation_dialog_confirmed():
 		item.owned = true
 		if DbManager.updateItem("weapons",item.save()) == OK:
 			Globals.globalsData.current_weapon = item
+			
+			Globals.Player.updateWeapon()
+			
 			Globals.globalsData.slime_juice = Globals.globalsData.slime_juice - item.price
 			
-			Globals.save()
+			Globals.save_game()
+			
+			updateLabels()
 	else:
 		OS.alert("You poor")
+
+func updateLabels():
+	if item.owned:
+		price.text = "Owned"
+	else:
+		price.text = str(item.price)

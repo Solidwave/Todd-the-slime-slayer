@@ -10,12 +10,12 @@ extends  Node2D
 
 @onready var swordSprite = $Node2D/Sword
 
-@export var frameCoords : Vector2i
+@export var frame_coords : Vector2i
 
 var animating = false
 
 func _ready():
-	swordSprite.frame_coords = frameCoords
+	swordSprite.frame_coords = frame_coords
 
 func use() -> void:
 	var attackDirection = attackJoystick.getVelocity()
@@ -39,3 +39,7 @@ func getSpriteCoords():
 	
 func getTexture():
 	return swordSprite.texture
+
+func setSpriteCoords(new_frame_coords : Vector2i):
+	print('setting new sprite coords')
+	swordSprite.frame_coords = new_frame_coords

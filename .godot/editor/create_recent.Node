@@ -30,4 +30,3 @@ Marker2D
 AnimationPlayer
 Node
 CollisionPolygon2D
-NavigationRegion2D

@@ -1,0 +1,39 @@
+[
+  {
+    "item_name": "Banana",
+    "price": 1,
+    "type": "food",
+    "sprite": "res//:Sprites/banana.png",
+    "rarity": "common",
+    "id": 1,
+    "effect": {
+      "type": "heal",
+      "amount": 1
+    }
+  },
+  {
+    "item_name": "Apple",
+    "price": 1,
+    "type": "food",
+    "sprite": "res//:Sprites/apple.png",
+    "rarity": "common",
+    "id": 2,
+    "effect": {
+      "type": "heal",
+      "amount": 1
+    }
+  },
+  {
+    "item_name": "Drug",
+    "price": 10,
+    "type": "chemical",
+    "sprite": "res//:Sprites/drug.png",
+    "rarity": "uncommon",
+    "id": 3,
+    "effect": {
+      "type": "increase_damage",
+      "amount": 50,
+      "duration": 30
+    }
+  }
+]

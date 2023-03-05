@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfxff1q2s5pjp"]
+[gd_scene load_steps=6 format=3]
 
-[ext_resource type="Script" path="res://vendor.gd" id="1_4fak5"]
+[ext_resource type="Script" path="res://Scripts/Vendors/vendor.gd" id="1_4fak5"]
 [ext_resource type="Texture2D" uid="uid://bes06ymylujif" path="res://Sprites/Buildings/weapondealer.png" id="1_s1hjf"]
 [ext_resource type="PackedScene" uid="uid://c1nqj85bf5dih" path="res://vendor_ui.tscn" id="3_2bcd8"]
 

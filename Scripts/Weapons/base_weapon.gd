@@ -4,7 +4,9 @@ class_name Weapon
 
 @export var damage : int = 3
 
-@export var frameCoords : Vector2i
+@export var item_name : String
+
+@export var frame_coords : Vector2i
 
 @export var weapon_name : String
 
@@ -21,9 +23,9 @@ class_name Weapon
 func _init(item_data : Dictionary):
 	damage = item_data.damage
 	
-	frameCoords = Vector2i(item_data.frameCoords.x, item_data.frameCoords.y)
+	frame_coords = Vector2i(item_data.frame_coords.x, item_data.frame_coords.y)
 	
-	weapon_name = item_data.itemName
+	weapon_name = item_data.item_name
 	
 	sprite = item_data.sprite
 	
@@ -33,6 +35,8 @@ func _init(item_data : Dictionary):
 	
 	id = item_data.id
 	
+	item_name =  item_data.item_name
+	
 	owned = item_data.owned
 
 func use():
@@ -41,13 +45,14 @@ func use():
 func save():
 	return {
 		"damage" = damage,
-		"frameCoords" = {
-			"x" = frameCoords.x,
-			"y" = frameCoords.y
+		"frame_coords" = {
+			"x" = frame_coords.x,
+			"y" = frame_coords.y
 		},
 		"type" = type, 
 		"id" = id,
 		"owned" = owned,
 		"price" = price,
-		"sprite" = sprite
+		"sprite" = sprite,
+		"item_name" = item_name 
 	}

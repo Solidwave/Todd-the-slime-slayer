@@ -6,12 +6,12 @@ var save_name = "Globals"
 var globalsData : GlobalsData = GlobalsData.new({
 	slime_juice = 0,
 	current_weapon = {
-		itemName = "Sword",
+		item_name = "Sword",
 		id = 1,
 		type = "sword",
 		damage = 100,
 		price = 10,
-		frameCoords = {
+		frame_coords = {
 			x = 0,
 			y =0
 		},

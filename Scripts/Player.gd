@@ -51,7 +51,7 @@ func _ready():
 	
 	sword.set("pivot",swordMarker)
 	
-	sword.set("frameCoords", Vector2i(currentWeapon.frameCoords.x,currentWeapon.frameCoords.y))
+	sword.set("frame_coords", Vector2i(currentWeapon.frame_coords.x,currentWeapon.frame_coords.y))
 	
 	swordMarker.add_child(sword)
 	
@@ -66,7 +66,7 @@ func _physics_process(delta):
 		statemachine.travel("Death")
 		dead = true 
 		return
-	
+		
 	var currentState : String = statemachine.get_current_node()
 	match currentState:
 		'Death':
@@ -121,3 +121,15 @@ func save():
 	}
 	
 	return save_data
+	
+func updateWeapon():
+	currentWeapon = Globals.globalsData.current_weapon
+	
+	sword.weapon_data = currentWeapon
+	
+	sword.set("pivot",swordMarker)
+	
+	sword.set("frame_coords", Vector2i(currentWeapon.frame_coords.x,currentWeapon.frame_coords.y))
+	
+	sword.setSpriteCoords(currentWeapon.frame_coords)
+

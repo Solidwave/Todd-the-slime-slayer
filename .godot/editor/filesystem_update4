@@ -1,6 +1,12 @@
 res://control.tscn
 res://ui.tres
-res://GlobalsData.gd
-res://Globals.gd
-res://vendor_item.gd
+res://Scenes/Enemies/Slimes/Slime.gdshader
+res://Scripts/Weapons/base_weapon.gd
 res://DBManager.gd
+res://vendor_item.gd
+res://Scripts/Player.gd
+res://Sword.gd
+res://vendor_item.tscn
+res://vendor_ui.tscn
+res://VendorUI.gd
+res://Scenes/Buildings/Vendor.tscn

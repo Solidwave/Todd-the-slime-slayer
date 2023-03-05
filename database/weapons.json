@@ -1,79 +1,81 @@
-[{
-    "itemName": "Sword",
-    "id": 1,
-    "type": "sword",
-    "damage": 10,
-    "price": 10,
-    "frameCoords": {
-        "x": 0,
-        "y":0
-    },
-    "sprite": "res://Sprites/Weapons/Swords/Swords.png",
-    "customScene" : "res://Scenes/Weapons/Swords/Swords.tscn",
-    "owned": true
-},
-{
-    "itemName": "Sword 2",
-    "id": 2,
-    "type": "sword",
-    "damage": 10,
-    "price": 10,
-    "frameCoords": {
-        "x": 1,
-        "y":0
-    },
-    "sprite": "res://Sprites/Weapons/Swords/Swords.png",
-    "owned": false
-},
-{
-    "itemName": "Sword 3",
-    "id": 3,
-    "type": "sword",
-    "damage": 10,
-    "price": 10,
-    "frameCoords": {
-        "x": 2,
-        "y":0
-    },
-    "sprite": "res://Sprites/Weapons/Swords/Swords.png",
-    "owned": false
-},
-{
-    "itemName": "Sword 4",
-    "id": 4,
-    "type": "sword",
-    "damage": 10,
-    "price": 10,
-    "frameCoords": {
-        "x": 3,
-        "y":0
-    },
-    "sprite": "res://Sprites/Weapons/Swords/Swords.png",
-    "owned": false
-},
-{
-    "itemName": "Sword",
-    "id": 5,
-    "type": "sword",
-    "damage": 10,
-    "price": 10,
-    "frameCoords": {
-        "x": 4,
-        "y":0
-    },
-    "sprite": "res://Sprites/Weapons/Swords/Swords.png",
-    "owned": false
-},
-{
-    "itemName": "Sword",
-    "id": 6,
-    "type": "sword",
-    "damage": 10,
-    "price": 10,
-    "frameCoords": {
-        "x": 5,
-        "y":0
-    },
-    "sprite": "res://Sprites/Weapons/Swords/Swords.png",
-    "owned": false
-}]
+[
+	{
+		"custom_scene": "res://Scenes/Weapons/Swords/Swords.tscn",
+		"damage": 10,
+		"frame_coords": {
+			"x": 0,
+			"y": 0
+		},
+		"id": 1,
+		"item_name": "Sword",
+		"owned": true,
+		"price": 10,
+		"sprite": "res://Sprites/Weapons/Swords/Swords.png",
+		"type": "sword"
+	},
+	{
+		"damage": 10,
+		"frame_coords": {
+			"x": 1,
+			"y": 0
+		},
+		"id": 2,
+		"item_name": "Sword 2",
+		"owned": false,
+		"price": 10,
+		"sprite": "res://Sprites/Weapons/Swords/Swords.png",
+		"type": "sword"
+	},
+	{
+		"damage": 10,
+		"frame_coords": {
+			"x": 2,
+			"y": 0
+		},
+		"id": 3,
+		"item_name": "Sword 3",
+		"owned": false,
+		"price": 10,
+		"sprite": "res://Sprites/Weapons/Swords/Swords.png",
+		"type": "sword"
+	},
+	{
+		"damage": 10,
+		"frame_coords": {
+			"x": 3,
+			"y": 0
+		},
+		"id": 4,
+		"item_name": "Sword 4",
+		"owned": false,
+		"price": 10,
+		"sprite": "res://Sprites/Weapons/Swords/Swords.png",
+		"type": "sword"
+	},
+	{
+		"damage": 10,
+		"frame_coords": {
+			"x": 4,
+			"y": 0
+		},
+		"id": 5,
+		"item_name": "Sword",
+		"owned": false,
+		"price": 10,
+		"sprite": "res://Sprites/Weapons/Swords/Swords.png",
+		"type": "sword"
+	},
+	{
+		"damage": 10,
+		"frame_coords": {
+			"x": 5,
+			"y": 0
+		},
+		"id": 6,
+		"item_name": "Sword",
+		"owned": false,
+		"price": 10,
+		"sprite": "res://Sprites/Weapons/Swords/Swords.png",
+		"type": "sword"
+	}
+]
