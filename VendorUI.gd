@@ -21,8 +21,6 @@ func createItemNode(item : Dictionary) -> void:
 	var itemNode = vendor_item.instantiate()
 	itemNode.item = Weapon.new(item)
 	
-	itemNode.confirmDialog = $MarginContainer/BuyItemDialog
-	
 	grid_container.add_child(itemNode)
 
 

@@ -1,3 +1,6 @@
+Node2D
+Sword
+Weapon
 ConfirmationDialog
 Button
 TextureButton
@@ -10,7 +13,6 @@ MarginContainer
 CanvasLayer
 Control
 Joystick
-Node2D
 TouchScreenButton
 Panel
 SubViewport
@@ -28,5 +30,3 @@ NavigationAgent2D
 CharacterBody2D
 Marker2D
 AnimationPlayer
-Node
-CollisionPolygon2D

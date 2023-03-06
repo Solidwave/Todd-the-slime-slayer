@@ -9,7 +9,12 @@ var globalsData : GlobalsData = GlobalsData.new({
 		item_name = "Sword",
 		id = 1,
 		type = "sword",
-		damage = 100,
+		damage = {
+			min = 8,
+			max = 10,
+			crit_multiplier = 1.5,
+			crit_chance = 0.1
+		},
 		price = 10,
 		frame_coords = {
 			x = 0,
@@ -39,6 +44,8 @@ func _ready():
 	
 
 func save():
+	print('test')
+	print(globalsData)
 	var save_dict = {
 		"slime_juice": globalsData.slime_juice,
 		"current_weapon": globalsData.current_weapon.save()

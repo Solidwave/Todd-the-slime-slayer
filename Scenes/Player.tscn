@@ -1,6 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://bor56kblif4d6"]
+[gd_scene load_steps=35 format=3 uid="uid://bor56kblif4d6"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_bwugi"]
+[ext_resource type="PackedScene" uid="uid://jylxlkuhuviy" path="res://Scenes/Weapons/Swords/sword.tscn" id="2_tvto3"]
 [ext_resource type="Texture2D" uid="uid://dil2ggu0k5llq" path="res://Sprites/newchar/zcharacter.png" id="2_xsogo"]
 [ext_resource type="PackedScene" uid="uid://teke18cn2sw4" path="res://Scenes/GameplayUI.tscn" id="4_g3774"]
 [ext_resource type="PackedScene" uid="uid://bdidcrsf0wd73" path="res://game_over.tscn" id="5_kyfen"]
@@ -847,6 +848,7 @@ collision_mask = 3
 motion_mode = 1
 safe_margin = 1.0
 script = ExtResource("1_bwugi")
+swordScene = ExtResource("2_tvto3")
 
 [node name="Zcharacter" type="Sprite2D" parent="."]
 texture_filter = 1

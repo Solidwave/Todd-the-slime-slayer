@@ -117,7 +117,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ys0be"]
 size = Vector2(7.88451, 20.2336)
 
-[node name="Sword" type="Marker2D"]
+[node name="Sword" type="Node2D"]
 visible = false
 y_sort_enabled = true
 position = Vector2(35, -1)

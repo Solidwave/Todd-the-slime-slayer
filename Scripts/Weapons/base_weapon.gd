@@ -1,8 +1,13 @@
-extends Resource
+extends Node2D
 
 class_name Weapon
 
-@export var damage : int = 3
+@export var damage : Dictionary = {
+			min = 8,
+			max = 10,
+			crit_multiplier = 1.5,
+			crit_chance = 0.1
+		}
 
 @export var item_name : String
 
@@ -41,6 +46,16 @@ func _init(item_data : Dictionary):
 
 func use():
 	pass
+
+func calcolate_damage() -> int:
+	var baseDamage = randi_range(damage.min, damage.max)
+	
+	var isCrit = damage.crit_chance >= randf()
+	
+	if isCrit:
+		baseDamage = baseDamage * damage.crit_multiplier
+	
+	return baseDamage
 	
 func save():
 	return {
