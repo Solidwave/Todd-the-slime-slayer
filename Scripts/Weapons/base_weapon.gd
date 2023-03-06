@@ -1,4 +1,4 @@
-extends Node2D
+extends Resource
 
 class_name Weapon
 
@@ -54,7 +54,7 @@ func calcolate_damage() -> int:
 	
 	if isCrit:
 		baseDamage = baseDamage * damage.crit_multiplier
-	
+	print(baseDamage)
 	return baseDamage
 	
 func save():

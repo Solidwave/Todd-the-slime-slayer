@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var attackDistance = 50
 @export var damage = 1
 @export var jumpDamage = 2
+@onready var damage_container : DamageComponent = $DamageContainer
 
 
 @onready var enemySprite : Sprite2D = $Sprites/Enemies
@@ -106,7 +107,11 @@ func receiveDamage(damage):
 	
 	tmpKnockBackForce = knockBackForce
 	
+	damage_container.playAnimation(damage)
+	
 	health -= damage
+	
+	
 	
 	stateMachine.travel("Stunned")
 	

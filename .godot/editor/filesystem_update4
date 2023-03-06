@@ -1,6 +1,14 @@
 res://Scenes/Weapons/Swords/sword.tscn
+res://Scenes/Enemies/Slimes/Slime.gdshader
 res://ui.tres
 res://Sword.gd
-res://Scenes/Player.tscn
-res://Scripts/Player.gd
 res://control.tscn
+res://Scenes/Player.tscn
+res://Scripts/Weapons/base_weapon.gd
+res://Globals.gd
+res://Scenes/Enemies/Slimes/Slime.tscn
+res://Scenes/Components/damage_container.tscn
+res://Scenes/Components/damage_container.gd
+res://Scripts/Enemy.gd
+res://Loot.gd
+res://loot.tscn

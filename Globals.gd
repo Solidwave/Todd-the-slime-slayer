@@ -10,8 +10,8 @@ var globalsData : GlobalsData = GlobalsData.new({
 		id = 1,
 		type = "sword",
 		damage = {
-			min = 8,
-			max = 10,
+			min = 80,
+			max = 100,
 			crit_multiplier = 1.5,
 			crit_chance = 0.1
 		},

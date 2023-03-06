@@ -1,9 +1,10 @@
-[gd_scene load_steps=34 format=3 uid="uid://c80siqtvj5qmi"]
+[gd_scene load_steps=35 format=3 uid="uid://c80siqtvj5qmi"]
 
 [ext_resource type="Texture2D" uid="uid://vmdhexoac2lo" path="res://Sprites/Slimes/shadow.png" id="1_1qsvq"]
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="2_71jv7"]
 [ext_resource type="Shader" path="res://Scenes/Enemies/Slimes/Slime.gdshader" id="2_astfr"]
 [ext_resource type="Texture2D" uid="uid://dkui28mjn6kny" path="res://Sprites/Slimes/slime_red.png" id="2_ivhso"]
+[ext_resource type="PackedScene" uid="uid://d1cn7ymauunk4" path="res://Scenes/Components/damage_container.tscn" id="5_wjxap"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_omvqf"]
 resource_local_to_scene = true
@@ -613,6 +614,8 @@ scale_amount_min = 5.0
 scale_amount_max = 10.0
 color = Color(0.956863, 0.960784, 0.960784, 1)
 color_ramp = SubResource("Gradient_3kwya")
+
+[node name="DamageContainer" parent="." instance=ExtResource("5_wjxap")]
 
 [connection signal="body_entered" from="Sprites/AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_entered" from="Sprites/JumpArea" to="." method="_on_attack_area_body_entered"]

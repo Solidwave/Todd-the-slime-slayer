@@ -1,17 +1,18 @@
 Node2D
-Sword
+Sprite2D
+AnimationPlayer
+Label
+Control
 Weapon
 ConfirmationDialog
 Button
 TextureButton
 StaticBody2D
-Sprite2D
 CollisionShape2D
 Area2D
 RigidBody2D
 MarginContainer
 CanvasLayer
-Control
 Joystick
 TouchScreenButton
 Panel
@@ -19,7 +20,6 @@ SubViewport
 SubViewportContainer
 CenterContainer
 TextureRect
-Label
 VBoxContainer
 HBoxContainer
 GridContainer
@@ -29,4 +29,3 @@ TileMap
 NavigationAgent2D
 CharacterBody2D
 Marker2D
-AnimationPlayer
