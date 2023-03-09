@@ -33,12 +33,37 @@ func _on_timer_timeout():
 			navAgent.target_position = Vector2(Globals.Player.position.x + randi_range(-spawnRange,spawnRange), Globals.Player.position.y + randi_range(-spawnRange,spawnRange))
 		var enemyPreload = preloadedEnemies[randi() % preloadedEnemies.size()]
 		
-		var enemy = enemyPreload.instantiate()
+		var enemy : Node = enemyPreload.instantiate()
 		
 		enemy.position = navAgent.target_position
+		
+		enemy.connect("enemy_died",_on_enemy_died)
 		
 		if enemiesParent != null:
 			enemiesParent.add_child(enemy)
 		else:
 			add_child(enemy)
-	pass # Replace with function body.
+
+func _on_enemy_died(drops : Array[int], position: Vector2):
+	var roll = randf() 
+	
+	var tmpLoot : Array = drops.map(func(id): return DbManager.getItemById("loot", id))
+	
+	for loot in tmpLoot.filter(func(loot): return loot.rarity >= roll):
+		var lootScene = load("res://loot.tscn")
+		
+		lootScene.instantiate()
+		
+		lootScene.setup(loot)
+		
+		lootScene.position = position
+		
+		if enemiesParent != null:
+			enemiesParent.add_child(lootScene)
+		else:
+			add_child(lootScene)
+		
+		
+	
+
+

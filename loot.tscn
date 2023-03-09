@@ -1,12 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1yn3ehjwnnd3"]
+[gd_scene load_steps=4 format=3 uid="uid://dftt5lgq1uqwn"]
 
 [ext_resource type="Script" path="res://Loot.gd" id="1_ii0vo"]
 [ext_resource type="Texture2D" uid="uid://c4ovwosi6x4bf" path="res://Sprites/Pixel_Mart/banana.png" id="2_rcame"]
+[ext_resource type="Texture2D" uid="uid://vmdhexoac2lo" path="res://Sprites/Slimes/shadow.png" id="2_rd7x6"]
 
 [node name="Loot" type="Node2D"]
 script = ExtResource("1_ii0vo")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprites" type="Node2D" parent="."]
+position = Vector2(0, -2.49682)
+
+[node name="Shadow" type="Sprite2D" parent="Sprites"]
+texture_filter = 1
+position = Vector2(-1, 12.4968)
+scale = Vector2(2, 2)
+texture = ExtResource("2_rd7x6")
+
+[node name="Sprite" type="Sprite2D" parent="Sprites"]
 texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("2_rcame")

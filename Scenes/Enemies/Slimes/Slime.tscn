@@ -528,6 +528,7 @@ collision_mask = 2
 motion_mode = 1
 safe_margin = 1.0
 script = ExtResource("2_71jv7")
+drops = Array[int]([1, 2])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true

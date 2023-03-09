@@ -9,8 +9,10 @@ extends CharacterBody2D
 @export var attackDistance = 50
 @export var damage = 1
 @export var jumpDamage = 2
+@export var drops : Array[int]
 @onready var damage_container : DamageComponent = $DamageContainer
 
+signal enemy_died(drops: Array[int], position: Vector2)
 
 @onready var enemySprite : Sprite2D = $Sprites/Enemies
 @onready var animationPlayer : AnimationPlayer = $AnimationPlayer
@@ -118,6 +120,9 @@ func receiveDamage(damage):
 
 func die():
 	Globals.increaseSlimeJuice(slimeValue)
+	
+	emit_signal("enemy_died", drops, global_position)
+	
 	queue_free()
 
 
