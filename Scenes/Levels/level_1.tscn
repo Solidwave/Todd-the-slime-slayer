@@ -1,14 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://0rtw83w0p0e"]
+[gd_scene load_steps=5 format=3 uid="uid://0rtw83w0p0e"]
 
 [ext_resource type="PackedScene" uid="uid://cco55ckt0i2bv" path="res://tile_map.tscn" id="1_0aqfe"]
-[ext_resource type="PackedScene" uid="uid://vf2qefixys82" path="res://Scenes/Player.tscn" id="2_5cl8i"]
+[ext_resource type="PackedScene" uid="uid://bor56kblif4d6" path="res://Scenes/Player.tscn" id="2_5cl8i"]
 [ext_resource type="PackedScene" uid="uid://bw83s7c8argvc" path="res://Scenes/spawner.tscn" id="3_2v6jk"]
-[ext_resource type="PackedScene" uid="uid://c80siqtvj5qmi" path="res://Scenes/Enemies/Slimes/Slime.tscn" id="4_gcp2d"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bsxr6"]
 vertices = PackedVector2Array(-1536, -793, 1931, -786, -728, -636, -1178, -639, 1927, 938, 1515, 149, 1500, -74, 923, 823, 931, 504, 1176, 140, 1183, -82, -738, -434, -1533, 924, -1197, -437, 608, 816, 613, 517)
-polygons = [PackedInt32Array(0, 1, 2, 3), PackedInt32Array(1, 4, 5, 6), PackedInt32Array(5, 4, 7, 8, 9), PackedInt32Array(2, 1, 6, 10, 11), PackedInt32Array(12, 0, 3, 13), PackedInt32Array(7, 4, 12, 14), PackedInt32Array(14, 12, 13, 11, 15), PackedInt32Array(15, 11, 10, 9, 8)]
-outlines = [PackedVector2Array(-1536, -793, -1533, 924, 1927, 938, 1931, -786), PackedVector2Array(-1178, -639, -1197, -437, -738, -434, -728, -636), PackedVector2Array(613, 517, 608, 816, 923, 823, 931, 504), PackedVector2Array(1183, -82, 1176, 140, 1515, 149, 1500, -74)]
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(1, 4, 5, 6), PackedInt32Array(5, 4, 7, 8, 9), PackedInt32Array(2, 1, 6, 10, 11), PackedInt32Array(12, 0, 3, 13), PackedInt32Array(7, 4, 12, 14), PackedInt32Array(14, 12, 13, 11, 15), PackedInt32Array(15, 11, 10, 9, 8)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1536, -793, -1533, 924, 1927, 938, 1931, -786), PackedVector2Array(-1178, -639, -1197, -437, -738, -434, -728, -636), PackedVector2Array(613, 517, 608, 816, 923, 823, 931, 504), PackedVector2Array(1183, -82, 1176, 140, 1515, 149, 1500, -74)])
 
 [node name="Level1" type="Node2D"]
 position = Vector2(0, -46)
@@ -22,11 +21,11 @@ y_sort_enabled = true
 y_sort_enabled = false
 
 [node name="Spawner" parent="Agents" node_paths=PackedStringArray("navRegion", "enemiesParent") instance=ExtResource("3_2v6jk")]
-preloadedEnemies = [ExtResource("4_gcp2d")]
 spawnRange = 1000
 navRegion = NodePath("")
 enemiesParent = NodePath("..")
-maxEnemies = 100
+maxEnemies = 1
+spawnInterval = 1
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Agents"]
 navigation_polygon = SubResource("NavigationPolygon_bsxr6")

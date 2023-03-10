@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Loot" load_steps=2 format=3 uid="uid://oci82epjplm"]
+
+[ext_resource type="Script" path="res://Resources/loot_data.gd" id="1_ht632"]
+
+[resource]
+script = ExtResource("1_ht632")
+id = 0
+item_name = ""
+price = 0
+rarity = 0.0
+effect = {}

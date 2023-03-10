@@ -1,37 +1,24 @@
-extends Node2D
+extends CharacterBody2D
 
-class_name Loot
+@onready var sprite = $Sprites/Sprite
 
-@onready var sprite_node = $Sprite
+@export var loot_data : Loot
 
-@export var id : int
-
-@export var item_name : String
-
-@export var price : int
-
-@export var sprite : Resource
-
-@export var rarity: String
-
-@export var effect : Dictionary
-
-func setup(loot_data: Dictionary):
-	id = loot_data.id
-	
-	item_name = loot_data.item_name 
-	
-	price = loot_data.id 
-	
-	rarity = loot_data.rarity
-	
-	effect = loot_data.effect
-	
-	sprite = load(loot_data.sprite)
-	
-	sprite_node.texture = sprite
-	
-	
-	
+@export var pickUpRadius : int = 100
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	sprite.texture = loot_data.sprite
 	
 
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if global_position.distance_to(Globals.Player.global_position) < pickUpRadius:
+		velocity = Globals.Player.global_position - global_position
+		move_and_slide()
+
+
+func _on_area_2d_body_entered(body):
+	if	body.name == 'Player':
+		Globals.globalsData.inventory.addItem(loot_data)
+	queue_free()

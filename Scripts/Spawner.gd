@@ -4,6 +4,8 @@ extends Node2D
 	preload("res://Scenes/Enemies/Slimes/Slime.tscn")
 ]
 
+@export var lootScene = preload("res://loot.tscn")
+
 @onready var spawnTimer = $Timer
 @onready var navAgent = $NavigationAgent2D
 
@@ -50,18 +52,16 @@ func _on_enemy_died(drops : Array[int], position: Vector2):
 	var tmpLoot : Array = drops.map(func(id): return DbManager.getItemById("loot", id))
 	
 	for loot in tmpLoot.filter(func(loot): return loot.rarity >= roll):
-		var lootScene = load("res://loot.tscn")
+		var lootObject : Node2D = lootScene.instantiate()
 		
-		lootScene.instantiate()
+		lootObject.set("loot_data", Loot.new(loot))
 		
-		lootScene.setup(loot)
-		
-		lootScene.position = position
+		lootObject.position = position
 		
 		if enemiesParent != null:
-			enemiesParent.add_child(lootScene)
+			enemiesParent.add_child(lootObject)
 		else:
-			add_child(lootScene)
+			add_child(lootObject)
 		
 		
 	

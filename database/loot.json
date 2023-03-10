@@ -1,9 +1,9 @@
 [
   {
-    "item_name": "Banana",
+    "item_name": "Salmon",
     "price": 1,
     "type": "food",
-    "sprite": "res//:Sprites/banana.png",
+    "sprite": "res://Sprites/Pixel_Mart/salmon.png",
     "rarity": 0.5,
     "id": 1,
     "effect": {
@@ -12,10 +12,10 @@
     }
   },
   {
-    "item_name": "Apple",
+    "item_name": "Watermelon",
     "price": 1,
     "type": "food",
-    "sprite": "res//:Sprites/apple.png",
+    "sprite": "res://Sprites/Pixel_Mart/watermelon1.png",
     "rarity": 0.5,
     "id": 2,
     "effect": {
@@ -27,7 +27,7 @@
     "item_name": "Drug",
     "price": 10,
     "type": "chemical",
-    "sprite": "res//:Sprites/drug.png",
+    "sprite": "res://Sprites/Pixel_Mart/wine_red.png<",
     "rarity": 0.2,
     "id": 3,
     "effect": {

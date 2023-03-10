@@ -44,9 +44,6 @@ func _init(item_data : Dictionary):
 	
 	owned = item_data.owned
 
-func use():
-	pass
-
 func calcolate_damage() -> int:
 	var baseDamage = randi_range(damage.min, damage.max)
 	
@@ -54,7 +51,7 @@ func calcolate_damage() -> int:
 	
 	if isCrit:
 		baseDamage = baseDamage * damage.crit_multiplier
-	print(baseDamage)
+		
 	return baseDamage
 	
 func save():

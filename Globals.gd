@@ -22,8 +22,11 @@ var globalsData : GlobalsData = GlobalsData.new({
 		},
 		sprite = "res://Sprites/Weapons/Swords/Swords.png",
 		owned = true
-	}
+	},
+	inventory = {}
 })
+
+
 
 
 
@@ -44,11 +47,10 @@ func _ready():
 	
 
 func save():
-	print('test')
-	print(globalsData)
 	var save_dict = {
 		"slime_juice": globalsData.slime_juice,
-		"current_weapon": globalsData.current_weapon.save()
+		"current_weapon": globalsData.current_weapon.save(),
+		"inventory": globalsData.inventory.save()
 	}
 	
 	return save_dict
