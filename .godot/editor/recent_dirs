@@ -1,3 +1,6 @@
+res://Resources
+res://Sprites/Texture
+res://Sprites/Tileset
 res://Resources/
 res://
 res://Scenes/Components
@@ -12,4 +15,3 @@ res://Fonts/monogram/ttf
 res://Sprites
 res://Scripts
 res://Scenes/Enemies/Slimes
-res://Sprites/Tileset

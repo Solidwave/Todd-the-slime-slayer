@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 @export var loot_data : Loot
 
+
 @export var pickUpRadius : int = 100
 # Called when the node enters the scene tree for the first time.
 func _ready():

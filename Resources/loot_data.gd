@@ -1,13 +1,6 @@
-extends Resource
+extends Item
 
 class_name Loot
-
-
-@export var id : int
-
-@export var item_name : String
-
-@export var price : int
 
 @export var sprite : Resource
 
@@ -26,15 +19,9 @@ func _init(loot_data = {
 	},
 	sprite = "res://Sprites/sword.png"
 }):
-	id = loot_data.id
-	
-	item_name = loot_data.item_name 
-	
-	price = loot_data.id 
+	super(loot_data)
 	
 	rarity = loot_data.rarity
-	
-	effect = loot_data.effect
 	
 	sprite = load(loot_data.sprite)
 	

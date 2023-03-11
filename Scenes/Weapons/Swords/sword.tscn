@@ -158,4 +158,5 @@ rotation = 0.0156803
 shape = SubResource("RectangleShape2D_ys0be")
 disabled = true
 
+[connection signal="area_entered" from="Node2D/Sword/HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="body_entered" from="Node2D/Sword/HitBox" to="." method="_on_hit_box_body_entered"]
