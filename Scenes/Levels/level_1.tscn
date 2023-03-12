@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cco55ckt0i2bv" path="res://tile_map.tscn" id="1_0aqfe"]
 [ext_resource type="PackedScene" uid="uid://bor56kblif4d6" path="res://Scenes/Player.tscn" id="2_5cl8i"]
 [ext_resource type="PackedScene" uid="uid://bw83s7c8argvc" path="res://Scenes/spawner.tscn" id="3_2v6jk"]
-[ext_resource type="PackedScene" uid="uid://da2vbkf1e0pl8" path="res://Scenes/chest.tscn" id="4_ikbuv"]
+[ext_resource type="PackedScene" uid="uid://4mj54ucrehhf" path="res://Scenes/chest.tscn" id="4_ikbuv"]
 [ext_resource type="Script" path="res://Resources/loot_data.gd" id="5_56ksf"]
 [ext_resource type="Texture2D" uid="uid://bnegmorjg8hha" path="res://Sprites/Pixel_Mart/watermelon1.png" id="6_om4vd"]
 

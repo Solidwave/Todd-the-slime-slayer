@@ -4,12 +4,17 @@ extends CharacterBody2D
 
 @export var loot_data : Loot
 
+@onready var animation_player = $AnimationPlayer
 
 @export var pickUpRadius : int = 100
+
+@export var from_chest = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprite.texture = loot_data.sprite
 	
+	if from_chest:
+		animation_player.play("chest")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

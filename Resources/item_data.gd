@@ -18,4 +18,11 @@ func _init(item_data : Dictionary = {
 	price = item_data.price
 	
 	item_name = item_data.item_name
+	
+func save():
+	return {
+	id = id,
+	price = price,
+	item_name = item_name
+}
 

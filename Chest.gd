@@ -9,6 +9,8 @@ extends Area2D
 
 var chosen_one : Loot
 
+var opened = false
+
 @export var health : int = 3
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,7 +19,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if 	health <= 0:
+	if 	!opened && health <= 0:
 		open()
 
 func receiveHit():
@@ -27,15 +29,19 @@ func receiveHit():
 	health = health - 1
 
 func open():
+	opened = true
 	animation_player.play("open")
 	
 	var loot = lootScene.instantiate()
 	
 	loot.set("loot_data", chosen_one)
 	
-	loot.position = global_position
+	loot.set("from_chest", true)
 	
-	(loot)
+	loot.global_position = global_position
+	print(global_position, loot.global_position)
+	add_child(loot)
+
 	
 	
 func chooseLoot() -> Loot:

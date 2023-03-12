@@ -1,7 +1,8 @@
+TileMap
+Sprite2D
+AnimationPlayer
 Area2D
 CollisionShape2D
-AnimationPlayer
-Sprite2D
 Node2D
 StaticBody2D
 CharacterBody2D
@@ -26,6 +27,5 @@ HBoxContainer
 GridContainer
 Container
 Camera2D
-TileMap
 NavigationAgent2D
 Marker2D
