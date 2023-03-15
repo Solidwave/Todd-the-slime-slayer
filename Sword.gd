@@ -43,11 +43,9 @@ func getTexture():
 	return swordSprite.texture
 
 func setSpriteCoords(new_frame_coords : Vector2i):
-	print('setting new sprite coords')
 	swordSprite.frame_coords = new_frame_coords
 
 
 func _on_hit_box_area_entered(area):
-	print(area.get_groups())
 	if area.is_in_group("Chest"):
 		area.receiveHit()

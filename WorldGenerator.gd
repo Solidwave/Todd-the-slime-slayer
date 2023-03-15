@@ -1,8 +1,8 @@
 extends Node2D
 
 
-@export var width = 2000
-@export var height = 2000
+@export var width = 600
+@export var height = 200
 @onready var tile_map = $TileMap
 
 var temperature = {}
@@ -21,7 +21,7 @@ var biomes = {
 func generate_map(frequency, octaves):
 	randomize()
 	fastNoise.seed = randi()
-	fastNoise.noise_type = FastNoiseLite.TYPE_PERLIN
+	fastNoise.noise_type = FastNoiseLite.TYPE_SIMPLEX
 	fastNoise.frequency = frequency
 	
 	fastNoise.fractal_type = FastNoiseLite.FRACTAL_FBM
@@ -32,12 +32,16 @@ func generate_map(frequency, octaves):
 	
 	for x in width:
 		for y in height:
-			var rand = fastNoise.get_noise_2d(x,y)
+			var rand = 2 * abs(fastNoise.get_noise_2d(x,y))
+			
 			grid[Vector2(x,y)] = rand
 	return grid
 	
 func _ready():
 	temperature = generate_map(0.01,5)
+	altitude = generate_map(0.01,5)
+	moisture = generate_map(0.02,5)
+	
 	
 	set_tile(width,height)
 	
@@ -45,11 +49,22 @@ func set_tile(width, height):
 	for x in width:
 		for y in height:
 			var pos = Vector2(x,y)
-#			var alt = altitude[pos]
-#			var moist = moisture[pos]
+			
 			var temp = temperature[pos]
-			var terrain = get_terrain_set(temp)
-			tile_map.set_cells_terrain_connect(0,[pos],terrain[0], terrain[1])
+			
+			var alt = altitude[pos]
+			
+			var mois = moisture[pos]
+			
+			print(alt)
+			
+			if	alt < 0.1:
+				tile_map.set_cell(0,pos, 1, biomes.ocean)
+			elif alt < 0.3:
+				tile_map.set_cell(0,pos, 1, biomes.desert)
+			else:
+				tile_map.set_cell(0,pos, 1, biomes.grass)
+			
 				
 #			#Ocean
 #			if 	alt < 0.2:

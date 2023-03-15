@@ -1,13 +1,10 @@
-res://control.tscn
-res://Scenes/Enemies/Slimes/Slime.gdshader
+res://world_generator.tscn
 res://ui.tres
+res://Scenes/Enemies/Slimes/Slime.gdshader
+res://WorldGenerator.gd
+res://control.tscn
 res://Scenes/Player.tscn
 res://Scenes/Enemies/Slimes/Slime.tscn
 res://loot.tscn
 res://Scenes/Levels/level_1.tscn
 res://Scenes/chest.tscn
-res://Chest.gd
-res://Resources/inventory.gd
-res://Resources/item_data.gd
-res://world_generator.tscn
-res://WorldGenerator.gd

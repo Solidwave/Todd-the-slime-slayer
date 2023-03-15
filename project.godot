@@ -22,7 +22,6 @@ DbManager="*res://DBManager.gd"
 
 [display]
 
-window/size/viewport_width=1114
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 mouse_cursor/emulate_touch_from_mouse=true

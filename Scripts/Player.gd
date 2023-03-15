@@ -31,13 +31,11 @@ func _ready():
 	Globals.Player = self
 	currentWeapon = Globals.globalsData.current_weapon
 	
-	print(currentWeapon)
 	
 	animationTree.active = true
 	
 	
 	sword = swordScene.instantiate()
-	print(typeof(sword))
 	
 	attackJoystick = gameplayUI.getAttackJoystick()
 	

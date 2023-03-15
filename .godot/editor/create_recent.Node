@@ -1,3 +1,4 @@
+Camera2D
 TileMap
 Sprite2D
 AnimationPlayer
@@ -26,6 +27,5 @@ VBoxContainer
 HBoxContainer
 GridContainer
 Container
-Camera2D
 NavigationAgent2D
 Marker2D

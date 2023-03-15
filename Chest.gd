@@ -39,7 +39,6 @@ func open():
 	loot.set("from_chest", true)
 	
 	loot.global_position = global_position
-	print(global_position, loot.global_position)
 	add_child(loot)
 
 	
