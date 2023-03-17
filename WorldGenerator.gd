@@ -13,9 +13,21 @@ var biome = {}
 var fastNoise = FastNoiseLite.new()
 
 var biomes = {
-	ocean = Vector2(7,12),
-	grass = Vector2(2,20),
-	desert = Vector2(9,22)
+	ocean =  {
+		0.8 : Vector2i(0,2),
+		0.9 : Vector2i(1,2),
+		1 : Vector2i(2,2),
+	},
+	grass = {
+		0.8 : Vector2i(0,0),
+		0.9 : Vector2i(1,0),
+		1 : Vector2i(2,0),
+	},
+	desert =  {
+		0.8 : Vector2i(0,1),
+		0.9 : Vector2i(1,1),
+		1 : Vector2i(2,1),
+	}
 }
 
 func generate_map(frequency, octaves):
@@ -57,13 +69,12 @@ func set_tile(width, height):
 			var mois = moisture[pos]
 			
 			print(alt)
-			
 			if	alt < 0.1:
-				tile_map.set_cell(0,pos, 1, biomes.ocean)
+				tile_map.set_cell(0,pos, 0, getTile(biomes.ocean) )
 			elif alt < 0.3:
-				tile_map.set_cell(0,pos, 1, biomes.desert)
+				tile_map.set_cell(0,pos, 0,  getTile(biomes.desert))
 			else:
-				tile_map.set_cell(0,pos, 1, biomes.grass)
+				tile_map.set_cell(0,pos, 0,  getTile(biomes.grass))
 			
 				
 #			#Ocean
@@ -75,14 +86,14 @@ func set_tile(width, height):
 #				else:
 #					tilemap.set_cell(0,pos,0,biomes.grass)
 
-func get_terrain_set(rand):
-	if rand < -0.1:
-		return [0,0]
-	if rand < 0.4:
-		return [0,1]
-	return [1,1]
-	
-func _input(event):
-	if event is InputEventScreenTouch:
-		get_tree().reload_current_scene()
+#func _input(event):
+#	if event is InputEventScreenTouch:
+#		get_tree().reload_current_scene()
 		
+func getTile(biome: Dictionary) -> Vector2i:
+	var rand = randf()
+	
+	for key in biome.keys():
+		if rand <= key:
+			return biome[key]
+	return Vector2i(0,0)		
