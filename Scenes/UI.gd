@@ -7,6 +7,8 @@ class_name GameplayUI
 @onready var locomotionJoystick : Joystick = $Locomotion/Joystick
 @onready var attackJoystick : Joystick = $Attack/Joystick
 
+signal open_inventory()
+
 var previousHealth
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -44,3 +46,8 @@ func getLocomotionJoystick() -> Joystick:
 	
 		
 		
+
+
+
+func _on_inventory_pressed():
+	emit_signal("open_inventory")

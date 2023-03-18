@@ -1,8 +1,11 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://clenol0pyn35i"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://clenol0pyn35i"]
 
 [ext_resource type="FontFile" uid="uid://dul726if4xkwb" path="res://Fonts/monogram/ttf/monogram-extended.ttf" id="1_iqln4"]
+[ext_resource type="FontFile" uid="uid://dkek6mg02k8vb" path="res://Fonts/monogram/ttf/monogram.ttf" id="2_m623n"]
 
 [resource]
+default_font = ExtResource("2_m623n")
+default_font_size = 42
 Button/font_sizes/font_size = 36
 Button/fonts/font = ExtResource("1_iqln4")
 Label/fonts/font = ExtResource("1_iqln4")

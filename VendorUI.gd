@@ -19,11 +19,10 @@ func _ready():
 
 func createItemNode(item : Dictionary) -> void:
 	var itemNode = vendor_item.instantiate()
+	
 	itemNode.item = Weapon.new(item)
 	
 	grid_container.add_child(itemNode)
-
-
 
 
 func _on_close_button_pressed():

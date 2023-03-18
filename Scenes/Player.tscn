@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://teke18cn2sw4" path="res://Scenes/GameplayUI.tscn" id="4_g3774"]
 [ext_resource type="PackedScene" uid="uid://bdidcrsf0wd73" path="res://game_over.tscn" id="5_kyfen"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_56fbh"]
-size = Vector2(24, 24)
+[sub_resource type="CircleShape2D" id="CircleShape2D_pvfed"]
+radius = 20.0998
 
 [sub_resource type="Animation" id="Animation_xe5sb"]
 resource_name = "Death"
@@ -859,7 +859,7 @@ hframes = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -13)
-shape = SubResource("RectangleShape2D_56fbh")
+shape = SubResource("CircleShape2D_pvfed")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_process_mode = 2

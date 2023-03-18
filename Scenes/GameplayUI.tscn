@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://teke18cn2sw4"]
+[gd_scene load_steps=6 format=3 uid="uid://teke18cn2sw4"]
 
 [ext_resource type="Script" path="res://Scenes/UI.gd" id="1_ae5og"]
 [ext_resource type="Texture2D" uid="uid://b3e708hgb2p4e" path="res://Sprites/heart.png" id="2_2kxqr"]
+[ext_resource type="Texture2D" uid="uid://c08dnpfpefinc" path="res://Sprites/Food/banana.png" id="2_hgjeg"]
 [ext_resource type="PackedScene" uid="uid://br87usqykhwhq" path="res://Scenes/Components/joystick.tscn" id="3_dwmqo"]
 [ext_resource type="Texture2D" uid="uid://cqldq2bgo83wh" path="res://Sprites/Joystick/attackbutton.png" id="4_31xdw"]
 
@@ -15,6 +16,39 @@ grow_vertical = 2
 scale = Vector2(0.999167, 1)
 script = ExtResource("1_ae5og")
 
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -93.0
+offset_bottom = 62.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="JuiceLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Slime Juice:"
+horizontal_alignment = 2
+
+[node name="JuiceValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Inventory" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("2_hgjeg")
+
 [node name="HBoxcontainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 offset_right = 174.0
@@ -25,21 +59,6 @@ layout_mode = 2
 text = "Slimes alive:"
 
 [node name="MonstersAliveValue" type="Label" parent="HBoxcontainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -154.0
-offset_bottom = 40.0
-grow_horizontal = 0
-
-[node name="JuiceLabel" type="Label" parent="HBoxContainer"]
-layout_mode = 2
-text = "Slime Juice:"
-
-[node name="JuiceValue" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 
 [node name="HeartContainer" type="HBoxContainer" parent="."]
@@ -124,3 +143,5 @@ grow_vertical = 0
 position = Vector2(150, 150)
 scale = Vector2(2, 2)
 smallTexture = ExtResource("4_31xdw")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Inventory" to="." method="_on_inventory_pressed"]

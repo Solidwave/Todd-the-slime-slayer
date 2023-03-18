@@ -32,14 +32,7 @@ func open():
 	opened = true
 	animation_player.play("open")
 	
-	var loot = lootScene.instantiate()
 	
-	loot.set("loot_data", chosen_one)
-	
-	loot.set("from_chest", true)
-	
-	loot.global_position = global_position
-	add_child(loot)
 
 	
 	
@@ -50,3 +43,13 @@ func chooseLoot() -> Loot:
 	var index = randi_range(0, loot_pool.size())
 	
 	return loot_pool[index]
+	
+func spawnLoot() -> void:
+	var loot = lootScene.instantiate()
+	
+	loot.set("loot_data", chosen_one)
+	
+	loot.set("from_chest", true)
+	
+	loot.global_position = global_position
+	add_child(loot)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c63mdnbt8hpxn"]
+[gd_scene load_steps=8 format=3 uid="uid://c63mdnbt8hpxn"]
 
 [ext_resource type="PackedScene" uid="uid://dabi8cx0dsfgi" path="res://world_generator.tscn" id="1_5i1xf"]
 [ext_resource type="PackedScene" uid="uid://bor56kblif4d6" path="res://Scenes/Player.tscn" id="2_wr4y6"]
@@ -6,11 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://4mj54ucrehhf" path="res://Scenes/chest.tscn" id="4_7wlkg"]
 [ext_resource type="Script" path="res://Resources/loot_data.gd" id="5_6kbmv"]
 [ext_resource type="Texture2D" uid="uid://bnegmorjg8hha" path="res://Sprites/Pixel_Mart/watermelon1.png" id="6_u0fv2"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_bsxr6"]
-vertices = PackedVector2Array(-1536, -793, 1931, -786, -728, -636, -1178, -639, 1927, 938, 1515, 149, 1500, -74, 923, 823, 931, 504, 1176, 140, 1183, -82, -738, -434, -1533, 924, -1197, -437, 608, 816, 613, 517)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(1, 4, 5, 6), PackedInt32Array(5, 4, 7, 8, 9), PackedInt32Array(2, 1, 6, 10, 11), PackedInt32Array(12, 0, 3, 13), PackedInt32Array(7, 4, 12, 14), PackedInt32Array(14, 12, 13, 11, 15), PackedInt32Array(15, 11, 10, 9, 8)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1536, -793, -1533, 924, 1927, 938, 1931, -786), PackedVector2Array(-1178, -639, -1197, -437, -738, -434, -728, -636), PackedVector2Array(613, 517, 608, 816, 923, 823, 931, 504), PackedVector2Array(1183, -82, 1176, 140, 1515, 149, 1500, -74)])
 
 [sub_resource type="Resource" id="Resource_4pasc"]
 script = ExtResource("5_6kbmv")
@@ -25,6 +20,7 @@ item_name = "watermelon"
 position = Vector2(0, -46)
 
 [node name="WorldGenerator" parent="." instance=ExtResource("1_5i1xf")]
+position = Vector2(-9600, -3200)
 scale = Vector2(3, 3)
 
 [node name="Agents" type="Node2D" parent="."]
@@ -40,9 +36,6 @@ enemiesParent = NodePath("..")
 maxEnemies = 1
 spawnInterval = 1
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Agents"]
-navigation_polygon = SubResource("NavigationPolygon_bsxr6")
-
-[node name="Chest" parent="." instance=ExtResource("4_7wlkg")]
+[node name="Chest" parent="Agents" instance=ExtResource("4_7wlkg")]
 position = Vector2(446, -183)
 loot_pool = Array[ExtResource("5_6kbmv")]([SubResource("Resource_4pasc")])
