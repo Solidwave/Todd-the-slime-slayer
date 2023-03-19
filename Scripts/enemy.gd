@@ -9,10 +9,10 @@ extends CharacterBody2D
 @export var attackDistance = 50
 @export var damage = 1
 @export var jumpDamage = 2
-@export var drops : Array[int]
+@export var drops : Array[String]
 @onready var damage_container : DamageComponent = $DamageContainer
 
-signal enemy_died(drops: Array[int], position: Vector2)
+signal enemy_died(drops: Array[String], position: Vector2)
 
 @onready var enemySprite : Sprite2D = $Sprites/Enemies
 @onready var animationPlayer : AnimationPlayer = $AnimationPlayer

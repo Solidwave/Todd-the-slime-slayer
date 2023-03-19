@@ -46,7 +46,7 @@ func _on_timer_timeout():
 		else:
 			add_child(enemy)
 
-func _on_enemy_died(drops : Array[int], position: Vector2):
+func _on_enemy_died(drops : Array[String], position: Vector2):
 	var roll = randf() 
 	
 	var tmpLoot : Array = drops.map(func(id): return DbManager.getItemById("loot", id))

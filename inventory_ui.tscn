@@ -1,16 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://cse7p5ikbp4tj"]
+[gd_scene load_steps=7 format=3 uid="uid://cp8hqgmcjku1w"]
 
+[ext_resource type="Script" path="res://inventory_ui.gd" id="1_n8jje"]
 [ext_resource type="Theme" uid="uid://clenol0pyn35i" path="res://ui.tres" id="1_sth2s"]
-[ext_resource type="StyleBox" uid="uid://c268sssp4p5om" path="res://tab_theme_inventory.tres" id="2_poocv"]
-[ext_resource type="StyleBox" uid="uid://xio5h1fy3gfw" path="res://tab_theme_inventory_u.tres" id="3_fp0yj"]
-[ext_resource type="StyleBox" uid="uid://dwrbmwv0krjha" path="res://inventory_panel_theme.tres" id="3_hlyf6"]
-[ext_resource type="Texture2D" uid="uid://dcfxvpvc0t7dw" path="res://atlases/gui_atlas.png" id="5_nylh4"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3dbw4"]
-atlas = ExtResource("5_nylh4")
-region = Rect2(52.2176, 95.2693, 31.8683, 33.3169)
+[ext_resource type="StyleBox" uid="uid://ij6sxq8stp3n" path="res://tab_theme_inventory.tres" id="2_poocv"]
+[ext_resource type="StyleBox" uid="uid://b788fup61f3xj" path="res://tab_theme_inventory_u.tres" id="3_fp0yj"]
+[ext_resource type="StyleBox" uid="uid://dm12txm6wbigq" path="res://inventory_panel_theme.tres" id="3_hlyf6"]
+[ext_resource type="Texture2D" uid="uid://cqya8hua1gm0a" path="res://Sprites/SpritesGUI_Essential_Free/Complete_GUI_Essential_Pack_Free_Version/01_Basic_Collection/01_Flat_Theme/Sprites/UI_Flat_Cross_Large.png" id="7_0kd5x"]
 
 [node name="Inventory_UI" type="CanvasLayer"]
+script = ExtResource("1_n8jje")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -36,7 +34,6 @@ clip_tabs = false
 drag_to_rearrange_enabled = true
 
 [node name="Gear" type="MarginContainer" parent="MarginContainer/TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Loot" type="MarginContainer" parent="MarginContainer/TabContainer"]
@@ -54,421 +51,29 @@ theme_override_constants/margin_bottom = 100
 layout_mode = 2
 columns = 8
 
-[node name="Slot" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot17" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot17"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot18" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot18"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot19" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot19"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot20" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot20"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot21" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot21"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot22" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot22"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot23" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot23"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot24" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot24"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot25" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot25"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot26" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot26"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot27" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot27"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot28" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot28"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot29" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot29"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot30" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot30"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot31" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot31"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot32" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot32"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot2" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot2"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot3" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot3"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot5" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot5"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot6" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot6"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot7" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot7"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot8" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot8"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot9" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot9"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot10" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot10"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot11" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot11"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot12" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot12"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot13" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot13"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot14" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot14"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot15" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot15"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot16" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot16"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
-[node name="Slot4" type="MarginContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Loot/MarginContainer/GridContainer/Slot4"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_3dbw4")
-
 [node name="Food" type="MarginContainer" parent="MarginContainer/TabContainer"]
+visible = false
 layout_mode = 2
+
+[node name="Container" type="Control" parent="MarginContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/Container"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture_normal = ExtResource("7_0kd5x")
+
+[connection signal="pressed" from="MarginContainer/Container/TextureButton" to="." method="_on_texture_button_pressed"]

@@ -1,7 +1,37 @@
-[gd_scene load_steps=5 format=3 uid="uid://dabi8cx0dsfgi"]
+[gd_scene load_steps=11 format=3 uid="uid://dabi8cx0dsfgi"]
 
 [ext_resource type="Script" path="res://WorldGenerator.gd" id="1_qdeol"]
 [ext_resource type="Texture2D" uid="uid://dhxbvdtnkivow" path="res://Sprites/Terrain/terrain.png" id="2_iea0c"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_m24ip"]
+vertices = PackedVector2Array(-13.5, -13.5, 13.5, -13.5, 13.5, 13.5, -13.5, 13.5)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-13.5, -13.5, 13.5, -13.5, 13.5, 13.5, -13.5, 13.5)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_eck8g"]
+vertices = PackedVector2Array(-13.5, -13.5, 13.5, -13.5, 13.5, 13.5, -13.5, 13.5)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-13.5, -13.5, 13.5, -13.5, 13.5, 13.5, -13.5, 13.5)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_iwkra"]
+vertices = PackedVector2Array(-13.5, -13.5, 13.5, -13.5, 13.5, 13.5, -13.5, 13.5)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-13.5, -13.5, 13.5, -13.5, 13.5, 13.5, -13.5, 13.5)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_3i67r"]
+vertices = PackedVector2Array(-13.5, -13.5, 13.5, -13.5, 13.5, 13.5, -13.5, 13.5)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-13.5, -13.5, 13.5, -13.5, 13.5, 13.5, -13.5, 13.5)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_niuaw"]
+vertices = PackedVector2Array(-13.5, -13.5, 13.5, -13.5, 13.5, 13.5, -13.5, 13.5)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-13.5, -13.5, 13.5, -13.5, 13.5, 13.5, -13.5, 13.5)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_oy0x5"]
+vertices = PackedVector2Array(-13.5, -13.5, 13.5, -13.5, 13.5, 13.5, -13.5, 13.5)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-13.5, -13.5, 13.5, -13.5, 13.5, 13.5, -13.5, 13.5)])
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jsq6m"]
 texture = ExtResource("2_iea0c")
@@ -9,21 +39,27 @@ texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_m24ip")
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_iwkra")
 2:0/0 = 0
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_niuaw")
 0:1/0 = 0
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_eck8g")
 1:1/0 = 0
 1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_3i67r")
 2:1/0 = 0
 2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_oy0x5")
 0:2/0 = 0
 0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:2/0/physics_layer_0/angular_velocity = 0.0
@@ -40,10 +76,10 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="TileSet" id="TileSet_22q7i"]
 tile_size = Vector2i(27, 27)
 physics_layer_0/collision_layer = 1
+navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_jsq6m")
 
 [node name="WorldGenerator" type="Node2D"]
-position = Vector2(-300, -100)
 script = ExtResource("1_qdeol")
 
 [node name="TileMap" type="TileMap" parent="."]

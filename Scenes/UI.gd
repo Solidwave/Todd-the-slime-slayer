@@ -2,7 +2,7 @@ extends Control
 class_name GameplayUI
 
 @onready var monstersAliveValue = $HBoxcontainer/MonstersAliveValue
-@onready var juiceValue = $HBoxContainer/JuiceValue
+@onready var juiceValue = $MarginContainer/VBoxContainer/HBoxContainer/JuiceValue
 @onready var heartContainer = $HeartContainer
 @onready var locomotionJoystick : Joystick = $Locomotion/Joystick
 @onready var attackJoystick : Joystick = $Attack/Joystick
@@ -43,11 +43,18 @@ func getAttackJoystick() -> Joystick:
 
 func getLocomotionJoystick() -> Joystick:
 	return locomotionJoystick
-	
-		
-		
 
 
-
-func _on_inventory_pressed():
+func _on_inventory_button_pressed():
+	print('pressed')
 	emit_signal("open_inventory")
+
+
+
+func _on_touch_screen_button_pressed():
+	print('pressed')
+	emit_signal("open_inventory")
+
+
+func _on_inventory_ui_close_inventory():
+	get_tree().paused = false

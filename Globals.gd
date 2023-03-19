@@ -3,32 +3,7 @@ var Player
 
 var save_name = "Globals"
 
-var globalsData : GlobalsData = GlobalsData.new({
-	slime_juice = 0,
-	current_weapon = {
-		item_name = "Sword",
-		id = 1,
-		type = "sword",
-		damage = {
-			min = 80,
-			max = 100,
-			crit_multiplier = 1.5,
-			crit_chance = 0.1
-		},
-		price = 10,
-		frame_coords = {
-			x = 0,
-			y =0
-		},
-		sprite = "res://Sprites/Weapons/Swords/Swords.png",
-		owned = true
-	},
-	inventory = {}
-})
-
-
-
-
+var globalsData : GlobalsData 
 
 func increaseSlimeJuice(amount: int):
 	globalsData.slime_juice += amount
@@ -42,7 +17,11 @@ func _ready():
 	if data == null:
 		return
 	if data[save_name] != null:
-		globalsData = GlobalsData.new(data[save_name])
+		print(data[save_name])
+		set("globalsData",GlobalsData.new(data[save_name])) 
+		print(globalsData.inventory.items, 'globals_inventory')
+	
+	
 	
 	
 
