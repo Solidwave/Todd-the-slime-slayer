@@ -1,13 +1,110 @@
-[gd_scene load_steps=8 format=3 uid="uid://teke18cn2sw4"]
+[gd_scene load_steps=17 format=3 uid="uid://teke18cn2sw4"]
 
 [ext_resource type="Script" path="res://Scenes/UI.gd" id="1_ae5og"]
 [ext_resource type="Texture2D" uid="uid://b3e708hgb2p4e" path="res://Sprites/heart.png" id="2_2kxqr"]
 [ext_resource type="PackedScene" uid="uid://br87usqykhwhq" path="res://Scenes/Components/joystick.tscn" id="3_dwmqo"]
 [ext_resource type="Texture2D" uid="uid://cqldq2bgo83wh" path="res://Sprites/Joystick/attackbutton.png" id="4_31xdw"]
-[ext_resource type="Texture2D" uid="uid://b6y301xvu24p6" path="res://Sprites/Pixel_Mart/paper_bag.png" id="5_1l0kr"]
+[ext_resource type="Texture2D" uid="uid://dfj0j5fb3mw4o" path="res://Sprites/MyIcons/bag.png" id="5_af7cl"]
 [ext_resource type="PackedScene" uid="uid://cp8hqgmcjku1w" path="res://inventory_ui.tscn" id="6_aunnl"]
+[ext_resource type="Texture2D" uid="uid://xajj6rkov5f6" path="res://Sprites/MyIcons/play_pause.png" id="6_s1hl5"]
+[ext_resource type="Texture2D" uid="uid://dxq24f5emks0y" path="res://Sprites/MyIcons/options.png" id="7_c0qqs"]
+[ext_resource type="Theme" uid="uid://clenol0pyn35i" path="res://ui.tres" id="9_dh7v0"]
+[ext_resource type="Script" path="res://Scenes/OptionsMenu.gd" id="10_svtbf"]
+[ext_resource type="PackedScene" uid="uid://dxiggyig1b47g" path="res://options.tscn" id="11_46g0f"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8eavv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcngw"]
+atlas = ExtResource("6_s1hl5")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="Animation" id="Animation_xn77d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PauseLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PauseLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OptionsMenu:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_q5anu"]
+resource_name = "label_appear"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PauseLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PauseLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_s5wnt"]
+resource_name = "options_appear"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OptionsMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8vqcl"]
+_data = {
+"RESET": SubResource("Animation_xn77d"),
+"label_appear": SubResource("Animation_q5anu"),
+"options_appear": SubResource("Animation_s5wnt")
+}
 
 [node name="GamePlayUI" type="Control"]
 process_mode = 3
@@ -22,8 +119,12 @@ script = ExtResource("1_ae5og")
 
 [node name="HBoxcontainer" type="HBoxContainer" parent="."]
 layout_mode = 1
-offset_right = 174.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -174.0
 offset_bottom = 56.0
+grow_horizontal = 0
 
 [node name="MonstersAliveLabel" type="Label" parent="HBoxcontainer"]
 layout_mode = 2
@@ -117,19 +218,17 @@ smallTexture = ExtResource("4_31xdw")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
@@ -142,19 +241,125 @@ text = "Slime Juice:"
 [node name="JuiceValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-alignment = 2
-
-[node name="TouchScreenButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Inventory" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
-texture_normal = ExtResource("5_1l0kr")
-texture_pressed = SubResource("PlaceholderTexture2D_8eavv")
+size_flags_horizontal = 8
+texture_normal = ExtResource("5_af7cl")
+
+[node name="Pause" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = SubResource("AtlasTexture_bcngw")
+
+[node name="Options" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("7_c0qqs")
 
 [node name="Inventory_UI" parent="." instance=ExtResource("6_aunnl")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseLabel" type="Label" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_dh7v0")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 82
+text = "GAME PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8vqcl")
+}
+
+[node name="OptionsMenu" type="MarginContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_dh7v0")
+script = ExtResource("10_svtbf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenu"]
+layout_mode = 2
+
+[node name="MenuButton" type="Button" parent="OptionsMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "MENU"
+
+[node name="RestartButton" type="Button" parent="OptionsMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "RESTART"
+
+[node name="OptionsButton" type="Button" parent="OptionsMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "OPTIONS"
+
+[node name="QuitButton" type="Button" parent="OptionsMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "QUIT
+"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+initial_position = 1
+size = Vector2i(200, 125)
+borderless = true
+always_on_top = true
+theme = ExtResource("9_dh7v0")
+
+[node name="Options" parent="." instance=ExtResource("11_46g0f")]
+visible = false
+layout_mode = 1
 
 [connection signal="open_inventory" from="." to="Inventory_UI" method="_on_game_play_ui_open_inventory"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]
+[connection signal="open_options" from="." to="OptionsMenu" method="_on_game_play_ui_open_options"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Inventory" to="." method="_on_inventory_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="close_inventory" from="Inventory_UI" to="." method="_on_inventory_ui_close_inventory"]
+[connection signal="pressed" from="OptionsMenu/VBoxContainer/MenuButton" to="OptionsMenu" method="_on_menu_button_pressed"]
+[connection signal="pressed" from="OptionsMenu/VBoxContainer/RestartButton" to="OptionsMenu" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="OptionsMenu/VBoxContainer/OptionsButton" to="OptionsMenu" method="_on_options_button_pressed"]
+[connection signal="pressed" from="OptionsMenu/VBoxContainer/QuitButton" to="OptionsMenu" method="_on_quit_button_pressed"]

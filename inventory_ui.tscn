@@ -1,16 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://cp8hqgmcjku1w"]
+[gd_scene load_steps=8 format=3 uid="uid://cp8hqgmcjku1w"]
 
 [ext_resource type="Script" path="res://inventory_ui.gd" id="1_n8jje"]
 [ext_resource type="Theme" uid="uid://clenol0pyn35i" path="res://ui.tres" id="1_sth2s"]
+[ext_resource type="Texture2D" uid="uid://dkqhmnwefhoq7" path="res://Sprites/MyIcons/background_inventory.png" id="2_7pesk"]
 [ext_resource type="StyleBox" uid="uid://ij6sxq8stp3n" path="res://tab_theme_inventory.tres" id="2_poocv"]
 [ext_resource type="StyleBox" uid="uid://b788fup61f3xj" path="res://tab_theme_inventory_u.tres" id="3_fp0yj"]
-[ext_resource type="StyleBox" uid="uid://dm12txm6wbigq" path="res://inventory_panel_theme.tres" id="3_hlyf6"]
 [ext_resource type="Texture2D" uid="uid://cqya8hua1gm0a" path="res://Sprites/SpritesGUI_Essential_Free/Complete_GUI_Essential_Pack_Free_Version/01_Basic_Collection/01_Flat_Theme/Sprites/UI_Flat_Cross_Large.png" id="7_0kd5x"]
 
-[node name="Inventory_UI" type="CanvasLayer"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_36527"]
+texture = ExtResource("2_7pesk")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+
+[node name="Inventory_UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_n8jje")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -21,6 +31,17 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
+visible = false
+texture_filter = 1
+layout_direction = 2
+layout_mode = 2
+texture = ExtResource("2_7pesk")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
 [node name="TabContainer" type="TabContainer" parent="MarginContainer"]
 texture_filter = 1
 layout_mode = 2
@@ -28,7 +49,7 @@ theme = ExtResource("1_sth2s")
 theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
 theme_override_styles/tab_selected = ExtResource("2_poocv")
 theme_override_styles/tab_unselected = ExtResource("3_fp0yj")
-theme_override_styles/panel = ExtResource("3_hlyf6")
+theme_override_styles/panel = SubResource("StyleBoxTexture_36527")
 tab_alignment = 1
 clip_tabs = false
 drag_to_rearrange_enabled = true
@@ -42,10 +63,6 @@ layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Loot"]
 layout_mode = 2
-theme_override_constants/margin_left = 150
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 150
-theme_override_constants/margin_bottom = 100
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/TabContainer/Loot/MarginContainer"]
 layout_mode = 2

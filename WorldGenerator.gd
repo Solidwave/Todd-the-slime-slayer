@@ -1,9 +1,10 @@
 extends Node2D
 
+@onready var tile_map = $TileMap
 
 @export var width = 600
-@export var height = 200
-@onready var tile_map = $TileMap
+@export var height = 600
+@onready var ocean = $Ocean
 
 var temperature = {}
 var altitude = {}
@@ -11,6 +12,15 @@ var moisture = {}
 var biome = {}
 
 var fastNoise = FastNoiseLite.new()
+
+var grassBiome : PackedVector2Array
+
+var oceanTexture : Texture = preload("res://TerrainTextures/ocean_texture.tres")
+
+var oceanBiome : Dictionary = {}
+
+var is_ocean = func(item) -> bool:
+	return item.value <= 0.5
 
 var biomes = {
 	ocean =  {
@@ -30,14 +40,13 @@ var biomes = {
 	}
 }
 
-func generate_map(frequency, octaves):
+func generate_map(frequency, octave):
 	randomize()
 	fastNoise.seed = randi()
 	fastNoise.noise_type = FastNoiseLite.TYPE_SIMPLEX
 	fastNoise.frequency = frequency
 	
-	fastNoise.fractal_type = FastNoiseLite.FRACTAL_FBM
-	fastNoise.fractal_octaves = octaves
+	fastNoise.fractal_type = FastNoiseLite.FRACTAL_NONE
 	
 	var grid = {
 	}
@@ -46,45 +55,62 @@ func generate_map(frequency, octaves):
 		for y in height:
 			var rand = 2 * abs(fastNoise.get_noise_2d(x,y))
 			
-			grid[Vector2(x,y)] = rand
+			grid[Vector2i(x,y)] = {value = rand, index = -1}
 	return grid
-	
+
+func _draw():
+	for ocean in oceanBiome:
+		draw_colored_polygon(Geometry2D.convex_hull(oceanBiome[ocean]),Color.RED)
 func _ready():
-	temperature = generate_map(0.01,5)
-	altitude = generate_map(0.01,5)
-	moisture = generate_map(0.02,5)
+	altitude = generate_map(0.001,5)	
 	
+	generate_biomes(altitude)
 	
-	set_tile(width,height)
+	set_tiles()
+	print(oceanBiome)
+	queue_redraw()
+
 	
-func set_tile(width, height):
-	for x in width:
-		for y in height:
-			var pos = Vector2(x,y)
-			
-			var temp = temperature[pos]
-			
-			var alt = altitude[pos]
-			
-			var mois = moisture[pos]
-			
-			print(alt)
-			if	alt < 0.1:
-				tile_map.set_cell(0,pos, 0, getTile(biomes.ocean) )
-			elif alt < 0.3:
-				tile_map.set_cell(0,pos, 0,  getTile(biomes.desert))
+func generate_biomes(grid):
+	var oceanIndex = 0
+	for x in grid:
+		var alt = grid[x].value
+		if	alt <= 0.5:
+			var adiacent = is_adiacent_same_type(x, is_ocean,grid)
+			if	adiacent != -1:
+				oceanBiome[adiacent].append(Vector2i(x.x,x.y))
+				grid[x].index = adiacent 
 			else:
-				tile_map.set_cell(0,pos, 0,  getTile(biomes.grass))
-			
-				
-#			#Ocean
-#			if 	alt < 0.2:
-#				tilemap.set_cell(0,pos,0,biomes.ocean)
-#			if	alt >= 0.2:
-#				if moist < 0.3:
-#					tilemap.set_cell(0,pos,0,biomes.desert)
-#				else:
-#					tilemap.set_cell(0,pos,0,biomes.grass)
+				oceanBiome[oceanIndex] = PackedVector2Array([x])
+				grid[x].index = oceanIndex
+				oceanIndex += 1
+		
+		
+func set_tiles():
+	var oceanIndex = 0
+	for x in altitude:
+		
+		var alt = altitude[x].value			#Ocean
+		if 	alt < 0.2:
+			tile_map.set_cell(0,x,0,getTile(biomes.ocean))
+		if alt < 0.3:
+			tile_map.set_cell(0,x,0,getTile(biomes.desert))
+		else:
+			tile_map.set_cell(0,x,0,getTile(biomes.grass))
+func is_adiacent_same_type(pos : Vector2i,check, grid : Dictionary ) -> int:
+	var up = Vector2i(pos.x, pos.y-1)
+	var left = Vector2i(pos.x-1, pos.y)
+	
+	if grid.has(up):
+		return grid[up].index
+	if grid.has(left):
+		return grid[left].index
+	return -1
+	
+#
+	
+	
+	
 
 #func _input(event):
 #	if event is InputEventScreenTouch:

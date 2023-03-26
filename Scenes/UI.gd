@@ -6,13 +6,20 @@ class_name GameplayUI
 @onready var heartContainer = $HeartContainer
 @onready var locomotionJoystick : Joystick = $Locomotion/Joystick
 @onready var attackJoystick : Joystick = $Attack/Joystick
+@onready var pause_label = $PauseLabel
+@onready var animation_player = $AnimationPlayer
+@onready var options_menu = $OptionsMenu
 
 signal open_inventory()
+
+signal open_options
 
 var previousHealth
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	juiceValue.text = str(Globals.globalsData.slime_juice)
+	
+	pause_label.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -58,3 +65,21 @@ func _on_touch_screen_button_pressed():
 
 func _on_inventory_ui_close_inventory():
 	get_tree().paused = false
+
+
+func _on_inventory_pressed():
+	emit_signal("open_inventory")
+
+
+func _on_pause_pressed():
+	
+	if	get_tree().paused:
+		animation_player.play_backwards("label_appear")
+	else:
+		animation_player.play("label_appear")
+		
+	get_tree().paused = !get_tree().paused
+
+
+func _on_options_pressed():
+	emit_signal("open_options")

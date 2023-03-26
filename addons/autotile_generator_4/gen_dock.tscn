@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm0fkbpoy0qms"]
+
+[ext_resource type="Script" path="res://addons/autotile_generator_4/gen_dock.gd" id="1_ro2an"]
+[ext_resource type="Texture2D" uid="uid://62kp18lrarnj" path="res://addons/autotile_generator_4/template.png" id="1_ypfje"]
+
+[node name="GenDock" type="VBoxContainer"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ro2an")
+metadata/_edit_lock_ = true
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 2
+text = "Autotile Generator"
+horizontal_alignment = 1
+
+[node name="Example" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+texture = ExtResource("1_ypfje")
+stretch_mode = 5
+
+[node name="Actual" type="TextureRect" parent="."]
+layout_mode = 2
+stretch_mode = 2
+
+[node name="Upload" type="Button" parent="."]
+layout_mode = 2
+text = "Upload"
+
+[node name="Generate" type="Button" parent="."]
+layout_mode = 2
+disabled = true
+text = "Generate"
+
+[connection signal="pressed" from="Upload" to="." method="_on_upload_pressed"]
+[connection signal="pressed" from="Generate" to="." method="_on_generate_pressed"]

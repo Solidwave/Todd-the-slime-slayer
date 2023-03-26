@@ -3,5 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://dcfxvpvc0t7dw" path="res://atlases/gui_atlas.png" id="1_qi40x"]
 
 [resource]
+content_margin_left = 19.0
 texture = ExtResource("1_qi40x")
 region_rect = Rect2(3.63786, 96.0576, 48.4609, 32.7901)

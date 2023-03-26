@@ -4,7 +4,7 @@ var levels = []
 
 var levelButton = preload('res://LevelButton.tscn')
 
-@onready var LevelsContainer = $LevelsContainer
+@onready var LevelsContainer = $Panel/MarginContainer/LevelsContainer
 
 
 @export_dir var dir_path

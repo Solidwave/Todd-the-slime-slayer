@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 signal close_inventory
 
