@@ -1,8 +1,10 @@
-extends CanvasLayer
+extends Control
+class_name VendorUI
 
-@onready var grid_container = $MarginContainer/Panel/MarginContainer/GridContainer
+@onready var grid_container = $MarginContainer/Panel/MarginContainer/ScrollContainer/GridContainer
 
 @export var dataPath : String
+@onready var snackbar = $Snackbar
 
 
 var vendor_item = preload('res://vendor_item.tscn')
@@ -21,6 +23,7 @@ func createItemNode(item : Dictionary) -> void:
 	var itemNode = vendor_item.instantiate()
 	
 	itemNode.item = Weapon.new(item)
+	itemNode.snackbar = snackbar
 	
 	grid_container.add_child(itemNode)
 

@@ -262,11 +262,6 @@ texture_normal = ExtResource("7_c0qqs")
 [node name="Inventory_UI" parent="." instance=ExtResource("6_aunnl")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="PauseLabel" type="Label" parent="."]
 visible = false

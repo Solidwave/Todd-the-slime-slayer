@@ -1,0 +1,109 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgq5hcactuhm"]
+
+[ext_resource type="Theme" uid="uid://clenol0pyn35i" path="res://ui.tres" id="1_au5h6"]
+[ext_resource type="Script" path="res://Snackbar.gd" id="2_dd3so"]
+[ext_resource type="Texture2D" uid="uid://ddadt43ukldmr" path="res://Sprites/MyIcons/button.png" id="3_k6f3j"]
+[ext_resource type="Texture2D" uid="uid://cnx60rpjspuq" path="res://Sprites/MyIcons/x.png" id="4_vabg2"]
+
+[sub_resource type="Animation" id="Animation_oag63"]
+resource_name = "show_snackbar"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 600), Vector2(0, 450), Vector2(0, 400)]
+}
+
+[sub_resource type="Animation" id="Animation_qsnrx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 600)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d6ky5"]
+_data = {
+"RESET": SubResource("Animation_qsnrx"),
+"show_snackbar": SubResource("Animation_oag63")
+}
+
+[node name="Snackbar" type="MarginContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 100)
+anchors_preset = -1
+anchor_top = 0.699
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 147.048
+offset_right = 1151.0
+offset_bottom = 342.053
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_au5h6")
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+script = ExtResource("2_dd3so")
+
+[node name="TextureRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("3_k6f3j")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="Label" type="Label" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_font_sizes/font_size = 60
+text = "You dont have enought money!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture_normal = ExtResource("4_vabg2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_d6ky5")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="pressed" from="TextureRect/MarginContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

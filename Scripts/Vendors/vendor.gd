@@ -1,5 +1,5 @@
 extends StaticBody2D
-@onready var vendor_ui = $VendorUI
+@onready var vendor_ui = $CanvasLayer/VendorUI
 
 
 # Called when the node enters the scene tree for the first time.

@@ -2,10 +2,10 @@
 	{
 		"custom_scene": "res://Scenes/Weapons/Swords/Swords.tscn",
 		"damage": {
-			"min": 8,
-			"max": 10,
+			"crit_chance": 0.1,
 			"crit_multiplier": 1.5,
-			"crit_chance": 0.1
+			"max": 10,
+			"min": 8
 		},
 		"frame_coords": {
 			"x": 0,
@@ -20,10 +20,10 @@
 	},
 	{
 		"damage": {
-			"min": 8,
-			"max": 10,
+			"crit_chance": 0.1,
 			"crit_multiplier": 1.5,
-			"crit_chance": 0.1
+			"max": 10,
+			"min": 8
 		},
 		"frame_coords": {
 			"x": 1,
@@ -38,10 +38,10 @@
 	},
 	{
 		"damage": {
-			"min": 8,
-			"max": 10,
+			"crit_chance": 0.1,
 			"crit_multiplier": 1.5,
-			"crit_chance": 0.1
+			"max": 10,
+			"min": 8
 		},
 		"frame_coords": {
 			"x": 2,
@@ -56,10 +56,10 @@
 	},
 	{
 		"damage": {
-			"min": 8,
-			"max": 10,
+			"crit_chance": 0.1,
 			"crit_multiplier": 1.5,
-			"crit_chance": 0.1
+			"max": 10,
+			"min": 8
 		},
 		"frame_coords": {
 			"x": 3,
@@ -74,10 +74,10 @@
 	},
 	{
 		"damage": {
-			"min": 8,
-			"max": 10,
+			"crit_chance": 0.1,
 			"crit_multiplier": 1.5,
-			"crit_chance": 0.1
+			"max": 10,
+			"min": 8
 		},
 		"frame_coords": {
 			"x": 4,
@@ -92,10 +92,10 @@
 	},
 	{
 		"damage": {
-			"min": 8,
-			"max": 10,
+			"crit_chance": 0.1,
 			"crit_multiplier": 1.5,
-			"crit_chance": 0.1
+			"max": 10,
+			"min": 8
 		},
 		"frame_coords": {
 			"x": 5,
