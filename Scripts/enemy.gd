@@ -92,7 +92,6 @@ func _physics_process(delta):
 				stateMachine.travel('Jump')
 				return
 		_:
-			print(currentState, 'no match found')
 	if	playerDirection.x < 0:
 		attackShape.position.x = -30
 		enemySprite.flip_h = true

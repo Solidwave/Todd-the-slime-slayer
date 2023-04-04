@@ -51,5 +51,5 @@ func spawnLoot() -> void:
 	
 	loot.set("from_chest", true)
 	
-	loot.global_position = global_position
+	loot.position = global_position
 	add_child(loot)

@@ -17,7 +17,6 @@ func _ready():
 	if data == null:
 		return
 	if data[save_name] != null:
-		print(data[save_name])
 		set("globalsData",GlobalsData.new(data[save_name])) 
 		print(globalsData.inventory.items, 'globals_inventory')
 	

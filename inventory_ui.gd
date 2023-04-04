@@ -21,12 +21,10 @@ func _ready():
 	inventory.update_inventory_items.connect(update_items)
 
 func show_inventory():
-	print('here')
 	visible = true
 
 
 func _on_game_play_ui_open_inventory():
-	print('here')
 	visible = true
 	get_tree().paused = true
 	

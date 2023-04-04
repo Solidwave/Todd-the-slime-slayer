@@ -11,8 +11,6 @@ extends Control
 @export var item : Weapon
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(item)
-	
 	item_sprite.texture = load(item.sprite)
 	item_sprite.frame_coords = Vector2i(item.frame_coords.x,item.frame_coords.y)
 	itemName.text = item.weapon_name

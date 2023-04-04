@@ -14,7 +14,6 @@ func _init(items_data : Dictionary = {}):
 func addItem(item : Item):
 	if 	items.size() == inventory_max_size:
 		return FAILED
-	print(items.has(item.id),items[item.id])
 	if items.has(item.id):
 		items[item.id].amount += 1
 	else:

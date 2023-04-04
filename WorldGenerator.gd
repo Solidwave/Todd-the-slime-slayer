@@ -21,6 +21,10 @@ var oceanBiome : Dictionary = {}
 
 var is_ocean = func(item) -> bool:
 	return item.value <= 0.5
+	
+var dirtArray : Array[Vector2i] = []
+var grassArray : Array[Vector2i] = []
+var waterArray : Array[Vector2i] = []
 
 var biomes = {
 	ocean =  {
@@ -46,7 +50,7 @@ func generate_map(frequency, octave):
 	fastNoise.noise_type = FastNoiseLite.TYPE_SIMPLEX
 	fastNoise.frequency = frequency
 	
-	fastNoise.fractal_type = FastNoiseLite.FRACTAL_NONE
+	fastNoise.fractal_type = FastNoiseLite.FRACTAL_FBM
 	
 	var grid = {
 	}
@@ -55,48 +59,48 @@ func generate_map(frequency, octave):
 		for y in height:
 			var rand = 2 * abs(fastNoise.get_noise_2d(x,y))
 			
-			grid[Vector2i(x,y)] = {value = rand, index = -1}
+			grid[Vector2i(x,y)] = rand
 	return grid
 
-func _draw():
-	for ocean in oceanBiome:
-		draw_colored_polygon(Geometry2D.convex_hull(oceanBiome[ocean]),Color.RED)
+#func _draw():
+#	for ocean in oceanBiome:
+#		draw_colored_polygon(Geometry2D.convex_hull(oceanBiome[ocean]),Color.RED)
 func _ready():
-	altitude = generate_map(0.001,5)	
+	altitude = generate_map(0.01,5)	
 	
-	generate_biomes(altitude)
+#	generate_biomes(altitude)
 	
 	set_tiles()
-	print(oceanBiome)
-	queue_redraw()
+#	queue_redraw()
 
 	
-func generate_biomes(grid):
-	var oceanIndex = 0
-	for x in grid:
-		var alt = grid[x].value
-		if	alt <= 0.5:
-			var adiacent = is_adiacent_same_type(x, is_ocean,grid)
-			if	adiacent != -1:
-				oceanBiome[adiacent].append(Vector2i(x.x,x.y))
-				grid[x].index = adiacent 
-			else:
-				oceanBiome[oceanIndex] = PackedVector2Array([x])
-				grid[x].index = oceanIndex
-				oceanIndex += 1
+#func generate_biomes(grid):
+#	var oceanIndex = 0
+#	for x in grid:
+#		var alt = grid[x].value
+#		if	alt <= 0.5:
+#			var adiacent = is_adiacent_same_type(x, is_ocean,grid)
+#			if	adiacent != -1:
+#				oceanBiome[adiacent].append(Vector2i(x.x,x.y))
+#				grid[x].index = adiacent 
+#			else:
+#				oceanBiome[oceanIndex] = PackedVector2Array([x])
+#				grid[x].index = oceanIndex
+#				oceanIndex += 1
 		
 		
 func set_tiles():
-	var oceanIndex = 0
 	for x in altitude:
-		
-		var alt = altitude[x].value			#Ocean
+		var alt = altitude[x]
 		if 	alt < 0.2:
-			tile_map.set_cell(0,x,0,getTile(biomes.ocean))
+			waterArray.append(x)
 		if alt < 0.3:
-			tile_map.set_cell(0,x,0,getTile(biomes.desert))
+			dirtArray.append(x)
 		else:
-			tile_map.set_cell(0,x,0,getTile(biomes.grass))
+			grassArray.append(x)
+	tile_map.set_cells_terrain_connect(0,grassArray,0,1)
+	tile_map.set_cells_terrain_connect(0,dirtArray,0,0)
+	tile_map.set_cells_terrain_connect(1,waterArray,0,2)
 func is_adiacent_same_type(pos : Vector2i,check, grid : Dictionary ) -> int:
 	var up = Vector2i(pos.x, pos.y-1)
 	var left = Vector2i(pos.x-1, pos.y)

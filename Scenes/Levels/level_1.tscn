@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://0rtw83w0p0e"]
+[gd_scene load_steps=8 format=3 uid="uid://0rtw83w0p0e"]
 
 [ext_resource type="PackedScene" uid="uid://cco55ckt0i2bv" path="res://tile_map.tscn" id="1_0aqfe"]
 [ext_resource type="PackedScene" uid="uid://bor56kblif4d6" path="res://Scenes/Player.tscn" id="2_5cl8i"]
 [ext_resource type="PackedScene" uid="uid://bw83s7c8argvc" path="res://Scenes/spawner.tscn" id="3_2v6jk"]
 [ext_resource type="PackedScene" uid="uid://4mj54ucrehhf" path="res://Scenes/chest.tscn" id="4_ikbuv"]
 [ext_resource type="Script" path="res://Resources/loot_data.gd" id="5_56ksf"]
-[ext_resource type="Texture2D" uid="uid://bnegmorjg8hha" path="res://Sprites/Pixel_Mart/watermelon1.png" id="6_om4vd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bsxr6"]
 vertices = PackedVector2Array(-1536, -793, 1931, -786, -728, -636, -1178, -639, 1927, 938, 1515, 149, 1500, -74, 923, 823, 931, 504, 1176, 140, 1183, -82, -738, -434, -1533, 924, -1197, -437, 608, 816, 613, 517)
@@ -14,12 +13,12 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-1536, -793, -1533, 924
 
 [sub_resource type="Resource" id="Resource_4pasc"]
 script = ExtResource("5_56ksf")
-sprite = ExtResource("6_om4vd")
 rarity = 0.0
 effect = {}
-id = 2
+id = "001"
 price = 1
 item_name = "watermelon"
+sprite = "res://Sprites/Pixel_Mart/watermelon1.png"
 
 [node name="Level1" type="Node2D"]
 position = Vector2(0, -46)
@@ -42,6 +41,7 @@ spawnInterval = 1
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Agents"]
 navigation_polygon = SubResource("NavigationPolygon_bsxr6")
 
-[node name="Chest" parent="." instance=ExtResource("4_ikbuv")]
+[node name="Chest" parent="Agents" instance=ExtResource("4_ikbuv")]
 position = Vector2(446, -183)
 loot_pool = Array[ExtResource("5_56ksf")]([SubResource("Resource_4pasc")])
+health = 1

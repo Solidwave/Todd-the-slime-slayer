@@ -53,13 +53,11 @@ func getLocomotionJoystick() -> Joystick:
 
 
 func _on_inventory_button_pressed():
-	print('pressed')
 	emit_signal("open_inventory")
 
 
 
 func _on_touch_screen_button_pressed():
-	print('pressed')
 	emit_signal("open_inventory")
 
 

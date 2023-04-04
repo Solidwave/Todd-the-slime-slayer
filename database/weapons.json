@@ -4,8 +4,8 @@
 		"damage": {
 			"crit_chance": 0.1,
 			"crit_multiplier": 1.5,
-			"max": 10,
-			"min": 8
+			"max": 100,
+			"min": 70
 		},
 		"frame_coords": {
 			"x": 0,
@@ -22,8 +22,8 @@
 		"damage": {
 			"crit_chance": 0.1,
 			"crit_multiplier": 1.5,
-			"max": 10,
-			"min": 8
+			"max": 100,
+			"min": 70
 		},
 		"frame_coords": {
 			"x": 1,
@@ -40,8 +40,8 @@
 		"damage": {
 			"crit_chance": 0.1,
 			"crit_multiplier": 1.5,
-			"max": 10,
-			"min": 8
+			"max": 100,
+			"min": 70
 		},
 		"frame_coords": {
 			"x": 2,
@@ -58,8 +58,8 @@
 		"damage": {
 			"crit_chance": 0.1,
 			"crit_multiplier": 1.5,
-			"max": 10,
-			"min": 8
+			"max": 100,
+			"min": 70
 		},
 		"frame_coords": {
 			"x": 3,
@@ -76,8 +76,8 @@
 		"damage": {
 			"crit_chance": 0.1,
 			"crit_multiplier": 1.5,
-			"max": 10,
-			"min": 8
+			"max": 100,
+			"min": 70
 		},
 		"frame_coords": {
 			"x": 4,
@@ -94,8 +94,8 @@
 		"damage": {
 			"crit_chance": 0.1,
 			"crit_multiplier": 1.5,
-			"max": 10,
-			"min": 8
+			"max": 100,
+			"min": 70
 		},
 		"frame_coords": {
 			"x": 5,

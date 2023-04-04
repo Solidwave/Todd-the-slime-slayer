@@ -24,7 +24,6 @@ func updateItem(file, item : Dictionary):
 			
 			databaseFile.store_string(JSON.stringify(databaseArray, "\t"))
 			
-			print("updated", databaseArray)
 			return OK
 	
 	return FAILED

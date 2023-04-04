@@ -12,7 +12,6 @@ func _ready():
 	
 
 func update_slot_item(item):
-	print(item)
 	var texture = load(item.item.sprite)
 	amount_label.text = str(item.amount)
 	texture_rect.texture = texture

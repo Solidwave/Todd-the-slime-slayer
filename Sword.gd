@@ -31,7 +31,6 @@ func use() -> void:
 	_animation_player.play("Attack")
 
 func _on_hit_box_body_entered(body):
-	print(body)
 	if	body.is_in_group("Enemies"):
 		body.receiveDamage(weapon_data.calcolate_damage())
 	
