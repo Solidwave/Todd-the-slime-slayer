@@ -9,6 +9,7 @@ height = 200
 
 [node name="TileMap" parent="." instance=ExtResource("2_h1iq0")]
 texture_filter = 1
+scale = Vector2(0.5, 0.5)
 layer_0/tile_data = PackedInt32Array()
 layer_1/tile_data = PackedInt32Array()
 
@@ -16,3 +17,4 @@ layer_1/tile_data = PackedInt32Array()
 visible = false
 position = Vector2(1933, 1057)
 enabled = false
+zoom = Vector2(0.1, 0.1)

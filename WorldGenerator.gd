@@ -92,15 +92,16 @@ func _ready():
 func set_tiles():
 	for x in altitude:
 		var alt = altitude[x]
-		if 	alt < 0.2:
-			waterArray.append(x)
+#		if 	alt < 0.2:
+#			waterArray.append(x)
 		if alt < 0.3:
 			dirtArray.append(x)
 		else:
 			grassArray.append(x)
-	tile_map.set_cells_terrain_connect(0,grassArray,0,1)
-	tile_map.set_cells_terrain_connect(0,dirtArray,0,0)
-	tile_map.set_cells_terrain_connect(1,waterArray,0,2)
+	tile_map.set_cells_terrain_connect(1,dirtArray,0,0, false)
+	tile_map.set_cells_terrain_connect(0,grassArray,0,1, false)
+	
+#	tile_map.set_cells_terrain_connect(1,waterArray,0,2)
 func is_adiacent_same_type(pos : Vector2i,check, grid : Dictionary ) -> int:
 	var up = Vector2i(pos.x, pos.y-1)
 	var left = Vector2i(pos.x-1, pos.y)
