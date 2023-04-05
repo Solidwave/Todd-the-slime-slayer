@@ -2,7 +2,14 @@ res://tile_map.tscn
 res://button_texture.tres
 res://button_pressed_texture.tres
 res://ui.tres
-res://TerrainTextures/ocean_texture.tres
 res://tab_theme_inventory.tres
 res://tab_theme_inventory_u.tres
 res://Scenes/Enemies/Slimes/Slime.gdshader
+res://TerrainTextures/ocean_texture.tres
+res://Scenes/Player.tscn
+res://Scenes/chest.tscn
+res://loot.tscn
+res://Scenes/Levels/level_1.tscn
+res://Scenes/Levels/slime_village.tscn
+res://test.tscn
+res://world_generator.tscn
