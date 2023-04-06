@@ -6,6 +6,8 @@ extends Node2D
 @export var height = 600
 @onready var ocean = $Ocean
 
+var bush = preload("res://bush.tscn")
+
 var temperature = {}
 var altitude = {}
 var moisture = {}
@@ -71,6 +73,8 @@ func _ready():
 #	generate_biomes(altitude)
 	
 	set_tiles()
+	
+	spawn_objects()
 #	queue_redraw()
 
 	
@@ -100,6 +104,22 @@ func set_tiles():
 			grassArray.append(x)
 	tile_map.set_cells_terrain_connect(1,dirtArray,0,0, false)
 	tile_map.set_cells_terrain_connect(0,grassArray,0,1, false)
+
+func spawn_objects():
+	for x in grassArray:
+		if randf() < 0.1:
+			var position = tile_map.map_to_local(x)
+			
+			var bush_object = bush.instantiate()
+			
+			
+			bush_object.global_position = position 
+			
+			add_child(bush_object)
+				
+			
+			
+	
 	
 #	tile_map.set_cells_terrain_connect(1,waterArray,0,2)
 func is_adiacent_same_type(pos : Vector2i,check, grid : Dictionary ) -> int:

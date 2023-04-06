@@ -4,17 +4,19 @@
 [ext_resource type="PackedScene" uid="uid://cco55ckt0i2bv" path="res://tile_map.tscn" id="2_h1iq0"]
 
 [node name="WorldGenerator" type="Area2D"]
+position = Vector2(-6400, -3200)
 script = ExtResource("1_qdeol")
+width = 400
 height = 200
 
 [node name="TileMap" parent="." instance=ExtResource("2_h1iq0")]
 texture_filter = 1
+position = Vector2(0, 0)
 scale = Vector2(0.5, 0.5)
 layer_0/tile_data = PackedInt32Array()
 layer_1/tile_data = PackedInt32Array()
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
 position = Vector2(1933, 1057)
 enabled = false
 zoom = Vector2(0.1, 0.1)
