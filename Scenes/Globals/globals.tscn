@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo5yyhl6qj"]
+
+[ext_resource type="Script" path="res://Scenes/Globals/Globals.gd" id="1_uxcpt"]
+
+[node name="Globals" type="Node2D" groups=["Persist"]]
+script = ExtResource("1_uxcpt")

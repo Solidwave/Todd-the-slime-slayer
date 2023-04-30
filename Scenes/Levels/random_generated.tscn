@@ -1,20 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://c63mdnbt8hpxn"]
+[gd_scene load_steps=7 format=3 uid="uid://cxeftdqi10pfy"]
 
-[ext_resource type="PackedScene" uid="uid://dabi8cx0dsfgi" path="res://world_generator.tscn" id="1_5i1xf"]
-[ext_resource type="PackedScene" uid="uid://bor56kblif4d6" path="res://Scenes/Player.tscn" id="2_wr4y6"]
+[ext_resource type="PackedScene" uid="uid://ddfhswjcrtppg" path="res://Scenes/WorldGenerator/world_generator.tscn" id="1_5i1xf"]
+[ext_resource type="PackedScene" uid="uid://d0ytjpkesi1f3" path="res://Scenes/Player/Player.tscn" id="2_wr4y6"]
 [ext_resource type="PackedScene" uid="uid://bw83s7c8argvc" path="res://Scenes/spawner.tscn" id="3_6kkfj"]
-[ext_resource type="PackedScene" uid="uid://4mj54ucrehhf" path="res://Scenes/chest.tscn" id="4_7wlkg"]
+[ext_resource type="PackedScene" uid="uid://cf8tj1pgfirsa" path="res://Scenes/Chest/chest.tscn" id="4_7wlkg"]
 [ext_resource type="Script" path="res://Resources/loot_data.gd" id="5_6kbmv"]
-[ext_resource type="Texture2D" uid="uid://bnegmorjg8hha" path="res://Sprites/Pixel_Mart/watermelon1.png" id="6_u0fv2"]
 
 [sub_resource type="Resource" id="Resource_4pasc"]
 script = ExtResource("5_6kbmv")
-sprite = ExtResource("6_u0fv2")
 rarity = 0.0
 effect = {}
-id = 2
+id = ""
 price = 1
 item_name = "watermelon"
+sprite = ""
 
 [node name="Level1" type="Node2D"]
 position = Vector2(0, -46)

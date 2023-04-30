@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://dv8rw8pdi4wha"]
+
+[ext_resource type="Script" path="res://Scenes/UI/Inventory/inventory_slot.gd" id="1_xe24c"]
+[ext_resource type="Texture2D" uid="uid://dcfxvpvc0t7dw" path="res://atlases/gui_atlas.png" id="2_2wces"]
+[ext_resource type="Theme" uid="uid://cnjgupux4sfnr" path="res://Textures/UItextures/ui.tres" id="3_rug2l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dbw4"]
+atlas = ExtResource("2_2wces")
+region = Rect2(52.2176, 95.2693, 31.8683, 33.3169)
+
+[node name="InventorySlot" type="MarginContainer"]
+custom_minimum_size = Vector2(100, 100)
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_xe24c")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_3dbw4")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+expand_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+
+[node name="AmountLabel" type="Label" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme = ExtResource("3_rug2l")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

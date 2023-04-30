@@ -1,0 +1,360 @@
+[gd_scene load_steps=17 format=3 uid="uid://dbmsllit7wfxm"]
+
+[ext_resource type="Script" path="res://Scenes/UI/UI.gd" id="1_ciai4"]
+[ext_resource type="Texture2D" uid="uid://b3e708hgb2p4e" path="res://Sprites/heart.png" id="2_cocy8"]
+[ext_resource type="PackedScene" uid="uid://bfqipvs4swq58" path="res://Scenes/Components/joystick.tscn" id="3_3q30d"]
+[ext_resource type="Texture2D" uid="uid://cqldq2bgo83wh" path="res://Sprites/Joystick/attackbutton.png" id="4_2bipp"]
+[ext_resource type="Texture2D" uid="uid://dfj0j5fb3mw4o" path="res://Sprites/MyIcons/bag.png" id="5_nnela"]
+[ext_resource type="Texture2D" uid="uid://xajj6rkov5f6" path="res://Sprites/MyIcons/play_pause.png" id="6_echth"]
+[ext_resource type="Texture2D" uid="uid://dxq24f5emks0y" path="res://Sprites/MyIcons/options.png" id="7_2d6yo"]
+[ext_resource type="PackedScene" uid="uid://b3yfoxjybhkp2" path="res://Scenes/UI/Inventory/inventory_ui.tscn" id="8_d8f7y"]
+[ext_resource type="Theme" uid="uid://cnjgupux4sfnr" path="res://Textures/UItextures/ui.tres" id="9_mswh4"]
+[ext_resource type="Script" path="res://Scenes/UI/Options/OptionsMenu.gd" id="10_vytqx"]
+[ext_resource type="PackedScene" uid="uid://1wi8ht6l54hq" path="res://Scenes/UI/Options/options.tscn" id="11_dtev5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcngw"]
+atlas = ExtResource("6_echth")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="Animation" id="Animation_xn77d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PauseLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PauseLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OptionsMenu:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_q5anu"]
+resource_name = "label_appear"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PauseLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PauseLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_s5wnt"]
+resource_name = "options_appear"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OptionsMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8vqcl"]
+_data = {
+"RESET": SubResource("Animation_xn77d"),
+"label_appear": SubResource("Animation_q5anu"),
+"options_appear": SubResource("Animation_s5wnt")
+}
+
+[node name="GamePlayUI" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.999167, 1)
+script = ExtResource("1_ciai4")
+
+[node name="HBoxcontainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -174.0
+offset_bottom = 56.0
+grow_horizontal = 0
+
+[node name="MonstersAliveLabel" type="Label" parent="HBoxcontainer"]
+layout_mode = 2
+text = "Slimes alive:"
+
+[node name="MonstersAliveValue" type="Label" parent="HBoxcontainer"]
+layout_mode = 2
+
+[node name="HeartContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -82.5
+offset_top = -40.0
+offset_right = 82.5
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="HealthBar" type="Sprite2D" parent="HeartContainer"]
+texture_filter = 1
+texture = ExtResource("2_cocy8")
+centered = false
+hframes = 4
+frame = 3
+
+[node name="HealthBar2" type="Sprite2D" parent="HeartContainer"]
+texture_filter = 1
+position = Vector2(32, 0)
+texture = ExtResource("2_cocy8")
+centered = false
+hframes = 4
+frame = 3
+
+[node name="HealthBar3" type="Sprite2D" parent="HeartContainer"]
+texture_filter = 1
+position = Vector2(64, 0)
+texture = ExtResource("2_cocy8")
+centered = false
+hframes = 4
+frame = 3
+
+[node name="HealthBar4" type="Sprite2D" parent="HeartContainer"]
+texture_filter = 1
+position = Vector2(96, 0)
+texture = ExtResource("2_cocy8")
+centered = false
+hframes = 4
+frame = 3
+
+[node name="HealthBar5" type="Sprite2D" parent="HeartContainer"]
+texture_filter = 1
+position = Vector2(128, 0)
+texture = ExtResource("2_cocy8")
+centered = false
+hframes = 4
+frame = 3
+
+[node name="Locomotion" type="Control" parent="."]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -300.0
+offset_right = 300.0
+grow_vertical = 0
+
+[node name="Joystick" parent="Locomotion" instance=ExtResource("3_3q30d")]
+position = Vector2(150, 150)
+scale = Vector2(2, 2)
+
+[node name="Attack" type="Control" parent="."]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 1
+anchor_left = 0.807
+anchor_top = 0.802
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.00195313
+offset_top = 0.303955
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Joystick" parent="Attack" instance=ExtResource("3_3q30d")]
+position = Vector2(150, 150)
+scale = Vector2(2, 2)
+smallTexture = ExtResource("4_2bipp")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="JuiceLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Slime Juice:"
+
+[node name="JuiceValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Inventory" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("5_nnela")
+
+[node name="Pause" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = SubResource("AtlasTexture_bcngw")
+
+[node name="Options" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("7_2d6yo")
+
+[node name="Inventory_UI" parent="." instance=ExtResource("8_d8f7y")]
+visible = false
+layout_mode = 1
+
+[node name="PauseLabel" type="Label" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_mswh4")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 82
+text = "GAME PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8vqcl")
+}
+
+[node name="OptionsMenu" type="MarginContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_mswh4")
+script = ExtResource("10_vytqx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenu"]
+layout_mode = 2
+
+[node name="MenuButton" type="Button" parent="OptionsMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "MENU"
+
+[node name="RestartButton" type="Button" parent="OptionsMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "RESTART"
+
+[node name="OptionsButton" type="Button" parent="OptionsMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "OPTIONS"
+
+[node name="QuitButton" type="Button" parent="OptionsMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "QUIT
+"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+initial_position = 1
+size = Vector2i(200, 125)
+borderless = true
+always_on_top = true
+theme = ExtResource("9_mswh4")
+
+[node name="Options" parent="." instance=ExtResource("11_dtev5")]
+visible = false
+layout_mode = 1
+
+[connection signal="open_inventory" from="." to="Inventory_UI" method="_on_game_play_ui_open_inventory"]
+[connection signal="open_options" from="." to="OptionsMenu" method="_on_game_play_ui_open_options"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Inventory" to="." method="_on_inventory_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="close_inventory" from="Inventory_UI" to="." method="_on_inventory_ui_close_inventory"]
+[connection signal="pressed" from="OptionsMenu/VBoxContainer/MenuButton" to="OptionsMenu" method="_on_menu_button_pressed"]
+[connection signal="pressed" from="OptionsMenu/VBoxContainer/RestartButton" to="OptionsMenu" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="OptionsMenu/VBoxContainer/OptionsButton" to="OptionsMenu" method="_on_options_button_pressed"]
+[connection signal="pressed" from="OptionsMenu/VBoxContainer/QuitButton" to="OptionsMenu" method="_on_quit_button_pressed"]

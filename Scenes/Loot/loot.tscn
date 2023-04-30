@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://ytvd8uxmiv5i"]
+
+[ext_resource type="Script" path="res://Scenes/Loot/loot.gd" id="1_qxyjo"]
+[ext_resource type="Texture2D" uid="uid://vmdhexoac2lo" path="res://Sprites/Slimes/shadow.png" id="2_7n7bv"]
+[ext_resource type="Texture2D" uid="uid://c4ovwosi6x4bf" path="res://Sprites/Pixel_Mart/banana.png" id="3_eegi2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1lt06"]
+
+[sub_resource type="Animation" id="Animation_6uf0t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7ipac"]
+resource_name = "chest"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(32, -32), Vector2(64, 2.08165e-12), Vector2(80, -16), Vector2(96, 2.08165e-12)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h5oec"]
+_data = {
+"RESET": SubResource("Animation_6uf0t"),
+"chest": SubResource("Animation_7ipac")
+}
+
+[node name="Loot" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_qxyjo")
+
+[node name="PickupZone2" type="CollisionShape2D" parent="." groups=["loot"]]
+visible = false
+scale = Vector2(3, 3)
+shape = SubResource("CircleShape2D_1lt06")
+
+[node name="Sprites" type="Node2D" parent="."]
+position = Vector2(0, -2.49682)
+
+[node name="Shadow" type="Sprite2D" parent="Sprites"]
+texture_filter = 1
+position = Vector2(-1, 12.4968)
+scale = Vector2(2, 2)
+texture = ExtResource("2_7n7bv")
+
+[node name="Sprite" type="Sprite2D" parent="Sprites"]
+texture_filter = 1
+position = Vector2(0, 3.49682)
+scale = Vector2(2, 2)
+texture = ExtResource("3_eegi2")
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="PickupZone" type="CollisionShape2D" parent="Area2D" groups=["loot"]]
+scale = Vector2(3, 3)
+shape = SubResource("CircleShape2D_1lt06")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_h5oec")
+}
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

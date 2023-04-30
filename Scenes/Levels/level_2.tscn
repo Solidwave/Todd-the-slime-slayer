@@ -1,10 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://cnyxu1kr0nvdy"]
+[gd_scene load_steps=26 format=3 uid="uid://cnyxu1kr0nvdy"]
 
 [ext_resource type="Texture2D" uid="uid://c505qjqlbw4w0" path="res://Sprites/Tileset/terrain_atlas.png" id="1_20c8g"]
 [ext_resource type="Texture2D" uid="uid://5m5mdd8wnytn" path="res://Sprites/Tileset/base_out_atlas.png" id="2_h2h2f"]
-[ext_resource type="PackedScene" uid="uid://vf2qefixys82" path="res://Scenes/Player.tscn" id="3_fu4vn"]
+[ext_resource type="PackedScene" uid="uid://d0ytjpkesi1f3" path="res://Scenes/Player/Player.tscn" id="4_c2e7o"]
 [ext_resource type="PackedScene" uid="uid://bw83s7c8argvc" path="res://Scenes/spawner.tscn" id="4_typxr"]
-[ext_resource type="PackedScene" uid="uid://c80siqtvj5qmi" path="res://Scenes/Enemies/Slimes/Slime.tscn" id="5_6j00v"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wgteq"]
 
@@ -24,25 +23,25 @@
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4b252"]
 vertices = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-polygons = [PackedInt32Array(0, 1, 2, 3)]
-outlines = [PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)]
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_b8yf4"]
 vertices = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-polygons = [PackedInt32Array(0, 1, 2, 3)]
-outlines = [PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)]
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rkt0h"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1lq47"]
 vertices = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-polygons = [PackedInt32Array(0, 1, 2, 3)]
-outlines = [PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)]
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_nqp0e"]
 vertices = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-polygons = [PackedInt32Array(0, 1, 2, 3)]
-outlines = [PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)]
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_p5oak"]
 
@@ -6357,12 +6356,10 @@ layer_2/tile_data = PackedInt32Array(1179664, 983040, 12, 1245200, 983040, 13, 1
 [node name="Agents" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Player" parent="Agents" instance=ExtResource("3_fu4vn")]
-y_sort_enabled = false
-
 [node name="Spawner" parent="Agents" node_paths=PackedStringArray("navRegion", "enemiesParent") instance=ExtResource("4_typxr")]
-preloadedEnemies = [ExtResource("5_6j00v")]
 spawnRange = 1000
 navRegion = NodePath("")
 enemiesParent = NodePath("..")
 maxEnemies = 10
+
+[node name="Player" parent="Agents" instance=ExtResource("4_c2e7o")]

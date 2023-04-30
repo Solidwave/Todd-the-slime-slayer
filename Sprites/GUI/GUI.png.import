@@ -2,17 +2,19 @@
 
 importer="texture_atlas"
 type="Texture2D"
-uid="uid://ctnftwfjrskiq"
+uid="uid://cs7d0e1c3yi7w"
 path="res://.godot/imported/GUI.png-38c73db81d958a1dc9fee715876c5937.res"
-
+group_file="res://atlases/gui_atlas.png"
+valid=true
 [deps]
+
 
 source_file="res://Sprites/GUI/GUI.png"
 dest_files=["res://.godot/imported/GUI.png-38c73db81d958a1dc9fee715876c5937.res"]
 
 [params]
 
-atlas_file=""
+atlas_file="res://atlases/gui_atlas.png"
 import_mode=0
 crop_to_region=false
 trim_alpha_border_from_region=true

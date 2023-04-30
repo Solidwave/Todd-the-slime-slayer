@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddfhswjcrtppg"]
+
+[ext_resource type="Script" path="res://Scenes/WorldGenerator/WorldGenerator.gd" id="1_uaq7d"]
+[ext_resource type="PackedScene" uid="uid://du70qfmiocvdl" path="res://Scenes/tile_map.tscn" id="2_kid4s"]
+
+[node name="WorldGenerator" type="Area2D"]
+position = Vector2(-6400, -3200)
+script = ExtResource("1_uaq7d")
+width = 400
+height = 200
+
+[node name="TileMap" parent="." instance=ExtResource("2_kid4s")]
+texture_filter = 1
+position = Vector2(0, 0)
+scale = Vector2(0.5, 0.5)
+layer_1/tile_data = PackedInt32Array()
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1933, 1057)
+enabled = false
+zoom = Vector2(0.1, 0.1)

@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://jylxlkuhuviy"]
+[gd_scene load_steps=8 format=3 uid="uid://b5g6r7r3gwsrc"]
 
-[ext_resource type="Script" path="res://Sword.gd" id="1_uib82"]
+[ext_resource type="Script" path="res://Scenes/Weapons/Swords/Sword.gd" id="1_ejhj7"]
 [ext_resource type="Texture2D" uid="uid://ctrdyl7hvp2po" path="res://Sprites/Weapons/Swords/SWORDS.png" id="2_t1sg0"]
 [ext_resource type="Texture2D" uid="uid://c05rgluod3fwc" path="res://Sprites/newchar/newsword2.png" id="3_rc8bx"]
 
@@ -122,7 +122,7 @@ visible = false
 y_sort_enabled = true
 position = Vector2(35, -1)
 scale = Vector2(2, 2)
-script = ExtResource("1_uib82")
+script = ExtResource("1_ejhj7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

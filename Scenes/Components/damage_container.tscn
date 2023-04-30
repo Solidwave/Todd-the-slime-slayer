@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1cn7ymauunk4"]
+[gd_scene load_steps=5 format=3 uid="uid://cslc8eu142uhc"]
 
-[ext_resource type="Theme" uid="uid://clenol0pyn35i" path="res://ui.tres" id="1_lg8vy"]
 [ext_resource type="Script" path="res://Scenes/Components/damage_container.gd" id="1_ogmv1"]
 
 [sub_resource type="Animation" id="Animation_ed4dl"]
@@ -182,13 +181,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -577.0
-offset_top = -335.5
-offset_right = -537.0
-offset_bottom = -312.5
+offset_left = 10.0
+offset_top = 18.5
+offset_right = 50.0
+offset_bottom = 41.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_lg8vy")
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 1
 text = "100"

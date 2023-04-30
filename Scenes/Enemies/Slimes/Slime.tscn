@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="2_71jv7"]
 [ext_resource type="Shader" path="res://Scenes/Enemies/Slimes/Slime.gdshader" id="2_astfr"]
 [ext_resource type="Texture2D" uid="uid://dkui28mjn6kny" path="res://Sprites/Slimes/slime_red.png" id="2_ivhso"]
-[ext_resource type="PackedScene" uid="uid://d1cn7ymauunk4" path="res://Scenes/Components/damage_container.tscn" id="5_wjxap"]
+[ext_resource type="PackedScene" uid="uid://cslc8eu142uhc" path="res://Scenes/Components/damage_container.tscn" id="5_wjxap"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_omvqf"]
 resource_local_to_scene = true

@@ -1,0 +1,97 @@
+[gd_scene load_steps=5 format=3 uid="uid://ba5nfbb0htyuc"]
+
+[ext_resource type="Script" path="res://Scenes/UI/control.gd" id="1_ym27j"]
+[ext_resource type="Theme" uid="uid://cnjgupux4sfnr" path="res://Textures/UItextures/ui.tres" id="2_cl155"]
+[ext_resource type="StyleBox" uid="uid://gct7dthghbrx" path="res://Textures/UItextures/menu_background_panel.tres" id="3_w10eo"]
+
+[sub_resource type="Theme" id="Theme_tsrwn"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ym27j")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_cl155")
+theme_override_styles/panel = ExtResource("3_w10eo")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 100
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("2_cl155")
+
+[node name="Title" type="Label" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer3"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("2_cl155")
+theme_override_font_sizes/font_size = 86
+text = "Todd
+the Slime 
+slayer"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="StartButton" type="Button" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "Start
+"
+
+[node name="Levels" type="Button" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "Choose Level
+"
+
+[node name="Endlessmode" type="Button" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "Endless mode
+"
+
+[node name="OptionsButton" type="Button" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme = SubResource("Theme_tsrwn")
+text = "Quit"
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Levels" to="." method="_on_levels_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/Endlessmode" to="." method="_on_endlessmode_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

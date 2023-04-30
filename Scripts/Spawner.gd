@@ -4,7 +4,7 @@ extends Node2D
 	preload("res://Scenes/Enemies/Slimes/Slime.tscn")
 ]
 
-@export var lootScene = preload("res://loot.tscn")
+@export var lootScene = preload("res://Scenes/Loot/loot.tscn")
 
 @onready var spawnTimer = $Timer
 @onready var navAgent = $NavigationAgent2D
