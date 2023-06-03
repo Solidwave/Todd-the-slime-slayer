@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://pqnogoufcb2w"]
+[gd_scene load_steps=6 format=3 uid="uid://pqnogoufcb2w"]
 
 [ext_resource type="Script" path="res://Scenes/UI/VendorUI/VendorUI.gd" id="1_1uxn6"]
 [ext_resource type="Texture2D" uid="uid://dkdamake2pfkj" path="res://Sprites/SpritesGUI_Essential_Free/Complete_GUI_Essential_Pack_Free_Version/01_Basic_Collection/01_Flat_Theme/Sprites/UI_Flat_Button_Small_Release_02a3.png" id="2_dx4de"]
+[ext_resource type="PackedScene" uid="uid://bpdj7obo1ek55" path="res://Scenes/UI/snackbar.tscn" id="2_o05ks"]
 [ext_resource type="Texture2D" uid="uid://dw7ogacrp48gs" path="res://Sprites/SpritesGUI_Essential_Free/Complete_GUI_Essential_Pack_Free_Version/01_Basic_Collection/01_Flat_Theme/Sprites/UI_Flat_Button_Small_Release_02a2.png" id="3_osw76"]
 [ext_resource type="Texture2D" uid="uid://cqya8hua1gm0a" path="res://Sprites/SpritesGUI_Essential_Free/Complete_GUI_Essential_Pack_Free_Version/01_Basic_Collection/01_Flat_Theme/Sprites/UI_Flat_Cross_Large.png" id="4_x0xgn"]
 
@@ -14,6 +15,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1uxn6")
 dataPath = "res://database/weapons.json"
+
+[node name="Snackbar" parent="." instance=ExtResource("2_o05ks")]
+layout_mode = 1
+offset_right = 1250.0
+offset_bottom = 820.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

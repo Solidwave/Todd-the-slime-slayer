@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Globals="*res://Scenes/Globals/Globals.gd"
 DbManager="*res://Scenes/Globals/DBManager.gd"
+Globals="*res://Scenes/Globals/Globals.gd"
 
 [display]
 

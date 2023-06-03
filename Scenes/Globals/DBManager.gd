@@ -28,7 +28,7 @@ func updateItem(file, item : Dictionary):
 	
 	return FAILED
 	
-func getItemById(file: String,id: String):
+func getItemById(file: String,id: int):
 	print("Getting item:", file, id)
 	var databaseFile = FileAccess.open(files[file], FileAccess.READ)
 	if databaseFile == null:

@@ -3,12 +3,13 @@ var Player
 
 var save_name = "Globals"
 
-var globalsData : GlobalsData 
+var globalsData : GlobalsData = GlobalsData.new({})
 
 func increaseSlimeJuice(amount: int):
 	globalsData.slime_juice += amount
 
 func _ready():
+	print(globalsData.inventory)
 	var save_file = FileAccess.open("user://saves/savegame.save", FileAccess.READ)
 	if save_file == null:
 		return

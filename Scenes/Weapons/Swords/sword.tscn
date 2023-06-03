@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://b5g6r7r3gwsrc"]
 
 [ext_resource type="Script" path="res://Scenes/Weapons/Swords/Sword.gd" id="1_ejhj7"]
-[ext_resource type="Texture2D" uid="uid://ctrdyl7hvp2po" path="res://Sprites/Weapons/Swords/SWORDS.png" id="2_t1sg0"]
 [ext_resource type="Texture2D" uid="uid://c05rgluod3fwc" path="res://Sprites/newchar/newsword2.png" id="3_rc8bx"]
+[ext_resource type="Texture2D" uid="uid://ctrdyl7hvp2po" path="res://Sprites/Weapons/Swords/Swords.png" id="3_rrqky"]
 
 [sub_resource type="Animation" id="Animation_tmgcs"]
 resource_name = "Attack"
@@ -141,7 +141,7 @@ texture = ExtResource("3_rc8bx")
 texture_filter = 1
 position = Vector2(0.556787, -15.2296)
 rotation = -0.740015
-texture = ExtResource("2_t1sg0")
+texture = ExtResource("3_rrqky")
 hframes = 16
 vframes = 20
 

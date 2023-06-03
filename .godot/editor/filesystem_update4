@@ -1,10 +1,9 @@
-res://Scenes/tile_map.tscn
+res://Scenes/Player/Player.tscn
 res://Textures/UItextures/button_texture.tres
 res://Textures/UItextures/button_pressed_texture.tres
 res://Textures/UItextures/ui.tres
 res://Scenes/Enemies/Slimes/Slime.gdshader
 res://Textures/UItextures/menu_background_panel.tres
-res://Scenes/Player/Player.tscn
 res://Scenes/Chest/chest.tscn
 res://Scenes/Loot/loot.tscn
 res://Scenes/Levels/level_1.tscn
@@ -36,3 +35,10 @@ res://Scenes/UI/VendorUI/vendor_ui.tscn
 res://Scenes/UI/snackbar.tscn
 res://Scenes/Weapons/Swords/sword.tscn
 res://Scenes/spawner.tscn
+res://Scenes/tile_map.tscn
+res://database/weapons.json
+res://Scenes/Globals/GlobalsData.gd
+res://Scenes/Globals/Globals.gd
+res://database/loot.json
+res://Scenes/Globals/DBManager.gd
+res://Scenes/Chest/Chest.gd
