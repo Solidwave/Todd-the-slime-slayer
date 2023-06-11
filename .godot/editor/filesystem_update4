@@ -5,7 +5,6 @@ res://Textures/UItextures/ui.tres
 res://Scenes/Enemies/Slimes/Slime.gdshader
 res://Textures/UItextures/menu_background_panel.tres
 res://Scenes/Chest/chest.tscn
-res://Scenes/Loot/loot.tscn
 res://Scenes/Levels/level_1.tscn
 res://Scenes/WorldGenerator/world_generator.tscn
 res://Scenes/GroundObjects/Bush/bush.tscn
@@ -22,7 +21,6 @@ res://Scenes/UI/LevelsMenu/LevelButton.tscn
 res://Scenes/Buildings/house.tscn
 res://Scenes/Components/damage_container.tscn
 res://Scenes/Components/joystick.tscn
-res://Scenes/Components/velocity_component.tscn
 res://Scenes/Globals/globals.tscn
 res://Scenes/Levels/level_2.tscn
 res://Scenes/Levels/random_generated.tscn
@@ -36,9 +34,12 @@ res://Scenes/UI/snackbar.tscn
 res://Scenes/Weapons/Swords/sword.tscn
 res://Scenes/spawner.tscn
 res://Scenes/tile_map.tscn
+res://Scenes/Buildings/vendor.gd
+res://Scenes/Buildings/vendor.tscn
+res://Scenes/UI/Options/OptionsMenu.gd
+res://Scenes/Levels/Teleport.gd
 res://database/weapons.json
-res://Scenes/Globals/GlobalsData.gd
-res://Scenes/Globals/Globals.gd
-res://database/loot.json
-res://Scenes/Globals/DBManager.gd
-res://Scenes/Chest/Chest.gd
+res://Scenes/Load/load.tscn
+res://Scripts/load.gd
+res://Scenes/UI/LevelsMenu/LevelButton.gd
+res://Scenes/WorldGenerator/WorldGenerator.gd

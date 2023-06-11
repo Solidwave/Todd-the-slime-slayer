@@ -62,6 +62,8 @@ func generate_map(frequency, octave):
 			
 			grid[Vector2i(x,y)] = rand
 	return grid
+	
+	Load.set_load_value(0.25)
 
 #func _draw():
 #	for ocean in oceanBiome:
@@ -69,12 +71,17 @@ func generate_map(frequency, octave):
 func _ready():
 	altitude = generate_map(0.01,5)	
 	
+	Load.set_load_value(0.25)
+	
 #	generate_biomes(altitude)
 	
 	set_tiles()
 	
+	Load.set_load_value(0.50)
+	
 	spawn_objects()
 #	queue_redraw()
+	Load.set_load_value(1)
 
 	
 #func generate_biomes(grid):

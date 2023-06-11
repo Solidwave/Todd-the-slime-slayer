@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://54t0l8aqm70k"]
 
 [ext_resource type="PackedScene" uid="uid://du70qfmiocvdl" path="res://Scenes/tile_map.tscn" id="1_gkb2r"]
-[ext_resource type="PackedScene" uid="uid://c8jx5wkrkvx27" path="res://Scenes/vendor.tscn" id="2_h7rwg"]
 [ext_resource type="PackedScene" uid="uid://d0ytjpkesi1f3" path="res://Scenes/Player/Player.tscn" id="4_pcd7f"]
 [ext_resource type="Script" path="res://Scenes/Levels/Teleport.gd" id="5_1bljq"]
 [ext_resource type="PackedScene" uid="uid://crtmamlu5vv26" path="res://Scenes/Buildings/house.tscn" id="6_k0xir"]
 [ext_resource type="Texture2D" uid="uid://btg3s5w2f3fkv" path="res://icon.svg" id="6_rqsmj"]
+[ext_resource type="PackedScene" uid="uid://c8jx5wkrkvx27" path="res://Scenes/Buildings/vendor.tscn" id="6_unydl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0wm4"]
 size = Vector2(180, 231.25)
@@ -19,8 +19,8 @@ layer_1/tile_data = PackedInt32Array(-65516, 1114112, 4, -131052, 1114112, 2, -6
 [node name="Agents" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Vendor" parent="Agents" instance=ExtResource("2_h7rwg")]
-position = Vector2(884, -286)
+[node name="Vendor" parent="Agents" instance=ExtResource("6_unydl")]
+position = Vector2(743, -246)
 
 [node name="Player" parent="Agents" instance=ExtResource("4_pcd7f")]
 position = Vector2(386, -1)
@@ -28,7 +28,7 @@ position = Vector2(386, -1)
 [node name="Teleport" type="Area2D" parent="Agents"]
 position = Vector2(918, 129)
 script = ExtResource("5_1bljq")
-sceneToLoad = "res://Scenes/LevelsMenu/levels_ui.tscn"
+sceneToLoad = "res://Scenes/UI/LevelsMenu/levels_ui.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Agents/Teleport"]
 position = Vector2(90.7199, 116.88)

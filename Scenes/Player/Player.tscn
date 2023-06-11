@@ -889,4 +889,3 @@ limit_smoothed = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GamePlayUI" parent="CanvasLayer" instance=ExtResource("4_g3774")]
-mouse_filter = 1

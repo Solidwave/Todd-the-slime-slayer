@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 DbManager="*res://Scenes/Globals/DBManager.gd"
 Globals="*res://Scenes/Globals/Globals.gd"
+Load="*res://Scripts/load.gd"
 
 [display]
 

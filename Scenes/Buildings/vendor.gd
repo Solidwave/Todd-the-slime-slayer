@@ -14,9 +14,15 @@ func _process(delta):
 
 
 func _on_clickable_input_event(viewport, event, shape_idx):
+	print('clicked vendor')
 	if event is InputEventScreenTouch && event.pressed:
 		vendor_ui.visible = !vendor_ui.visible
 		
 	
 	
 	
+
+
+func _on_clickable_2_pressed():
+	print('clicked vendor')
+	vendor_ui.visible = !vendor_ui.visible

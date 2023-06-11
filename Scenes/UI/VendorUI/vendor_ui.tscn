@@ -16,13 +16,6 @@ grow_vertical = 2
 script = ExtResource("1_1uxn6")
 dataPath = "res://database/weapons.json"
 
-[node name="Snackbar" parent="." instance=ExtResource("2_o05ks")]
-layout_mode = 1
-offset_right = 1250.0
-offset_bottom = 820.0
-grow_horizontal = 1
-grow_vertical = 1
-
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -85,5 +78,10 @@ metadata/_edit_use_anchors_ = true
 texture_filter = 1
 texture = ExtResource("4_x0xgn")
 centered = false
+
+[node name="Snackbar" parent="." instance=ExtResource("2_o05ks")]
+layout_mode = 1
+offset_right = 576.0
+offset_bottom = 144.0
 
 [connection signal="pressed" from="MarginContainer/Panel/MarginContainer2/CloseButton" to="." method="_on_close_button_pressed"]

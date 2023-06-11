@@ -6,16 +6,19 @@ signal toggle_options
 
 func _ready():
 	modulate.a = 0
+	visible = false
 func _on_game_play_ui_open_options():
 	if modulate.a == 1:
+		visible = false
 		animation_player.play_backwards("options_appear")
 	else:
+		visible = true
 		animation_player.play("options_appear")
 	
 
 
 func _on_menu_button_pressed():
-	get_tree().change_scene_to_file("res://control.tscn")
+	get_tree().change_scene_to_file("res://Scenes/UI/control.tscn")
 
 func _on_restart_button_pressed():
 	get_tree().reload_current_scene()

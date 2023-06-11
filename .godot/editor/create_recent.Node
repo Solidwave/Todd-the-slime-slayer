@@ -1,3 +1,9 @@
+TextureRect
+VBoxContainer
+MarginContainer
+ProgressBar
+CanvasLayer
+TextureButton
 Node2D
 Sprite2D
 Node
@@ -7,19 +13,14 @@ ConfirmationDialog
 RemoteTransform2D
 Bone2D
 Skeleton2D
-CanvasLayer
 Control
 Snackbar
 Timer
-MarginContainer
-TextureButton
 Label
 NinePatchRect
-TextureRect
 ScrollContainer
 VScrollBar
 Button
-VBoxContainer
 Panel
 CollisionShape2D
 Area2D
@@ -29,4 +30,3 @@ GridContainer
 TabContainer
 TabBar
 Camera2D
-StaticBody2D
