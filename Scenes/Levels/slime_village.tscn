@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scenes/Levels/Teleport.gd" id="5_1bljq"]
 [ext_resource type="PackedScene" uid="uid://crtmamlu5vv26" path="res://Scenes/Buildings/house.tscn" id="6_k0xir"]
 [ext_resource type="Texture2D" uid="uid://btg3s5w2f3fkv" path="res://icon.svg" id="6_rqsmj"]
-[ext_resource type="PackedScene" uid="uid://c8jx5wkrkvx27" path="res://Scenes/Buildings/vendor.tscn" id="6_unydl"]
+[ext_resource type="PackedScene" uid="uid://c8jx5wkrkvx27" path="res://Scenes/Buildings/Vendor.tscn" id="6_unydl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0wm4"]
 size = Vector2(180, 231.25)

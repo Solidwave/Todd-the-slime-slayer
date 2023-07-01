@@ -1,14 +1,15 @@
 TextureRect
+Sprite2D
+AnimationPlayer
+Button
 VBoxContainer
 MarginContainer
 ProgressBar
 CanvasLayer
 TextureButton
 Node2D
-Sprite2D
 Node
 TileMap
-AnimationPlayer
 ConfirmationDialog
 RemoteTransform2D
 Bone2D
@@ -20,7 +21,6 @@ Label
 NinePatchRect
 ScrollContainer
 VScrollBar
-Button
 Panel
 CollisionShape2D
 Area2D

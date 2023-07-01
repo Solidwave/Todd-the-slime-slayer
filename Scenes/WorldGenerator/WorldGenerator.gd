@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var tile_map = $TileMap
+@onready var tile_map = preload("res://Scenes/tile_map.tscn")
 
 @export var width = 600
 @export var height = 600
@@ -63,25 +63,45 @@ func generate_map(frequency, octave):
 			grid[Vector2i(x,y)] = rand
 	return grid
 	
-	Load.set_load_value(0.25)
-
 #func _draw():
 #	for ocean in oceanBiome:
 #		draw_colored_polygon(Geometry2D.convex_hull(oceanBiome[ocean]),Color.RED)
 func _ready():
+	print('word generatin...')
+	
+	SceneManager.load_callback = loaded_callback
+	
+	tile_map = tile_map.instantiate()
+	
+	tile_map.scale = Vector2(0.3,0.3)
+#	SceneManager.load_value = 0
+	
 	altitude = generate_map(0.01,5)	
 	
-	Load.set_load_value(0.25)
+#	SceneManager.load_value = 0.3
 	
 #	generate_biomes(altitude)
 	
 	set_tiles()
 	
-	Load.set_load_value(0.50)
+#	SceneManager.load_value = 0.6	
 	
 	spawn_objects()
+	
+#	SceneManager.load_value = 1
+	
 #	queue_redraw()
-	Load.set_load_value(1)
+	print('word finished...')
+	
+	
+#	add_child(tile_map)
+	
+func loaded_callback():
+	add_child(tile_map)
+	
+	
+
+	
 
 	
 #func generate_biomes(grid):
@@ -108,6 +128,8 @@ func set_tiles():
 			dirtArray.append(x)
 		else:
 			grassArray.append(x)
+#	tile_map.call_deferred("set_cells_terrain_connect",1,dirtArray,0,0, false)
+#	tile_map.call_deferred("set_cells_terrain_connect",0,grassArray,0,1, false)
 	tile_map.set_cells_terrain_connect(1,dirtArray,0,0, false)
 	tile_map.set_cells_terrain_connect(0,grassArray,0,1, false)
 

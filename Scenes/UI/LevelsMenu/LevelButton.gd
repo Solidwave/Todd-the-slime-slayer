@@ -16,4 +16,4 @@ func _ready():
 
 
 func _on_button_pressed():
-	Load.load_Scene("res://Scenes/UI/LevelsMenu/levels_ui.tscn",levelPath)
+	SceneManager.load_scene(levelPath)

@@ -1,13 +1,46 @@
-[gd_scene load_steps=2 format=3 uid="uid://t7fy86qgseca"]
+[gd_scene load_steps=8 format=3 uid="uid://t7fy86qgseca"]
 
 [ext_resource type="Texture2D" uid="uid://do11l7wgupx60" path="res://icon.png" id="1_802dp"]
+[ext_resource type="Shader" path="res://Scenes/Load/rotate.gdshader" id="2_xrvs4"]
+
+[sub_resource type="Gradient" id="Gradient_ad11q"]
+offsets = PackedFloat32Array(0, 0.378299)
+colors = PackedColorArray(0.470588, 0.623529, 0.733333, 1, 0.117647, 0.411765, 0.552941, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4s52b"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5n7w2"]
+seamless = true
+color_ramp = SubResource("Gradient_ad11q")
+noise = SubResource("FastNoiseLite_4s52b")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_igd7j"]
+shader = ExtResource("2_xrvs4")
+shader_parameter/speed = 1.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gybi8"]
 
 [node name="Load" type="CanvasLayer"]
+layer = 10
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -1.0
+offset_top = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = SubResource("NoiseTexture2D_5n7w2")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.0
+offset_top = -240.0
+offset_right = 228.0
+offset_bottom = 240.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 100
@@ -15,17 +48,21 @@ theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("1_802dp")
 stretch_mode = 4
 
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="TextureRect/MarginContainer/VBoxContainer"]
+material = SubResource("ShaderMaterial_igd7j")
+custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("PlaceholderTexture2D_gybi8")

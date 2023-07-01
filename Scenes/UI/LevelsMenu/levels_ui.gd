@@ -21,7 +21,8 @@ func get_levels(path) -> void:
 				print("Found directory: " + file_name)
 			else:
 				print("Found file: " + file_name)
-				createLevelButton(dir.get_current_dir() + '/' + file_name, file_name)
+				if file_name.ends_with("tscn"):
+					createLevelButton(dir.get_current_dir() + '/' + file_name, file_name)
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")
