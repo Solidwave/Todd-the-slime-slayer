@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxeftdqi10pfy"]
+
+[ext_resource type="PackedScene" uid="uid://ddfhswjcrtppg" path="res://Scenes/WorldGenerator/world_generator.tscn" id="1_ce4cm"]
+[ext_resource type="PackedScene" uid="uid://d0ytjpkesi1f3" path="res://Scenes/Player/Player.tscn" id="2_3l0ap"]
+[ext_resource type="PackedScene" uid="uid://bw83s7c8argvc" path="res://Scenes/spawner.tscn" id="3_e25te"]
+[ext_resource type="PackedScene" uid="uid://cf8tj1pgfirsa" path="res://Scenes/Chest/chest.tscn" id="4_b0j3p"]
+[ext_resource type="Script" path="res://Resources/loot_data.gd" id="5_vd0rl"]
+
+[sub_resource type="Resource" id="Resource_4pasc"]
+script = ExtResource("5_vd0rl")
+rarity = 0.0
+effect = {}
+id = ""
+price = 1
+item_name = "watermelon"
+sprite = ""
+
+[node name="Level1" type="Node2D"]
+position = Vector2(0, -46)
+
+[node name="WorldGenerator" parent="." instance=ExtResource("1_ce4cm")]
+position = Vector2(-9600, -3200)
+scale = Vector2(3, 3)
+
+[node name="Agents" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" parent="Agents" instance=ExtResource("2_3l0ap")]
+y_sort_enabled = false
+
+[node name="Spawner" parent="Agents" node_paths=PackedStringArray("enemiesParent") instance=ExtResource("3_e25te")]
+spawnRange = 1000
+enemiesParent = NodePath("..")
+maxEnemies = 1
+spawnInterval = 1
+
+[node name="Chest" parent="Agents" instance=ExtResource("4_b0j3p")]
+position = Vector2(446, -183)
+loot_pool = Array[ExtResource("5_vd0rl")]([SubResource("Resource_4pasc")])

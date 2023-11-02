@@ -32,9 +32,8 @@ y_sort_enabled = true
 [node name="Player" parent="Agents" instance=ExtResource("2_7ag7i")]
 y_sort_enabled = false
 
-[node name="Spawner" parent="Agents" node_paths=PackedStringArray("navRegion", "enemiesParent") instance=ExtResource("3_2v6jk")]
+[node name="Spawner" parent="Agents" node_paths=PackedStringArray("enemiesParent") instance=ExtResource("3_2v6jk")]
 spawnRange = 1000
-navRegion = NodePath("")
 enemiesParent = NodePath("..")
 maxEnemies = 1
 spawnInterval = 1

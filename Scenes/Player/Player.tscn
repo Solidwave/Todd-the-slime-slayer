@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://d0ytjpkesi1f3"]
+[gd_scene load_steps=34 format=3 uid="uid://d0ytjpkesi1f3"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_run14"]
 [ext_resource type="PackedScene" uid="uid://b5g6r7r3gwsrc" path="res://Scenes/Weapons/Swords/sword.tscn" id="2_tvto3"]
@@ -839,8 +839,6 @@ states/Locomotion/position = Vector2(387, 93)
 transitions = ["Locomotion", "Attack", SubResource("AnimationNodeStateMachineTransition_852s1"), "Attack", "Locomotion", SubResource("AnimationNodeStateMachineTransition_nhrlj"), "Start", "Locomotion", SubResource("AnimationNodeStateMachineTransition_bdxyh"), "Locomotion", "Death", SubResource("AnimationNodeStateMachineTransition_6ynv1"), "Attack", "Death", SubResource("AnimationNodeStateMachineTransition_yborx")]
 graph_offset = Vector2(1, 60)
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_c5iqs"]
-
 [node name="Player" type="CharacterBody2D" groups=["Persist", "Player"]]
 y_sort_enabled = true
 collision_layer = 3
@@ -871,7 +869,6 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_g6b23")
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_c5iqs")
 parameters/Attack/blend_position = 0.998396
 parameters/Locomotion/blend_position = Vector2(0.9897, 0.0299401)
 

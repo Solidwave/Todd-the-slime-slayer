@@ -12,3 +12,5 @@ height = 200
 position = Vector2(1933, 1057)
 enabled = false
 zoom = Vector2(0.1, 0.1)
+
+[connection signal="map_generation_finished" from="." to="." method="_on_map_generation_finished"]

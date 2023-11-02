@@ -34,4 +34,8 @@ func createLevelButton(levelPath: String, levelName: String) -> void:
 	
 	levelNode.levelPath = levelPath
 	
+	levelNode.threaded = levelName.ends_with("threaded.tscn")
+	
+	print(levelNode.threaded)
+	
 	LevelsContainer.add_child(levelNode)

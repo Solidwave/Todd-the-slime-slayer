@@ -6,7 +6,7 @@ res://Scenes/Enemies/Slimes/Slime.gdshader
 res://Textures/UItextures/menu_background_panel.tres
 res://Scenes/UI/GameplayUI.tscn
 res://Scenes/Player/Player.tscn
-res://Scenes/Levels/random_generated.tscn
+res://Scenes/Levels/random_generate_threaded.tscn
 res://Scenes/WorldGenerator/world_generator.tscn
 res://Scenes/UI/LevelsMenu/levels_ui.tscn
 res://Scenes/UI/LevelsMenu/LevelButton.tscn
@@ -14,5 +14,5 @@ res://Scenes/Globals/globals.tscn
 res://Scenes/Load/load.tscn
 res://Scenes/Globals/SceneManager.tscn
 res://Scenes/tile_map.tscn
-res://Scenes/WorldGenerator/WorldGenerator.gd
+res://Scenes/Levels/level_1.tscn
 res://Scenes/Globals/SceneManager.gd

@@ -4,7 +4,6 @@ extends Node2D
 
 @export var width = 600
 @export var height = 600
-@onready var ocean = $Ocean
 
 var bush = preload("res://Scenes/GroundObjects/Bush/bush.tscn")
 
@@ -16,6 +15,12 @@ var biome = {}
 var fastNoise = FastNoiseLite.new()
 
 var grassBiome : PackedVector2Array
+
+var loading_thread : Thread
+
+var mapLoaded = false
+
+signal map_generation_finished
 
 
 var oceanBiome : Dictionary = {}
@@ -65,11 +70,18 @@ func generate_map(frequency, octave):
 	
 #func _draw():
 #	for ocean in oceanBiome:
+
+
 #		draw_colored_polygon(Geometry2D.convex_hull(oceanBiome[ocean]),Color.RED)
 func _ready():
-	print('word generatin...')
+	loading_thread = Thread.new()
+	loading_thread.start(load_map)
 	
-	SceneManager.load_callback = loaded_callback
+	
+	pass
+	
+func load_map():
+	print('word generatin...')
 	
 	tile_map = tile_map.instantiate()
 	
@@ -93,16 +105,13 @@ func _ready():
 #	queue_redraw()
 	print('word finished...')
 	
+	call_thread_safe("emit_signal","map_generation_finished")
+	
+
+	
 	
 #	add_child(tile_map)
 	
-func loaded_callback():
-	add_child(tile_map)
-	
-	
-
-	
-
 	
 #func generate_biomes(grid):
 #	var oceanIndex = 0
@@ -176,3 +185,9 @@ func getTile(biome: Dictionary) -> Vector2i:
 		if rand <= key:
 			return biome[key]
 	return Vector2i(0,0)		
+
+
+func _on_map_generation_finished():
+	print('sono priopriop qui')
+	add_child(tile_map)
+	SceneManager.finished = true

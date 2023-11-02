@@ -27,6 +27,8 @@ func _ready():
 
 
 func _on_timer_timeout():
+	if SceneManager.loading:
+		return
 	if get_tree().get_nodes_in_group("Enemies").size() < maxEnemies:
 		
 		navAgent.target_position = Vector2(Globals.Player.position.x + randi_range(-spawnRange,spawnRange), Globals.Player.position.y + randi_range(-spawnRange,spawnRange))
